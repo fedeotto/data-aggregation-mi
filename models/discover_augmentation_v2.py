@@ -1,7 +1,6 @@
 from chem_wasserstein.ElM2D_ import ElM2D
 import umap
 from operator import attrgetter
-from crabnet.crabnet_ import CrabNet
 from CrabNet.kingcrab import CrabNet
 from CrabNet.model import Model
 import pandas as pd
@@ -17,8 +16,7 @@ import torch
 from tqdm import tqdm
 import settings
 
-device = torch.device('cpu')
-
+device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 def my_mvn(mu_x, mu_y, r):
     """Calculate multivariate normal at (mu_x, mu_y) with constant radius, r."""
