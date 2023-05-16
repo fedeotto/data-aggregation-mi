@@ -50,12 +50,12 @@ models_list = [
 
 
 """global params"""
-n_repetitions = 5
+n_repetitions = 10
 # preprocessing
 epsilon_T = 15               # controls the window size around ambient temperature
 merging='median'              # 'median'/'best' (drop duplicates and save best value) 
 med_sigma_multiplier = 0.5  # in 'median' merging values with duplicates with std > 0.5*median are discarted
-mult_outliers = 5           # values above mean + 3*sigma are discarted
+mult_outliers = 3           # values above mean + 3*sigma are discarted
 # split
 split = 'random' # 'top' # 'novelty'
 shuffle_after_split = True
@@ -68,11 +68,11 @@ elem_prop = 'magpie'
 k_elemconcat = 5
 n_elemconcat = 10
 crabnet_kwargs = {'epochs':300, 'verbose':False, 'discard_n':10}
-discover_kwargs = {'thresh' : -20000, 
-                   'n_iter': 1,
-                   'batch_size':369,
+discover_kwargs = {'thresh' : 0.9, 
+                   'n_iter': 100000000,
+                   'batch_size': 5,
                    'scaled' : True,
-                   'scaler' : RobustScaler, 
+                   'scaler' : MinMaxScaler(), 
                    'density_weight':1.0,
                    'target_weight':1.0,
                    'scores': ['density']
