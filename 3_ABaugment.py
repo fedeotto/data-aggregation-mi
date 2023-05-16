@@ -1,9 +1,10 @@
 import numpy as np
 import pandas as pd
 
-import plots
+# import plots
 import utils
 import tasks
+import pickle
 from preprocessing import preprocess_dataset, add_column
 from settings import ascending_setting
 from sklearn.preprocessing import MinMaxScaler, RobustScaler
@@ -199,6 +200,10 @@ for prop in props_list:
                            else output[task][metric_class] for task in tasks_list]
             cols = results.columns.get_level_values('model')=='disco'
             results.loc[(prop,n),cols] = num_results
+            
+# saving results
+with open('results.pkl', 'wb') as handle:
+    pickle.dump(results, handle)
         
 #average across repetitions
 results_mean = results.groupby('prop').mean()
