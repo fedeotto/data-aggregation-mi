@@ -11,7 +11,7 @@ from chem_wasserstein.ElM2D_ import ElM2D
 import tasks
 import umap
 import utils
-from pymatviz.pymatviz.ptable import ptable_heatmap
+# from pymatviz.pymatviz.ptable import ptable_heatmap
 import pandas as pd
 from chem import _element_composition
 from collections import Counter
