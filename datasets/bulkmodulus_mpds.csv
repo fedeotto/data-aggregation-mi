@@ -1,0 +1,2528 @@
+formula,target
+CuAl2,124.0
+Fe ht1,251.0
+Al,82.3
+Fe4N,406.0
+SrS,57.0
+SbB hyp,104.0
+V rt,163.0
+Ti ht,125.7
+Rh,255.6
+Ru rt,322.0
+ScRh3,190.0
+ZnS rt,77.0
+W rt,318.0
+Hf rt,111.0
+Ba8Ge43 ht1,69.0
+HfV2 rt,107.0
+Er2Fe17,149.0
+V3Ge,171.0
+Ni,256.7
+AgGaSe2 tet,57.0
+Tm2O3 mon,145.9
+Mn stab ht3,335.1
+Y hyp,47.6
+V0.7Co3.3 rt,300.0
+Fe0.75Ge0.25 m2,164.0
+P cub1,6.7
+Dy2O3 ht2,231.0
+Yb2O3 hp,181.0
+Cr calc,265.1
+Ba[WO4],53.8
+P black,32.0
+Fe rt,198.4
+Zn rt,68.2
+Zr rt,95.3
+Zr ht/hp2,101.3
+Si rt,91.2
+Pt,356.2
+Co ht,248.7
+Tl rt,37.6
+Nb,169.7
+Nd rt,27.9
+Mo rt,262.8
+Sb rt,162.0
+Ga,69.6
+In tet,46.3
+La ht1,31.2
+La ht2,30.7
+La rt,25.8
+Ag,100.7
+Ag5Zn8,110.0
+Cr0.78Al0.22,129.0
+Cu0.92Al0.08 rt,135.5
+Er,34.9
+Fe3Al ht,136.0
+FeAl rt,198.1
+GdAl2 rt,86.5
+Gd rt,35.6
+Hf ht,124.7
+Ni3Al rt,146.2
+NiAl rt,192.0
+NiAl3,132.0
+Re,364.0
+RuAl2 rt orth,190.0
+ScAl3 rt,92.0
+Sc ht,59.7
+Sc rt,59.58
+Ti3Al rt,107.0
+TiAl rt,125.0
+Ti3Al hyp2,120.0
+TiAl3 ht,113.0
+TiAl2 rt,120.0
+Ti1.5Al2.5 ht,120.0
+Ge,67.1
+Cu3Au rt,155.0
+CuAu rt,162.0
+Au,189.5
+Ho rt,40.2
+Tb rt,38.7
+Tm rt,44.5
+Ba,9.3
+Cu,141.6
+Li rt,11.5
+Cr rt,201.0
+CrB2,329.0
+Be ht,132.0
+Be rt,114.0
+Hg lt/hp1,28.8
+Bi,112.0
+PrBi,40.0
+Pr rt,26.9
+B rhom1,322.0
+Ca ht/hp1,20.1
+Ca rt,18.36
+Sn rt,50.7
+CeCo5 ht,148.0
+Ce ht1/hp1,37.0
+Co rt,214.0
+Cu6Ce rt,200.0
+Ce rt,28.4
+CeRu2 rt,152.0
+Ta,211.0
+MoC0.49 tf,360.0
+FeCo rt,247.0
+Cr0.5Fe0.5 ht1,217.0
+Cr0.9335Fe0.0665 ht2,194.0
+Cr2O3 rhom,230.0
+Ta0.85Cr0.15,185.0
+TiC,252.0
+Mg,35.3
+CuO rt,95.0
+Y rt,42.6
+Cu0.63Zn0.37 rt,140.0
+Cu0.5Zn0.5 ht,139.0
+CuZn rt,150.0
+Cu5Zn8,121.0
+Dy rt,32.3
+Eu,14.3
+Sn lt,43.0
+Fe3Ga ht,279.0
+Fe0.8Ga0.2,256.0
+Mn0.5Fe0.5 ht,143.0
+Mn ht3,321.9
+Fe0.5Ni0.5 rt,132.0
+Fe0.6Ni0.4 tf,155.0
+FeO ht,124.0
+Fe3O4 rt,173.0
+Fe2O3 hem,258.0
+Fe7S8 3C,140.0
+FeS tro,82.0
+S 8-r alpha rt,14.5
+Ti rt,115.0
+U rt,113.0
+Se rt,14.9
+Mn rt,43.3
+ZnGd,77.6
+Ru2Ge3 ht,199.0
+Ir,325.0
+Na rt,7.53
+Pu rt,42.0
+Sr ht/hp1,16.0
+Sr rt,12.35
+TiH2 rt,97.7
+ZrH2 rt,174.0
+In0.75Sn0.25 rt,34.8
+K rt,4.21
+K2Te,12.9
+K2Te2 ht,11.0
+K2Te3,14.3
+K5Te3,14.4
+Te rt,19.4
+La7Ni16 rt,91.0
+LaNi5,126.0
+Li2S rt,52.0
+Lu,49.3
+MgPr rt,37.2
+Mg2Si,55.35
+MgZn2,187.835
+MnTe ht3,38.1
+MnTe rt hex,15.1
+Ni2Si rt,175.07
+VNi3 rt,250.0
+NbN rt,297.0
+NbN0.75,329.0
+NbN ht2,148.0
+TaN ht,436.0
+TaN rt,288.0
+TiN ht,273.0
+Y2O3 ht3,137.1
+Y2O3 rt,170.0
+Tl ht,33.9
+Yb ht/hp1,19.0
+Yb rt,17.3
+Ru2Si3 rt,230.0
+ZrRu,225.0
+Sm rt,30.2
+ZnTe rt,54.0
+Mg0.975Ag0.025,30.8
+MgAg,86.0
+MgAg3 rt,112.0
+Al4C3,170.0
+Co2Al5,153.0
+Co2Al9,108.0
+CoAl rt,211.0
+Li0.1Al0.9,77.0
+LiAl rt,51.4
+Pb,43.2
+AlSb,62.0
+VAl10,96.0
+VAl3,139.0
+As,38.4
+GaAs rt,79.0
+BaO,74.0
+Ba[O2],105.0
+CaO,112.0
+Cd,58.1
+CeFe2,90.0
+CeSb rt,37.0
+CoSi rt,207.0
+CoSi2,169.0
+CoSn rt,127.0
+Cr0.28Ni0.72 ht,187.4
+Cr0.67Te ht2,43.4
+TaC,344.0
+ZrC cub,236.0
+Fe2P,244.0
+FeP2,199.0
+GaTe,30.0
+HfO2 ht2,265.0
+HfO2 ht3,319.5
+HfO2 rt,254.0
+TiD1.98 lt,127.0
+TiH2 lt,110.0
+La2O3 rt,118.0
+Nb0.61Mo0.39,181.0
+NbNi3 rt,150.8
+NiO rt,206.0
+NiS ht,156.0
+NiSi2 rt,160.0
+TbNi2 rt,100.0
+W0.08Ni0.92,216.0
+YNi2,100.0
+ZrN,266.0
+Si3N4 hex,297.0
+Os rt,394.9
+Os2Si3 rt,253.0
+OsSi2 rt,212.0
+ThO2 rt,198.0
+UO2,207.0
+ZrO2 ht1,205.0
+ZrO2 ht2,194.0
+ZrO2 rt,116.2
+PbS rt,60.0
+TiP,289.0
+USn3,83.0
+Cu2S ht,72.0
+AlAs,81.0
+MnAl12,107.0
+MnAl6,121.0
+AlP,89.0
+Pu0.75Al0.25 ht,27.9
+Zr3Al rt,87.0
+ZrAl3 m,99.0
+InAs rt,66.0
+Bi2Se3 rt,62.0
+Bi2Te3 rt,41.92
+Ce2O3 ht,153.0
+Ce2O3 rt,130.0
+CeO2 rt,218.0
+Fe3C m,161.0
+Cr2N,275.0
+CrN rt,363.0
+CrSi2,210.0
+SiC 2H,225.0
+V6C5 rt,237.0
+V8C7 rt,243.0
+VC0.67 rt,299.0
+VC,329.0
+WC,273.4
+WC0.82 ht,375.0
+MgDy,41.85
+ZnEr rt,88.9
+Nd2Fe17 ht,443.0
+Ga2O3 ht,142.0
+GaP rt,89.0
+Pu0.88Ga0.12 ht3,30.6
+Mg2Ge rt,49.35
+ZnHo rt,71.4
+ZrH1.8,124.0
+LiIn rt,34.7
+In2O3,175.0
+InP rt,71.0
+InSb rt,53.0
+In0.20Sn0.80,59.03
+In0.05Sn0.95 rt,58.61
+Pm,33.0
+MgTb,41.62
+Nb3Sb,177.69
+PbO2,175.0
+PbO ht,23.0
+Pr2O3 ht1,115.8
+PrO2 rt,378.0
+SnO2 rt,224.0
+PbSe,54.0
+Pd,190.01
+Sb2Se3 rt,30.0
+ZnTb rt,76.8
+Ag0.05Cd0.95,57.0
+Mg1.04Ag2.96 rt,114.0
+CeAl3 rt,47.8
+Li9Al4 rt,35.0
+Li3Al2 rt,43.4
+MoAl12,109.0
+Nb3.04Al0.96,165.49
+Al2O3,190.0
+Au4V rt,207.11
+B13C2,273.0
+HfB2,268.0
+LaB6,191.0
+MoB2 ht,324.0
+NbB2,232.4
+TlBr rt,19.7
+TaB2,340.0
+TiB2 rt,377.0
+VB2,282.0
+ZrB12,249.0
+ZrB2,283.0
+MgCe,38.0
+Ce7Ni3,24.6
+CeNi,28.0
+ZnCe rt,65.11
+HfC,254.0
+NaCl rt,25.0
+TlCl,24.0
+NbC,320.0
+PrCo5,137.7
+CoS2,115.0
+NbCr2 rt,191.0
+Cs,2.0
+UC2 ht1,216.0
+UC rt,65.0
+W2C ht1,420.0
+NbD0.95 rt,171.0
+FePd lt,214.0
+FePd3 rt,182.0
+FePt3 rt,262.0
+Fe0.5Pt0.5 ht,80.0
+FePt rt,264.1
+FeS2 ht,159.7
+FeSe rt,121.6
+Fe3Si,212.5
+Fe5Si3 ht,239.0
+FeSi,264.0
+Fe0.92Si2 ht,220.0
+FeSi2,199.0
+Fe1.67Sn ht,103.0
+Fe3Sn2 ht,89.0
+Fe3Sn ht,122.0
+Fe0.9517Sn0.0483 rt,131.0
+FeSn,94.0
+FeSn2 rt,86.0
+GaN rt,243.0
+GdH3 rt,80.0
+MgGd,41.41
+Nb3Ge,115.0
+GeTe ht,55.5
+HgTe rt,45.0
+LaH3 lt1,68.4
+NaH rt,18.4
+NbH rt,191.0
+NbD1.9 rt,175.0
+[H2O] lt hex,9.0
+[D2O] lt hex,9.85
+VD2 rt,163.0
+NaIn rt,31.1
+Rb hp4 cub,2.301
+In2Se3 gamma,29.0
+Th rt,58.0
+MgNd rt,38.27
+Mg0.974Sn0.026,30.8
+Mg2Sn,41.2
+MnO rt,142.0
+MnSi rt,163.5
+MoN ht2,338.33
+MoN ht1,304.0
+Mo3Si,245.6
+Mo5Si3 rt,251.1
+MoSi2 rt,230.0
+MoSi2 ht,220.0
+Na2S,91.0
+Nb3Sn rt,166.54
+Nb0.5V0.5,165.0
+NiO ht,172.0
+TiNi ht,153.0
+Zr2Ni,119.0
+UN,203.0
+SbO2 cli,105.0
+SiO2 ht cri,18.8
+SiO2 ht4 tri,138.3
+TbO2,195.7
+Ti2O3 rt,210.0
+TiO ht2,230.0
+TiO rt,121.2
+TiO2 rut,206.0
+V2O3 rt,176.0
+ZnO,155.15
+PbTe rt,46.0
+UP rt,104.0
+TaSi2,170.0
+TiSi2 orth1,165.7
+V3Si rt,166.0
+WSi2,240.0
+SmS,59.0
+Ta0.5W0.5 ht,269.2
+Zr0.5Ti0.5 rt,148.0
+CeAl2,234.0
+Ar ccp,3.476
+[N2] lt1,1.31
+[N2] lt2,2.3
+BaF2 rt,53.4
+CaB6,48.2
+CaF2 rt,81.0
+CdTe rt,38.1
+Cr0.95Ru0.05,200.8
+MgEu,22.35
+Mn0.3Fe0.7 rt,111.88
+Fe1.11Te rt,36.0
+GaSb rt,63.0
+MgH2,55.0
+LiZn rt,57.8
+MgSc rt,51.35
+MgY,41.75
+V0.95Pt0.05,176.0
+FeRh rt,221.0
+Sb2O3 sen,27.0
+AlB2,203.0
+[Br2] lt,15.2
+PrAl2 rt,74.8
+Au0.5Fe0.5 ht,246.0
+BaSi2,53.0
+Re3B orth,389.0
+Re7B3,385.0
+ReB2,344.0
+ScB2,205.0
+MgSm,40.04
+MnS2 rt,63.3
+MnS rt,81.0
+PdTe2,101.5
+YSb,60.55
+AmO2,300.0
+Am rt,30.0
+Pu0.5Am0.5,30.0
+AuGa2,98.0
+CeB6 rt,166.0
+Fe2B,461.0
+Ce3Sn,55.1
+GdNi2,100.0
+PdSn2 rt,104.4
+PdSn3,83.8
+PdSn4,75.3
+USi3 ht,125.0
+USi2 ht,135.9
+USi (O),113.0
+LaBi,55.625
+CdSe rt hex,55.0
+MgLa,34.45
+SbO2 cer,143.0
+TiPd2 rt tet,150.5
+TiPd2 rt orth,152.1
+YbAl2,45.0
+YbAl3,92.3
+BaSi,44.0
+GdB6,175.0
+LaCo5,133.1
+GeSe rt,43.1
+InN rt,118.3
+UAl2 rt,82.0
+UAl3,108.0
+MgB2,155.0
+CoSb3,105.0
+V2C rt,242.0
+UGa3,99.0
+UMn2 rt,149.0
+SmNi2,100.0
+PuO2 rt,360.0
+YbTe,48.0
+Ce2.67S4 ht,71.9
+CeS,81.8
+Fe1.5Si0.5 ht,214.0
+FeSi ht-hp,279.5
+Fe2Si ht,255.0
+Ru2Ge3 rt,201.0
+UNi2 rt,190.7
+AgCl,43.318
+KCl rt,18.0
+AgInTe2 rt,36.0
+CoNi0.2Al0.8,188.0
+Co0.35Ni0.65 ht,257.3
+TiCr0.3Al2.7,115.0
+CuLuAl rt,149.0
+UFe2Al10,132.0
+UFe4Al8,148.0
+MgAl2O4 cub,220.0
+TiNb0.5Al0.5 ht cub,119.4
+Pt3Al ht2,246.0
+Ti0.32Al0.68N,189.0
+Ti2AlN,154.0
+Ti0.5Al0.5N,265.0
+AlN,195.0
+ZrAl3,99.0
+PtAl2,145.7
+B6As,250.0
+BAs rt,137.0
+CeAs rt,73.0
+GaSb0.5As0.5 lt,59.1
+LaAs,74.4712
+ZnSe,67.0
+BaCl2 hp2,71.8
+LiCl hp cub1,32.0
+BaS rt,48.0
+B2O3 rt,47.0
+BN cub,400.0
+YbB2,182.2
+Fe4Bi2O9,74.0
+FeBiO3 hp V,138.8
+FeBiO3 ht1,122.0
+FeBiO3 rt,122.0
+Bi4Te3,52.0
+Mo2NiB2,167.0
+SiO2 rt,38.5
+CsBr rt,14.8
+RbBr rt,14.0
+MgF2 rt,97.0
+W6Co6C,462.0
+CdS,61.0
+La3S4 rt,81.1
+Cd[MoO4],96.7
+CeP rt,62.0
+CeFe4Sb12,74.0
+CePd rt,67.0
+Mn1.1Sb,50.6
+Ti2InC,137.0
+Ti3InC,149.0
+CsCl ht,10.0
+CsCl rt,18.0
+RbCl ht,18.81
+PbCl2 rt,34.0
+TaC0.5N0.5,363.41
+Fe1.5Co1.5N,111.0
+FeCo2Si rt,204.0
+TiCo3,265.0
+CoO ht rt,160.0
+SiC 3C,200.0
+Cr0.57Mn0.43,109.0
+CrSb rt,79.99
+CsF rt,23.5
+LaF3 ht,121.53
+CsI rt,11.96
+Ti3SiC2,187.0
+Eu2O3 rt,145.0
+EuO,92.0
+HgSe rt,54.0
+Cu2NdSi2,144.0
+Cu0.5TiNi0.5 cub,196.08
+Dy2O3 rt,187.0
+Eu2O3 ht1,140.0
+Eu2O3 ht2,151.0
+KF,29.0
+LiF,67.0
+NaF rt,44.0
+RbF rt,25.0
+LaGaO3 rt,147.5
+Gd2O3 ht1,133.2
+Gd2Zr2O7 ht,161.5
+Ge2Sb2Te5,31.2
+HfNi2Sn,172.0
+HfNiSn,141.0
+RbI hp1,11.0
+TlI rt,17.1
+Mg2[SiO4] for,127.9
+MgO,166.0
+SiO2 ht1,133.9
+Sm2O3 rt,127.1
+SrMnO3 4H,136.0
+SrO rt,91.0
+Re2P,333.2
+PdO rt,280.0
+ThTi2O6 ht,151.2
+Sb2Te3 rt,36.1
+AgGaS2 tet,71.0
+AgInSe2 rt,49.0
+Ru0.25Co0.75,427.0
+Al4SiC4,179.0
+Li8Al3Si5,50.84
+LiAlSi,56.0
+Y3Al5O12 ht,182.6
+YAlO3 ht,188.0
+AuIn2,74.1
+CdO,108.0
+BaTiO2.85 6H,110.0
+BaZrO3,157.0
+ScC rt,178.7
+BeO rt,212.0
+ErB12,217.0
+GdB3O6,130.82
+HoB12 rt,215.0
+HoB4 rt,198.2
+CeBi rt,50.0
+SeO2 tet,75.0
+Yb2O3 rt,181.0
+YB2,174.0
+YB4,180.7
+YB6,179.6
+CsCdBr3,21.2
+NaBr,21.0
+KBr rt,15.0
+LiBr rt,27.0
+CaS,55.1
+Ca[MoO4],88.4
+Ca3[PO4]2 rt,83.4
+Cd0.51In0.33Te,0.45
+CeF3,113.23
+CeCoIn5,72.8
+CePb3,62.0
+RuGa2,186.0
+CeNi2Ge2 m,86.7
+CePt2Si,119.0
+CePt3Si,100.0
+NdF3,121.18
+MgNi3C,202.0
+CoP3,152.0
+LaP,80.557
+NdCoO3,194.0
+PrCoO3 rt,168.0
+TiCoSb,142.0
+CuCrO2 rt,126.8
+ThC,43.0
+CuGaS2 rt,92.0
+Gd2O3 rt,188.0
+Cu2GdSi2,161.0
+CuInSe2 rt,59.0
+CuInTe2 rt,43.0
+CuLa2O4 rt,113.8
+KI rt,13.0
+EuTe hp cub1,43.0
+Fe[PO4] rt,31.3
+Y3Fe5O12,173.5754
+PrP,74.0
+Y6Fe23,110.0
+YFe3 rhom,110.0
+Y2Fe17 rt,130.0
+YFe2,130.0
+PrF3 rt,108.11
+K2NiF4,49.2
+KNiF3,79.0
+LiYF4 rt,84.4
+Na1.5Nd1.5F6,75.4
+GdMnO3 rt orth,175.0
+GdP rt,94.16
+UGe3,136.0
+Hf[SiO4],235.0
+Ho2O3 rt,178.0
+NaI,16.0
+ZrMn2 rt,149.4
+LaMnO3 orth,118.4
+La3Sn lt1,78.0
+La2Zr2O7,171.0
+Li2O rt,105.0
+Li4[SiO4] tricl,74.06
+Lu2O3,113.5
+Zn0.9874Mn0.0126S,129.4
+ZnS ht,78.5
+Zn0.9Mn0.1S,89.8
+Sr[MoO4],71.0
+MoSe2 2H,45.7
+PrSb rt,44.0
+RuO2 rt,283.0
+SrZrO3 rt orth,157.37
+TmTe,49.0
+AgBr0.5Cl0.5,43.093
+CuBr rt,43.528
+AgBr,39.15
+AgI ht,13.5
+AgI m,19.6
+CuCl rt,48.38
+AgGaTe2,42.0
+LaC2 rt,76.3
+Al2.67O4 m-gamma cub,219.0
+Al2CO hp,186.0
+Dy2O3 ht1,179.0
+Er2O3 ht,146.9
+Eu3Al5O12,212.8916
+Gd3Al5O12,213.5493
+Ho2O3 ht1,200.0
+Ho3Al5O12,217.6516
+LaAlO3 ht,265.3
+Lu3Al5O12,220.9987
+Nb0.35Ni3Al0.65 rt,144.9
+V0.2Ni3Al0.8,2.4e-07
+Sm2O3 ht1,125.0
+Tb2O3 mon,137.2
+Yb3Al5O12,219.3696
+CdSe rt cub,55.0
+ErAs rt,93.7
+GdAs rt,86.04
+HgI2 rt,134.0
+HgI2 ht1,210.7
+BaBiO3 ht2,130.0
+BaCl2 lt,69.8
+ReO3,210.0
+BaTiO3 ht,112.2
+GdN,188.47
+CuI rt,34.4
+GeO2 rt,247.0
+[GeO4]3Bi4,48.0
+Bi12SiO20,63.0
+SrBi2O4,17.6
+Li2B4O7,45.6
+SmB6,139.0
+UB12 rt,249.0
+UB2 rt,225.0
+UB4 rt,181.0
+NdBr3 rt,18.0
+Ca[CrO4] rt,94.0
+CrO2,238.0
+MnF2,88.1
+MoS2 2H,63.361
+CaSiO3 rt tricl,74.0
+CaSiO3 hp1,76.0
+CaTiO3 rt,172.0
+CaZrO3 rt,149.0
+CdF2,127.0
+LiCd rt,48.5
+Cd0.5Mn0.5Te cub,37.12
+Zn0.5Cd0.5Se rt,62.4
+Cu2CeIn,97.2
+Cu6Ce lt,100.0
+Cu2CeSi2 lt,126.0
+TiC0.5N0.5,273.0
+CoF2 rt,108.7
+LaCoO3 rt,26.0
+LiCoO2 rt rhom,142.9
+Co0.7Pt0.3 ht,248.8
+Cr2FeS4 rt,85.4
+PbF2 rt cub rt,63.0
+La3In,59.0
+CuInS2 rt,74.0
+Cu4YbIn rt,102.0
+LaSb,60.0381
+Cu2TbSi2,156.0
+Dy[VO4] rt,127.1
+EuS rt,59.0
+Gd3Fe5O12,172.3694
+GeO2 ht,34.3
+TiFeO3 rt,191.0
+SrF2 rt,68.5
+URh3,133.0
+Gd3Ga5O12,168.0
+MnGa2Se4 rt,44.0
+Mn0.9Ga0.067Se hp,56.0
+Ga2O3 hp1,243.0
+Sm3Ga5O12,169.0
+Gd5Ge2.1Si1.9,68.5
+Gd2O3 ht2,160.0
+La2Hf2O7,224.0
+Tb2O3 trig,136.9
+Hf0.5Ti0.5O2,147.0
+HgS rt,68.6
+LiI rt,20.0
+Ho2Ti2O7 rt,213.0
+Li3Sb rt,34.3
+TlI ht,45.0
+VO2 rt mon,141.7
+MgSiO3 rt,110.7
+Sc2[MoO4]3 rt,32.0
+Tl2[MoO4] ht2,24.6
+NaV2O5 rt,36.2
+NaV6O15 rt,72.0
+Nd2TiO5,100.0
+TiPbO3 ht,138.0
+TiPbO3 rt,90.0
+U0.5Pu0.5O2,174.3
+Sc2[WO4]3,45.0
+Sm2O3 ht2,127.0
+Tb[VO4] rt,124.3
+Yb2Ti2O7,200.0
+Zr0.50Ti0.50O2 ht,144.0
+Y[VO4],130.5
+AlF3 ht,141.0
+CoAl2O4,235.7
+As2O5 rt,77.16
+Sc3AlN,111.4
+ScN,210.364
+VN rt,345.0
+LiBaF3,75.9
+B6P,266.0
+BP rt,159.0
+Bi4[SiO4]3,230.0
+Bi[VO4] ht,141.3
+TiCo2Si,215.0
+Cu3N,78.0
+Li2CuO2,78.2
+ErFe2H3 hp,85.85
+MgFe2O4,179.0
+Mg0.5Fe0.5O,166.0
+FeF2,106.0
+Na1.5Gd1.5F6,72.4
+SnI4 hp,7.9
+KH,15.6
+K[OH] lt,23.2
+ZnWO4,140.0
+Eu2As2 rt,46.0
+HCl lt1,2.78
+DCl lt1,47.3
+HI lt1,2.765
+Mo3Te4,35.66
+Fe0.5Co0.5Si,178.0
+Cu0.5Fe2.5O4 ht,103.19
+Cu1.5Zr0.75Ti0.75 hex,120.4
+Er[VO4] rt,132.2
+LaFe4Sb12,115.82
+Mn0.175Fe0.65Ni0.175,150.0
+Mo3Fe3N,368.0
+Fe2NiO4,91.5
+TmGa2 rt,86.0
+[NH2OH],8.9
+U0.1Zr0.8Nb0.1,115.0
+Zr[SiO4] rt,215.5
+SrZrO3 ht3,126.0
+Nb3Ga,169.97
+Al0.37Ga0.63As,74.8
+Al4Bi2O9,148.0
+Mg0.16Cd0.84 ht,32.3
+Al[PO4] rt,30.23
+Al2[WO4]3 ht,48.0
+Ga[AsO4] rt,17.6
+MnAs rt,73.0
+BaMnF4 rt,53.0
+Ba[OH]2 ht,35.0
+Ba[MoO4],59.7
+BI3,7.3
+B6O,268.0
+CaHfO3 ht2,163.0
+CaSiO3 rt mon1,101.0
+Th3N4,175.0
+ZrC0.5N0.5,210.0
+Pb[CrO4] ht1,57.0
+Cs[N3] rt,18.0
+US rt,103.0
+CuGeO3 rt,52.47
+Eu3Fe5O12,172.3812
+FeGaO3,230.0
+Mn3.6Fe0.4N0.9,266.0
+PrFeO3,274.0
+ZnFe2O4,120.4
+LiLuF4 rt,85.0
+NaTh2F9,99.0
+K[N3] rt,18.6
+La4.67[SiO4]3O,145.8
+Na[NO3] rt,382.0
+Y[PO4],145.0
+Y2Ti2O7,236.0
+Y2[WO4]3,24.2
+ZnSiP2,110.0
+ZnTe0.5Se0.5 tf,48.9
+MgCd rt,59.0
+Ga4Bi2O9,109.0
+TiO2 ana,183.0
+CaV2O5,61.65
+CdCr2Se4 rt,92.0
+Cd3P2 tet2,66.3
+RbNiCl3,23.0
+ReS2 tricl,49.0
+NbCr2 ht2,192.0
+NdCrO3 orth,338.0
+Er2O3 hp,147.1
+KMnF3 rt,62.68
+NaZnF3,92.93
+NiI2 rt,27.7
+HoTe,60.0
+SmSe,52.0
+YbSe,60.0
+SmTe rt,43.0
+KNbO3 ht2,247.0
+Lu[VO4],147.0
+Pb[MoO4],67.9
+Pb[WO4] rt,67.4
+V2AlC,202.0
+CeTe rt,58.18
+TiCrMn,115.0
+BaClF,55.6
+BaZnF4 rt,55.0
+Ba[OH]2 rt,40.0
+Ca3GeO ht,57.71
+Y2O3 ht1-hp1,207.0
+Y2O3 ht3-hp3,292.0
+CdGa2Se4,44.3
+Fe2CoO4 rt,129.9
+Eu[WO4],70.5
+Ho3Fe5O12 rt,173.6912
+Lu3Fe5O12,173.6506
+Yb3Fe5O12,172.8372
+Gd2Ti2O7 rt,176.0
+MgMn2O4 rt,156.0
+Sr3[PO4]2 rt,116.4
+Tb2Ti2O7 ht,199.0
+Ag2HgI4 rt,24.0
+SrAl2O4 rt,86.0
+SrAlSi,56.07
+ZnSiAs2 rt,89.0
+ZnSnAs2 rt,70.0
+BaH2 rt,31.2
+Be2C,213.0
+LaB3O6 mon,125.95
+LuB12 rt,223.0
+CsBr lt,16.5
+SrH2 rt,41.4
+Ca[WO4],88.1
+Fe2CoO4 hp1,94.0
+CuGaTe2 rt,50.0
+ErP rt,102.95
+KZnF3,54.8
+Nb0.95Ir1.05,320.0
+LiGaO2,95.69
+LiGa rt,43.3
+ZnGa2O4 rt,233.0
+K2S,81.0
+LaNbO4 ht,119.4
+Mo6SnS8,76.0
+NaNbO3 rt,157.5
+SrTiO3 rt,194.0
+Sr[WO4] tet,70.6
+WSe2 2H,72.7
+LaGa,57.0
+HgS ht1,61.0
+Mg0.79Al0.80B14,190.0
+Zr3Al3C5,205.0
+Cu2EuSi2,104.0
+Sr2Fe2O5 rt,133.0
+UFeSi,190.0
+KMgF3,91.47
+GdTe,54.0
+Cr2AlC,193.0
+Na3AlH6 rt,31.9
+NaAlH4 rt,27.0
+CaSe rt,60.0
+YbO,130.0
+MgS,85.0
+Y3Ga5O12,175.0
+Ac,50.0
+Th3As4,100.5
+UAs rt,91.0
+UAs2 rt,101.0
+CsAu rt,16.0
+KAu5,91.1
+LiAu m,25.0
+RbAu,13.9
+RbAu5,76.0
+EuB6,157.0
+Np ht1,140.0
+Np ht2,120.0
+Np rt,118.0
+OsB2 orth,342.0
+Pa ht,90.0
+Pa rt,157.0
+TmB12,220.0
+B rhom2,199.5
+BaSe rt,43.0
+BaTe rt,36.0
+Be13Ce,85.5
+UBi,91.0
+La2C3,250.0
+MgCd3 rt,67.0
+Mg3Cd rt,49.0
+CeSe,74.39
+Th0.5Ce0.5 rt,10.1
+Mn0.5Co0.5 ht,107.0
+Tc rt,270.0
+Cs1.5Sb0.5,14.0
+ZnDy rt,79.2
+ErH3,70.0
+MgEr,42.67
+PdH rt,160.0
+ScH2 hp,98.0
+ScD2 rt,106.0
+SmH3,70.0
+UH3 ht,33.0
+YD2 rt,81.0
+YH2,60.4
+YH3 rt,71.9
+LiHg rt,44.3
+MgHo,42.19
+Mg0.968In0.032,32.3
+Nb3In,158.52
+Tl0.194In0.806 rt,40.4
+IrSb3,136.0
+LaS,84.0
+LaSe,76.0
+LaTe,64.0
+LiTl,35.7
+MgLu,45.22
+MgTm,43.64
+NaTl rt,29.9
+NpO2 rt,200.0
+Th3P4 rt,111.0
+ThP rt,107.4
+Tl0.5P1.5,46.75
+UPt3,210.0
+Rb2S,79.0
+YbS,68.0
+USb,71.0
+SrSe,52.0
+ThSe,125.0
+TmSe ht2,63.0
+USe rt,89.0
+ThSi,97.1
+SrTe rt,42.0
+UTe rt,71.0
+YTe,67.0
+LuH3,90.0
+CsH rt,7.6
+WN,396.0
+PuTe,37.0
+Yb lt/hp2,13.0
+NpGa3,97.0
+[H2] hp3,92.0
+[D2] lt3 lt2,0.22
+[H2] lt1/hp1,173.0
+PbO2 hp2,141.0
+Cr8O21 rt,21.424
+WPt2 rt,343.0
+C dia,430.0
+VCo2Ga,198.0
+MnCo2Si,221.0
+VCo2Si,216.0
+CuCr2Se4,96.0
+Cr2FeS4 ht-hp,53.7
+Ti5Cr8Fe16,200.0
+CuGaSe2 rt,71.0
+NiH hp,176.0
+EuSe rt,53.0
+EuNi2Ge2,35.0
+MnN0.89 ht,373.0
+AgInS2 rt,62.0
+Al3BC3,153.0
+BaAlSi,50.32
+Nb2AlC,183.0
+Ta2AlC,222.0
+Ti2AlC,137.0
+Ti3AlC,155.0
+Zr2Al3C4,196.0
+CaAlSi hex,63.41
+AgAlS2,74.0
+MgTe hex,32.5
+MgTe rt tf,38.0
+ZnSnP2 rt,82.0
+YPd2Sn,125.0
+PtSn1.2Sb1.8,56.1
+WSi2 tf,270.0
+V2GeC,191.0
+ZnNi3C,46.56
+ScRh3C,227.4
+Cd0.1Ga0.6Te,0.45
+CdGeP2,84.0
+CdIn2Se4 1T,49.0
+CdSnP2,69.0
+Sn hp1,54.8
+YMn1.9Al0.1 rt,29.0
+U3Al2Si3,100.0
+V2AsC,204.0
+CdGeAs2,70.0
+ZnGeAs2 rt,84.0
+RuIn3,5.02
+BN hp2,25.0
+Y2Co7B3,195.0
+Y3Co11B4,192.0
+YCo3B2,206.0
+YCo4B,187.0
+BN hex,36.7
+CrC m,333.0
+Na[BH4] rt,19.9
+Y2Fe14B,106.0
+LiBaH3,38.2
+Hg hp2,81.0
+RbH rt,10.0
+ErN,220.25
+Zn0.6Ga0.27Te,0.53
+ZnGeP2 rt,101.0
+LaNi5H7 rt,121.0
+LiSrH3,42.8
+HgSe0.7S0.3 rt,58.0
+BN rhom,33.4
+LaN,142.9
+Fe5C2 m mon,229.0
+HfC0.5N0.5,255.0
+Ti3Nb0.75Al2.25 m,121.4
+LaNi3.5Al1.5,122.4
+TbNiAl,153.0
+CdFe2O4,161.0
+Li2ZnSi,22.0
+EuH2 rt,10.17
+URu2Si2,247.0
+TiNi2Sn,214.0
+TiNiSn cub,143.0
+Zn3N2,228.0
+TlN,112.67
+TbN,180.6
+ZrNi2Sn,159.0
+ZrNiSn,129.0
+Zn0.5In0.5Te,0.53
+La0.5Sm0.5S,10.0
+Mg2[SiO4] wad,196.0
+Y2C3 hp-ht,117.0
+Li3Al[BO3]2,188.2
+La2Ti2O7 rt,121.0
+Mg0.33Nb0.67PbO3 rt,148.0
+Ba2Cu3YO7 rt,112.0
+La2SO2,109.0
+SrMnO3 3C,166.0
+CuAlS2,94.0
+NaZr2[PO4]3,44.7
+Sr0.16CuLa1.84O4 rt,54.6
+Li4[SiO4] rt,73.94
+SrCeO3 orth,110.1
+LaAlO3 rt,10.0
+CuGaO2,202.0
+BaTiO3 rt tet,177.4
+Ba2Cu3YO6,77.0
+Hf[MoO4]2 rt,19.0
+Na2[SO4] rt,39.61
+Y2Sn2O7,212.0
+YCrO3 ht orth,208.4
+Ba2Cu3GdO7,165.0
+BaF2 hp2,125.0
+Ba2Cu3DyO7,124.0
+Ce[PO4] mon,109.0
+Ca[OH]2,33.1
+Ba2Cu4YO8 lt,122.0
+Sr1.9CuBi2.1O6,170.0
+Sr0.14Ca0.86CuO2,118.0
+Cu0.5Ga0.5S ht,94.0
+Al2O3 m-kappa,229.2
+La2Ti2O7 ht,211.0
+Zr2[WO4][PO4]2,61.0
+La2Sn2O7,190.0
+CaCuO2 ht-hp1,2.134e-07
+Sr0.6Pr0.4MnO3 rt,225.0
+CaMgSi2O6,108.0
+Pr2SO2,119.0
+SrRuO3 rt,192.0
+RbFe[MoO4]2 rt,45.0
+TiO2 bro,255.0
+Sr0.63Ca0.37TiO3 rt,0.95
+Y2SO2,142.0
+Ca3Al2[SiO4]3,-0.018
+Cd[CO3],89.1
+Mg[CO3] rt,125.0
+CeO2 hp,302.0
+Sr2CuWO6 rt,185.0
+BaFe2As2 lt,82.9
+BaFe2As2 hp,104.4
+BaFe2As2 rt,153.0
+Ca2La2MnO6[O2],274.0
+Mn2BiO5,138.0
+Zr[WO4]2 rt,75.5
+CuMn2O4 ht,198.0
+ZnAl2O4,183.0
+CuAlTe2,52.0
+CuAlSe2,74.0
+Li0.5Al0.5Si0.5O2 hex,71.0
+Na[ReO4],42.0
+K[ReO4],18.7
+Tl[ReO4] hp,16.5
+Na0.5Y0.5[WO4],80.0
+RbNdW2O8 mon,143.0
+OsSi2 stab,222.0
+Tc stab,299.6
+OsO2 rt,302.0
+ThTe hp,102.0
+YSe,82.0
+ThS rt,145.0
+UP2 ht,124.0
+ErS rt,105.0
+YS,102.0
+TmS,78.0
+ReH0.23 lt,370.0
+CmBi rt,53.0
+AmBi rt,75.0
+NpAl2,56.0
+PuAs,69.0
+NpTe rt,62.0
+NpSb rt,54.5
+PuSb rt,68.0
+PrRu4Sb12,80.5
+CeOs4Sb12,85.0
+LaRu4Sb12,121.6
+CeRu4Sb12,89.0
+YbMn2Ge2,85.0
+YbRh2Si2,189.0
+YbNiSn,146.0
+LaRh3B,166.0
+EuNi2Si2,160.0
+Cu2LaSi2,148.0
+VCo2Al,193.0
+MnCo2Ge,203.0
+ZnCr2Se4 rt,98.0
+MgIn2S4,79.0
+AgAlSe2,59.0
+AgAlTe2,43.0
+CdAl2S4,44.6
+CdAl2Se4,31.479
+HgAl2Se4 rt,66.0
+CdSnAs2 rt,59.0
+CdSiAs2,76.0
+CdSiP2,91.0
+KMgH3,34.5
+ThFe4P12,178.97
+Mn3SnC,286.148
+ZnGeN2 orth,221.0
+Mn3GaC,224.0
+Ti3GeC2,148.0
+Zr2SbP,116.0
+Hf2SbP,125.0
+Ti2SbP,115.0
+Zn0.5Mn0.5Te cub,54.18
+ZnSe0.5S0.5,62.43
+YNi2B2C,0.1071
+Sr0.9CuLa0.1O2 hp,117.0
+Ba2Cu3EuO6.1,84.0
+K0.5Ba0.5BiO3 rt,200.0
+TiClO rt,590.0
+Nd3Ga5O12,167.0
+Ba2CuWO6,153.0
+Sr[SO4] rt,82.0
+BaLaGa3O7,112.0
+Er2Sn2O7,200.0
+Ag0.16Ge0.67Sb0.17Te rt,50.0
+MnFe2O4 rt,90.1
+CuLaNdO4,365.0
+Mn3SnN,286.148
+SmNiO3 ht,167.0
+In2O3 hp1,182.0
+FeGaO3 hp1,223.0
+Tb3Fe5O12 rt,173.3527
+Na3Li3In2F12,36.2
+Lu2O3 hp,165.0
+CeTi2O6,199.0
+LaCrO3 rt,188.0
+Cd[OH]2 hp2,37.6
+Y2Zr2O7,245.0
+SiO2 cri m,11.9
+Zn0.5Fe2Ni0.5O4,301.8
+Zr0.5Ti0.5PbO3 rt tet,83.9
+SiC 6H,204.0
+BaBiO3 mon,215.0
+KTi[PO4]O rt,122.0
+Ca0.5Nd0.5MnO3 rt,47.24
+Cu3CdTi4O12,235.0
+Zn0.5Fe2Co0.5O4,58.2
+Ba2CuHgO4.1,88.0
+AlO[OH] dia,167.5
+CsRb2[C60],12.94
+MnPtSb,33.0
+PrAs,100.0
+AgGaSeS,8.15
+MnO lt,175.0
+HgSe hp2,80.4
+Tb0.25Ho0.75Fe1.95,4.0
+NdGaO3 rt,186.5
+Sr0.6CuLa1.4O4,147.0
+Mg0.5Zn0.5Se,49.1
+Fe hp,568.0
+La2.4Nd0.1Lu2.5Ga3O12,154.0
+NpSn3,64.0
+NpAl3,74.0
+Cu0.5Cd0.5Fe2O4,119.0
+UCoGe rt,309.0
+ScPd2Sn,125.0
+LuPd2Sn,125.0
+TmPd2Sn,125.0
+YbPd2Sn,125.0
+CrFeNiO4,85.7
+CaCu3Ti4O12,212.0
+LiGaO2 hp,142.29
+PrAlO3 rt,189.8
+Zr[GeO4],233.6
+Ce2SO2,114.0
+CaMnO3 rt,67.5
+HfO2 ht1,211.0
+ZrO2 hp3,293.0
+BaO hp2,33.0
+Lu5Ir4Si10 lt,137.0
+Si hp1,115.0
+Si hp3,310.0
+Si m-hp1,120.0
+Sr0.1CuLa1.9O4 rt,137.4
+BaPb0.5Bi0.5O3 rt,171.0
+CeVO3 tet,90.0
+HoMn2O5 lt1,173.0
+MnNiSb,32.0
+Ca0.5La0.5MnO3 rt orth,186.0
+CsCuCl3 rt,31.8
+Sr2MoFeO6 rt,266.0
+Zr0.5Ti0.5PbO3 ht cub,102.5
+Ba[SO4] rt,72.4
+Ba[CrO4],53.3
+Lu[PO4],184.0
+Yb[PO4] rt,150.0
+Tm[PO4],135.0
+ScAs,102.975
+CeRh2Si2,139.0
+Kr lt,3.543e-12
+Xe lt/hp1,3.648
+Te tf,425.0
+Fe0.67Si0.33 m,192.0
+CaIrO3 orth2,333.0
+KTaO3 rt,225.0
+CaTe,49.0
+LiZnP,76.0
+Sn0.19Ge0.81 m,53.8
+Sr0.4La0.6MnO3 rt,167.0
+MgMnFeO4,106.2
+Y[AsO4],135.0
+Sr2Ca2Cu3Pb0.4Bi1.6O10,46.52
+[C84] cub,19.5
+[C60] rt,750.0
+K[CN] rt,15.5
+CsI hp1,10.5
+NaCl hp,135.1
+URhAl,175.0
+Sr2CrReO6 cub,172.6
+Eu[MoO4],71.0
+K[SCN] rt,13.3
+As hp1,88.2
+Cu2YbSi2,92.0
+KMnF3 hp,94.7
+SiC 15R,222.0
+SiC 4H,224.3
+DyInO3 hex,175.0
+GdInO3 hex,177.0
+EuInO3 hex,167.0
+ThAs rt,100.0
+Th3Sb4,78.5
+ThSb rt,83.2
+Ag[N3] orth,39.0
+ScP,111.066
+Os2Ge3 rt,220.0
+CdS hp1,94.0
+SiO2 sti,294.8
+ThSe hp,149.0
+ThSb hp,99.0
+NpOs2 lt,310.0
+NpAs rt,70.0
+Be13Lu,95.0
+PoO2 cub,171.0
+UIn3,98.0
+LiAl3 rt,66.0
+PbS hp1,30.1
+LaSb hp,67.9543
+Gd m,34.0
+Gd hp3,34.0
+HoH3,87.0
+ZnPo,51.0
+CdPo,37.2
+BaC2 rt,49.0
+UAs hp,121.6
+PuSe rt,98.0
+EuTe hp cub2,37.5
+InSb hp2-ht,34.0
+USb hp,83.0
+K3[C60] rt,23.9
+CdTe hp2,74.8
+UMn2 lt2,149.0
+CrN lt,262.0
+Mg2Si hp2,49.05
+ScSb rt,73.834
+InSb tf,52.0
+Ga0.5Sb0.5 hp2,37.1
+WB2 hex2,350.0
+InP hp1,137.0
+ZnO hp,209.6
+HgTe hp1,16.0
+AmN,88.0
+SiTe2 rt,95.0
+CsH hp1,22.3
+HgTe hp2,58.0
+CdS m cub,62.0
+TiCo2Ge,191.19
+MnNi2Al,133.1
+Pr1.25Ru4.75P3 rt,207.0
+CuGaSeS,103.0
+Tl hp,76.6
+CePdSb,100.0
+ScRh3B,190.0
+UNiAlD2.1,127.0
+UNiGa,112.0
+CeCo5H4,148.3
+Cs2MoS4 hp1,27.0
+CaGaSi,42.0
+LiMgN ht,112.99
+Cu0.5Ga0.5Se hp,113.0
+LiInSe2,42.7
+Na[BH4] rt rt,15.0
+TaO stab,293.0
+TiO2 hp1,247.0
+BeTe rt,60.0
+BeS rt,98.0
+BeSe rt,85.0
+[NH3] hp1,77.8
+[NH3] hp2,5.0
+TeO2 hp1,115.0
+Rb3[C60]rt,18.25
+ZnO m,168.0
+Ru2Si3 ht,227.0
+U stab,90.0
+AlN hp,178.0
+Zr hp1,122.1
+InSb hp1,52.0
+K3Sb ht,14.8
+UN hp,197.0
+UTe hp,60.0
+Te ht-hp?,114.0
+BaTe hp,27.5
+Hg0.5Se0.5 hp3,74.8
+PbO2 hp3,223.0
+NpIn3,74.0
+InSb hp4,52.0
+NpGe3,105.0
+Fe0.95Ni0.05 hp,206.0
+MgSe tf,50.0
+CePtGa,160.0
+Au2LuIn,112.5
+Au2YbIn,54.7
+Nb2SnC,161.0
+Ta2GaC,217.3
+Ti2SnC,135.0
+Hf2SnC,139.0
+V2GaC,180.7
+Cu2YSi2,162.0
+Cu2SmSi2,140.0
+CaCu2Si2,119.0
+Cu2LuSi2,167.0
+Cu2ErSi2,161.0
+ZnCrAlS4,190.8
+MnCoRhSn,177.0
+TmTe0.5Se0.5,39.8
+AgCu4Yb,108.0
+Cu4AuYb,139.5
+YRh3B,0.2048
+CaPdH3,90.8
+Cu3PdN ht,155.0
+MgSiP2,75.0
+Cr2GaC,188.0
+Cr2GeC,165.0
+TlTi3C,147.0
+Ti2GaC,140.0
+Nb2GaC,196.4
+Ti2GaN,189.0
+V3Ga2N,189.6
+Zr2InC,137.0
+Hf2InC,134.0
+LiMgAs,51.57
+Nb2CS,220.0
+Nb2AsC,219.0
+Ca2RuD6,16.7
+Ca2RuH6,58.5
+Sr2RuH6,16.0
+Sr2RuD5,16.1
+NdI2 hp1,30.0
+[D2O] hp III,23.8
+SiO2 coe,93.0
+CuF,593.0
+Hg0.8Mn0.2S,38.79
+Gd2Mo2O7,148.0
+Nd2Sn2O7,200.0
+Gd2Sn2O7,191.0
+Sm2Sn2O7,192.0
+Y1.5Er1.5Al5O12,185.0
+Ca0.5Pr0.5MnO3 rt,280.0
+Ba2NbInO6,143.05
+Ba2TaInO6,142.59
+Sr2MoCoO6 rt,152.0
+Ca3Ga2[GeO4]3,165.0
+Li0.5Fe2Ni0.5O4,8.81
+Li0.2Cd0.6Fe2.2O4,6.8
+ScTaPb2O6 ht1,200.0
+Tl2Mn2O7,230.7
+Li0.3Zn0.4Fe2O4,9.83
+Li0.5Mg0.5Ti0.5Fe1.5O4,142.7
+Rb hp1,5.8
+YPd2Pb,125.0
+Ge hp1,86.0
+CuCl hp2,59.05
+BaS hp,21.4
+Sr2YSbO6 ht2,133.0
+Ca2La3[SiO4]3O,88.0
+Ba2MgWO6,137.0
+Zn0.2Cd0.8O,182.026
+Cs[OH] lt,29.7
+CuFeAlO4,79.61
+SiO2 mon1,108.0
+SrZrO3 ht1,117.0
+Ca0.5La0.5CrO3 rt,172.0
+Ne lt/hp,6.36
+Ba2Ca2Cu3HgO8.2,101.0
+Ba2CaCu2HgO6.2,94.0
+Y0.25Sm0.75S lt,0.79
+Sr2Ca1.7Cu3Pb0.3Bi2O10 lt,9.7
+Dy2Fe17 rt,99.0
+CeFe4P12,162.0
+Ge m-hp2,72.7
+[H2O] hp VII,5.02
+Tb2Mo2O7,148.0
+Y[CrO4] rt,95.0
+Eu[CrO4],87.0
+Hf[GeO4],238.2
+[NH4]I ht,18.754
+Li hp1,14.7
+K2PtCl4,16.5
+Sr2MoNiO6 rt,190.0
+Pb hp2,29.02
+Pb hp1,46.63
+Sr0.4CuCe0.2Nd1.4O4,143.0
+EuNi2GeSi rt,25.0
+Li0.5In0.5Se hp1,52.3
+Ce3Pt3Bi4,95.5
+Ce[VO4],125.0
+K4[C70],31.8
+ZrO2 hp2,181.4
+SiC hp,252.3
+Ge m-hp1,76.3
+InN hp,191.0
+GaN hp,364.0
+Sm hp4,33.0
+CuI hp3,115.0
+CuI hp2,85.0
+B0.5CN0.5 ht-hp,184.0
+Sr0.5La0.5MnO3 rt,140.0
+Ge hp2,93.7
+Sr0.15La0.85MnO3 rt,1.0309
+LaFe4P12,177.11
+LaRu4P12,172.0
+CeRu4P12,226.0
+CeOs4P12,150.0
+PrFe4P12 rt,214.0
+Sr2NbFeO6 rt,187.0
+U3Al2Ge3 tet2,100.0
+Li2S hp1,137.0
+Sr2Fe2O5 ht-hp,173.0
+NaInSi2O6,109.0
+Mo3Ni2N,330.0
+Sm3[C70],25.9
+Ba4Si23 hp,87.0
+HgWO4 rt,72.7
+Na0.25Pr0.75MnO3 rt,157.0
+Sr3NiPbO6,95.0
+Na2Ti[GeO4]O rt,89.0
+Ti2Bi2O7,202.0
+Tl2[SeO4] rt,29.0
+Sr2Cu2GdRuO8 tet,145.0
+MnNi2Ge cub,138.97
+YRh3C,209.7
+LaRh3C ht,190.4
+LuRh3C0.7,218.1
+URuGa,238.0
+ThRhAl,149.0
+CdIn2Se4 hp-ht1,86.0
+Fe3PdN,444.0
+MgCo3C0.5,46.9
+PtC hp,263.5
+Fe0.9O lt,355.0
+Fe0.9O hp1,202.0
+Gd hp1,34.0
+Gd hp2,34.0
+Dy hp1,36.3
+Y tf,52.6
+Sc3AlC,101.6
+Zr0.5Ti0.5PbO3 lt,73.6
+SnO2 hp cub,307.0
+SnO2 hp orth4,417.0
+SnO2 hp orth1,259.0
+CrO2 hp,229.0
+Li2O hp,188.0
+ZnTe hp1,91.3
+HgSe0.5S0.5 hp,39.0
+Sr0.3Nd0.7MnO3 rt,148.0
+CeZrO4 m,214.0
+Po rt,28.0
+Sr0.75Ca0.25TiO3 rt,176.4
+GdTiGe rt,93.6
+FeSe lt1,30.7
+FeTe0.5Se0.5 rt,40.8
+C2[CN]4 ht,9.5
+GaN m,202.0
+GaN hyp,175.0
+Si23I4,91.0
+LaFeAsO rt,97.9
+Be3Al2Si6O18,181.0
+LaFePO,96.0
+CeRuPO rt,105.0
+In2O3 hp2,192.0
+Mn2O3 tricl,156.5
+FeB4 ht-hp,252.0
+BaBrF rt,51.5
+Cs[SCN] rt,13.2
+BaSrMoFeO6 cub,178.0
+Fe0.05Co0.95Sb2.875Te0.125,66.7
+Ba0.16Sr0.08Pr0.009Nd0.171Yb0.05Fe2.6Ni1.4Sb12,65.0
+Ba0.18Pr0.015Nd0.285Yb0.04Fe3.1Ni0.9Sb12,79.0
+YFe2H4.2 mon,162.7
+B hp,221.7
+MgGeO3 hp1,322.8
+MgGeO3 hp orth,433.0
+ZrTaN3,311.0
+YFe2H5,99.89
+Ce0.5Fe2Co2Sb12,71.0
+Sm0.1FeBi0.9O3 ht3,115.4
+FeSb2O4 rt,49.0
+P hp1,62.0
+Sr0.7Ca0.3TiO3 rt,0.997
+NbFe0.5S2 hp,116.0
+AgLaSb2,74.0
+Ti0.35Nb0.43Ni0.22PbO3 ht tet,69.7
+Mg3Al2[SiO4]3,210.0
+Ca0.8Mg0.2Mn0.1Fe1.9Al2[SiO4]3,176.8
+SnP2S6,13.1
+La0.74Fe2.74Co1.26Sb12,86.0
+CaMg[CO3]2,72.5
+La0.8Nd0.2GaO3 rt,145.9
+Mo3Pt2N,345.84
+VPbO3,38.0
+MgSiO3 hp2,176.44
+Li[BC4N4],35.0
+Ba2Ca2Cu3Hg0.62Pb0.38O8.35,143.0
+Li2CaHfF8,78.0
+LaMn0.5Ni0.5O3 ht,188.0
+RbTi2[PO4]3 hp,60.0
+Na[OH] hp,45.9
+Ba2MoFeO6 ht,234.0
+B13N2 ht-hp,214.0
+[C60] 2D orth,10.5
+CaPtO3,223.0
+Nd3Fe5O12,170.9386
+BaAlGeH,43.0
+BaMgF4,49.0
+Nd0.1FeBi0.9O3 rt,105.0
+Sc0.5Ta0.5PbO3 hp1,153.0
+Ga4Bi2O9 hp,102.0
+Yb14MnSb11,38.0
+EuPt4Ge12 ht,96.0
+Cs3[C60] hyp,13.7
+SrFe2As2 rt,112.1
+CaFe2As2 rt,80.2
+Yb0.5Ti0.5O1.75 hp,355.7
+K[IO3] rt,24.3
+K[IO3] hp,70.9
+Ti2O3 hp,251.0
+LaN hp,293.2
+Fe4Bi2O9 hp,79.0
+VPbO3 hp1,200.2
+Ba1.9Ca0.6Nb5O15 ht,118.0
+Sb0.4Te0.6 hp3,109.4
+Sb2Te3 hp2,80.5
+Gd0.95Ni2,100.0
+Tb0.95Ni2 rt,100.0
+Eu2RuH6,17.8
+Eu2RuD6,18.4
+Bi2Se3 hp1,77.1
+Ca3SnO,54.76
+Ca3PbO,51.44
+Ca3SiO lt,137.62
+CaSiO3 ht2,60.27
+UFeGe ht,231.0
+Fe3.5Sn0.5N,367.0
+CaIrO3 orth1,363.0
+EuFe2As2 rt,134.0
+Ba2CuTl2O6 tet1,86.8
+Ti3AlCN,219.0
+Ti3Al0.8Sn0.2C2,226.0
+Li[BH4] rt,45.0
+Fe3O4 hp1,198.0
+BaMg[CO3]2 rt,64.6
+Ge3N4 hp,216.3
+Mo3Co3N,350.0
+HfPbO3 rt,188.0
+Ba2TaBiO6 rt,126.0
+Ca[WO4] hp,78.0
+Sr[WO4] hp,64.0
+CaAlH5,42.6
+CaNiH3,93.2
+AlD3 rhom,37.4
+AlH3 rhom,42.3
+YbFe4P12,167.0
+Na6Ca2Al6[SiO4]6[SO4]2,49.0
+RbI hp2,16.0
+RbCl hp,24.98
+K6[C60],61.0
+K hp1,4.21
+Si m-hp2,96.0
+PrCo5H4,125.6
+KCr[CrO4]2,29.38
+NaCr[CrO4]2,36.56
+RbCr[CrO4]2 hyp hyp,26.27
+OsC,393.0
+[H2] lt2,115.0
+U4PdGa12,87.0
+Ag[ReO4],26.5
+Sr2Cu2Y0.2Ce0.8NdRuO10,145.0
+Ti0.35Nb0.43Ni0.22PbO3 rt,84.7
+Zr7N2O11,254.0
+CeRhIn5 rt,85.4
+Na[BH4] hp2,31.0
+La0.4Tb1.6Mo2O7,148.0
+Dy hp2,36.3
+Dy hp4 o1,36.3
+Sr2CuOsO6,229.0
+Yb[PO4] hp,218.0
+Lu[PO4] hp,226.0
+WAl2 hp,157.2
+Na0.41CoO2[D2O]1.28 2H,43.3
+[OCO] hp5,365.0
+Mg2Co3Sn10,75.3
+SmFeAsO0.9F0.1 rt,103.0
+SrFeAsF lt,111.1
+Sr0.5Eu0.5MnO3,213.0
+FeS hp2,96.0
+Ti4GaC3,176.0
+Sr0.9Nd0.1MnO3,168.9
+Co3InN,190.35
+Ni3InN,178.83
+CsMgInF6,33.4
+TlVTeO5,32.0
+Lu[VO4] hp1,194.0
+Li2CuO2 hp,107.4
+[NH3] IV IV,2.0
+[ND3] hp2,8.1
+SrFeRuAs2,83.6
+InBiO3 hp,158.4
+LaFe4As12,152.09
+NaFeAs rt,62.7
+Hf2Al4C5,159.0
+NeHe2 hp,31.6
+BaCa2Si3O9,75.0
+Ag[N3] hp,57.0
+MgScAlO4,143.0
+Ba6Si25,65.0
+Pb5[PO4]3Br,60.8
+AlO[OH] hp1,217.7
+Rb0.5K0.5Si,86.17
+La4.67[SiO4]3O hp,72.5
+BaC2 hp,85.0
+Tm[PO4] hp1,291.0
+La0.88MnO2.87 ht,167.0
+Al2[WO4]3 hp1,28.0
+Sc2[MoO4]3 lt,16.0
+TiFeO3 hp1,222.0
+FeAsS mon,133.0
+CaPd3B hyp,123.0
+Ba2CuTl2O6.1,82.2
+SiO2 mog,286.0
+LiBC,228.0
+ErH3 hp,81.0
+Zn2Ni21B20,182.0
+Ba4Ru3O10 orth,113.6
+SrSiO3 hp4,211.0
+NpSe rt,60.0
+TiO2 hp2,249.0
+Zn[OH]2 hp2,46.7
+Ba0.2Ca0.8TiO3,111.0
+[NH4][N3],24.5
+YbPd lt2,70.15
+BaMg[CO3]2 hp,41.9
+Yb2Sn2O7,190.0
+[OCO] hp3,131.0
+CaGeO3 orth,194.6
+Zr0.5Ti0.5 ht-hp,146.0
+EuCo2As2,48.0
+NdCoAsO,111.2
+Ti3AlC2,161.0
+FeS hp1,44.0
+Bi0.4Te0.6 hp3,120.0
+Ba[CrO4] hp2,53.0
+YbRhSb,32.0
+B0.38C0.62 ht-hp,436.0
+Cu3LaFe4O12 rt,118.0
+FeSe0.8S0.2,25.5
+Ca hp2,405.0
+Cs[N3] hp1,20.0
+CaFeAsF rt,107.7
+MgF2 hp2,123.0
+MgF2 hp1,82.0
+MgF2 m,98.0
+SiO2 hyp hp1,361.0
+Cu0.15Zn0.85O,175.0
+Ru m,354.8
+PuCoGa5 hyp,87.0
+Mn2Sb2O7 ht,160.0
+Au tet,206.8
+Au orth,176.3
+Ti4AlN3,196.0
+[OCO] lt,6.0
+Bi2Te3 hp1,45.28
+B2O3 hp,97.0
+ZnTe hp3,134.0
+CsC8,93.0
+GaAs hp2,57.0
+W2N3,331.0
+Ga m1,70.0
+Ga hp1,70.9
+S 13-r,17.3
+Ti hp1,140.0
+[C60] lt,28.0
+CuI 12R,31.0
+CuCl hp1,66.0
+Li10B103 rhom1,241.0
+SrZrO3 ht2,89.0
+Ga hp1-m,63.7
+Am hp3,100.0
+Ga hp4,67.6
+[I2] hyp hp,314.0
+Na hyp,9.2
+Sn hp6,76.6
+Sn hp3,400.0
+Sb hp4,123.0
+Te hp3,57.0
+Te hp6,403.0
+CuBr hp2,64.0
+CuBr hp1,49.0
+CuBr hp3,51.592
+CsI tf,13.6
+MgSe rt,77.0
+Ir3Sn7,133.0
+[OCO] hp1,87.0
+GaTe hp,60.0
+Sn3N4,149.0
+TmGa2 hp,95.0
+AmTe,69.0
+BeTe hp,66.0
+BeSe hp,86.0
+Al0.3Ge0.7 hp1,110.0
+Zn2Sc hp,245.942
+K2Te2 rt,12.7
+BaF2 hp1,82.0
+MnO2 hp1,328.0
+NdI2 rt,25.3
+PdO hp,0.545
+MnPb[BO3]O,46.9
+NaZn2CdF7,83.0
+CsAuCl3 rt,13.0
+KI hp,24.2
+CsAuCl3 hp,13.0
+Rh3Bi14,70.0
+CaAl4Si2O11 ht-hp,138.0
+Ho hp1,35.58
+K[C60] ht,18.4
+CsH hp2,881.0
+U2[PO4]2O,61.0
+Sr2Cu[BO3]2 hp1,58.0
+NaV6O11 lt1,177.0
+TiO2 ram,431.0
+Zn[CN]2,59.0
+Nb2CS2 rhom,176.0
+LiLa2RuO6,106.0
+Mg3Ir3Sn4,114.5
+Mg7Ir3,80.0
+GeO2 hp2,256.0
+Cu2Te2Br2O5,35.0
+Sc3GaC,96.0
+Y0.375Ta0.625N0.75O,70.0
+Cr0.67Mo2Ni0.33B2,162.0
+Ba hp4,58.0
+Ba hp1,11.0
+RbBr hp,14.8
+Ba0.6Ca0.4Nb2O6 rt,73.0
+Ba0.6Ca0.4Nb2O6 ht,105.3
+V3In0.34S4,110.2
+GdErO3,164.0
+Li0.5Be0.5H1.5,60.0
+SiO2 hp cub1,326.6
+SiO2 hyp cub hyp,122.0
+NbN cub,384.0
+YbNiGa4,87.9
+CoBiO3 hp1,74.0
+Sr2GaSbO6 rt,164.0
+FeSb2O4 hp1,27.0
+FeSb2O4 hp2,45.0
+GaAs0.9375N0.0625 hyp,78.0
+ScH2.9 hp,103.0
+Ba2SmNb4FeO15 rt,55.0
+P hp2,132.0
+MgSiO3 hp1,273.0
+MgGeO3 hp rhom,179.2
+MoN trig,345.35
+Sn0.6Bi0.4 hp1,111.0
+Zr0.36Ti0.64Ni mart,145.0
+Ni m cub1,234.0
+Tm hp1,44.5
+Tm hp2,44.5
+Tm hp4,44.5
+Tm hp5,58.089
+Fe2CoO4 hp2,145.0
+Th0.2U0.8RhAl,142.0
+W1.33N2,226.0
+W3N4,368.0
+ScRh3B0.5C0.5,208.0
+C2[CN]4 rt,8.6
+Si3N4 hp,292.3
+YSb hp,58.0
+ScSb hp,68.2
+ScSb hyp,76.335
+C lon,440.0
+C gra,36.4
+FeN m,377.0
+Al3BC,116.0
+CrTe hp,45.8
+ErFe2H5,110.6
+UV2Al20,40.0
+RbCaH3,24.3
+Ti0.64V0.52Al0.84 m,121.5
+C dense1,351.0
+Sm0.95Ni2,100.0
+H2MgSi2O6,130.0
+HfO2 hp2,328.0
+HfO2 hp1,244.0
+Cs hp1,3.3
+GaAs hp5,57.0
+NaCaMg2F7,83.0
+YFe5,150.0
+Ba2BiSbO6 hp,144.0
+YbGaSi,41.0
+Sr3Fe2O5,94.0
+CaFe2As2 lt2,60.734
+Ga2O3 hp2,244.0
+Au3Ni,199.7
+Hf[MoO4]2 hp1,24.0
+HfMo2O8 ht-hp,67.0
+Ga2.81N0.43O3.57,216.0
+Fe1.03Te0.43Se0.57 hp,22.8
+Ba2GdNb4FeO15 hp,56.0
+Ba2SmNb4FeO15 hp,49.0
+SrAlGeH,45.1
+FeBiO3 hp OI,122.0
+FeBiO3 hp OIII,99.0
+CoBiO3 hp2,104.0
+Pr0.03Nd0.65Fe3NiSb12,56.1
+CeFe0.9Co0.1AsO rt,128.4
+Sb2Te3 hp1,77.1
+ZnNi3B2,180.0
+Rb2S hp2,33.0
+Rb2S hp1,12.0
+[ND4][ClO4],20.5
+[ND4][ClO4] hp,22.4
+AlPb[BO3]O lt,77.6
+Si96O192[OCO]5.12 orth,23.0
+Re3N,394.0
+Ge hp3,86.1
+IrO2 hp,306.0
+RbNa2Si17,81.88
+CaNi2P2,122.3
+Zr2AlC,144.0
+BaNi2P2,110.4
+SrNi2P2 ht-hp,101.0
+Ag[ClO4] rt,29.0
+Rb[OH] hp1,23.2
+K[IO4],27.0
+Ce[VO4] hp-ht,133.0
+LiZnAs cub2,68.0
+SrPdH3,82.3
+Ag0.5Sb0.5Te hp2,44.5
+HfPd2Al,159.0
+ZrPd2Al,151.0
+LiZnN cub2,145.0
+Zr2CS,186.0
+Ti2CS,183.0
+CdAl2Se4 hp,63.063
+KCl hp,27.9
+BeO hp,266.1
+InBi2.778I4 rt,12.0
+SrH2 hp,41.3
+NaFe4Sb12,85.0
+Mg0.5Zn0.5S,61.12
+BaTiO3 m,107.0
+FeGaO3 hp2,383.0
+Cs[N5] hp,34.0
+Ba2Cu2.7EuAl0.3O6.5,65.0
+LaCo5.22H3.36 orth2,122.4
+CsCaH3,23.5
+Tl[ReO4] hp2,47.6
+Li2BeH4 rt,28.4
+LiLuF4 hp,85.0
+HfPd2In,150.0
+ZrPd2In,141.0
+CoH ht,204.0
+Fe2C m,243.31
+CsCr[CrO4]2 ht,18.96
+GdH3 hp,78.0
+YRh3B0.5C0.5,189.0
+MnPd3 ht1,168.0
+Mg0.4Zn0.6Ni3C,42.8
+Ta m cub,248.2
+Bi ht-hp2,56.0
+H0.06Mg1.85Fe0.14[SiO4]0.99O0.04,121.5
+SiH4 hp1,6.1
+HoH3 hp,90.0
+LuH3 hp,89.0
+SmH3 hp,80.0
+TiAl3 m,150.0
+Ti3Al hyp1,127.0
+Gd hp5,45.0
+YH3 hp1,145.0
+Ga2O3 hp3,263.0
+LaAs hp,78.6943
+ZnGa2O4 hp1,257.0
+Be0.06Zn0.94Se,66.5
+Be0.06Zn0.94Se hp,65.407
+Ba[SO4] hp,75.07
+Ag[ClO4] hp,38.0
+MnFeCoSi,231.0
+MnFeCoGe,206.0
+MnFeCoGa,188.0
+MnFeCoAl,189.0
+Sn hp4,53.2
+Tb[VO4] hp1,163.0
+CaFeAsF lt-hp,135.2
+SrFeAsF hp,114.2
+CaFeAsF lt,89.4
+V hp,179.0
+NaZnF3 hp,100.26
+PbO2 lt,170.0
+PbO2 hp4,181.0
+PrCoO3 hp,165.0
+FeRh0.8Pd0.2 rt,193.0
+ZrTiInC,131.0
+Cu2S hp2,113.0
+Ba2GdNb4FeO15 ht,68.0
+C3N4 tf,432.0
+BI3 hp,41.0
+Sc2O3 mon,178.0
+InN hyp,129.0
+Zn0.9Al0.1Te,0.53
+FeTe rt,40.7
+BaIF rt,41.4
+Rh3Bi12Br2,67.0
+Y[VO4] hp,161.4
+KAlH4 hyp,10.34
+LiB lt,47.0
+Sc2[WO4]3 hp,72.0
+FeBiO3 tf,72.3
+Mg[OH]2,39.4
+KBr hp,17.0
+Hf3N4,541.0
+Hg hp4,271.0
+V0.976Cr0.024O2 rt,141.1
+MgF2 hp3,163.0
+Ba[OH]2 hp,60.0
+AlAs hp,73.0
+Na4[C60],51.0
+P hp4,99.0
+CeRu4As12,127.0
+ErH2,73.0
+V0.93Co0.07,171.0
+In2O3 hp4,187.0
+AlH3 hp1,44.9
+AlH3 hp2,50.4
+CsOs2O6,123.8
+Rb[OH] hp2,33.6
+YH0.5 rt,55.0
+K[OH] hp,56.8
+LiRh2Si2,200.0
+CuN0.33 hp,130.0
+Mg2Si hp1,58.81
+BaH2 hp1,34.7
+Ba[O2] hp,259.0
+PrO2 hp,253.0
+BaRu4As12,127.0
+OsB hex,360.0
+AuIn2 hp,168.0
+ReN2,173.0
+SrPtAs,79.0
+TiMnO3 hp orth,152.0
+Cu0.15Zn0.85O hp,259.0
+EuH3 hp3,14.33
+EuH2 hp1,11.2
+TlCr3O8 hyp,27.91
+CeFe2 hp,105.0
+Y hp4,108.0
+NaMnSi2O6,131.1
+MnCoRhSb,151.0
+MnCoRhGa,196.0
+Ru2C,302.0
+Yb0.235Ti0.53Nb0.235PbO3,99.0
+Yb0.235Ti0.53Nb0.235PbO3 hp,204.0
+LiY2Si2,79.0
+ZnSe hp1,92.16
+Pb[MnO4],71.0
+CoGe1.5Te1.5 ht,55.87
+MgMn2O4 hp,196.0
+NdCoO3 hp,230.0
+ZnS hp,85.02
+ZnS hp2,108.9
+Ca0.3Pr0.7MnO3 hp,320.0
+Gd1.98Er0.02O3 hp,150.0
+Ho2O3 ht2,204.0
+Bi0.57Te0.43 hp,77.0
+Y0.5U0.5Ti1.5Nb0.5O6,153.2
+Na4[C60] hp1,135.0
+Mo fcc,256.4
+SiO2 mel,126.1
+CuCl hp4,45.9
+CfBi rt,105.0
+CmBi hp1,72.63
+VFe3 hyp,236.0
+MgO hp,200.0
+NaF hp,72.8
+CaS hyp,64.55
+AlAs hp1,91.5
+BeS hp,106.0
+CuI hyp,46.116
+GeSi hyp,87.3
+Cu3Bi hyp hyp,119.0
+CuBi hyp,59.0
+AlN hyp,209.0
+CrFe hyp1,269.0
+CrFe hyp2,266.0
+Cr3Fe hyp3,257.0
+SiO2 hp cub3,312.0
+CdTeIx,0.45
+ZnTeClx,0.53
+WPt3 hyp cub1,329.0
+W3Pt hyp,325.0
+WPt hyp tet2,335.0
+WPt hyp rho,328.0
+WPt3 hyp cub2,316.0
+WPt2 hyp,319.0
+WPt3 hyp tet,340.0
+WPt hyp tet1,330.0
+TiH hyp hyp,72.0
+Si0.875C0.125,97.9
+FeSi2 hyp,198.0
+CoN hyp hyp,377.0
+NiN hyp m,362.0
+CrAl12 hyp,105.0
+AgAu lt,142.0
+LiCl hp cub2,24.1
+Cr0.99Pd0.01,163.0
+BeO hyp,228.1
+VNi3 hyp cub,230.0
+VNi3 hyp hex,240.0
+C3N4 m3,121.0
+C3N4 m4,51.0
+ScAl3 hyp hyp,90.0
+ZrAl3 hyp hyp,99.0
+LiAl3 hyp,52.0
+Li3Al hyp,30.0
+KH hp,28.5
+NaH hp,28.0
+HBr lt1,2.74
+BP hp,155.0
+AgCu3,155.0
+AgCu,115.0
+BAs hp,143.0
+Ag3Au rt,125.0
+Ga0.50Sb0.50 hp1,59.0
+C3N4 m2,496.0
+C3N4 hyp,440.0
+MgSe hp,51.1
+Mg2Cd hyp hyp,63.0
+Ti3Al hp,139.0
+BN hyp hp,2750.0
+CuI rt cub2,39.447
+Fe2N hex,220.0
+Mo3Fe cub,286.0
+Mo3Fe tet,295.0
+Mo3Fe hex,288.0
+Mo2C rt,307.0
+Cs3Sb lt,15.1
+BeB2,266.0
+SiO2 hyp tet hyp,22.6
+Al0.5Sb0.5 hp1,59.0
+AgGaS2 hp2,100.0
+Li lt3,97.3
+Ba hp calc,7.1
+Lu hp3,59.0
+Lu hp1,61.0
+Lu hp2,60.0
+[H2] hyp2,107.0
+Ga4Sb3As cub,65.2
+Al0.5Ga0.5As tet1,77.6185
+Ga2SbAs lt,61.0
+Sc cub,54.1
+Ti cub,130.0
+V cub,208.1
+Co hyp hyp,353.9
+Cu hyp1,160.0
+Zr hyp,104.7
+Nb cub,179.8
+Tc hp cub,318.8
+Ru hp cub,329.0
+Rh cub1,278.5
+Pd hyp,193.6
+Ag cub,126.8
+La hp,49.5
+Ta hyp,222.0
+Re cub3,374.3
+W hex,320.8
+W cub,279.4
+Os cub,378.3
+Re cub2,353.3
+Ir cI,348.1
+Os hyp,441.9
+Ir hex,359.1
+Pt hyp2,272.1
+Pt hyp1,241.2
+Sm hp2,33.0
+Gd2.55Er0.45Ga5O12,164.0
+ScGd2.01Er0.99Ga4O12,165.0
+Sc0.988Nd0.066Gd2.934Cr0.024Ga3.988O12,158.0
+Cd0.5GaSe2 rt,41.5
+Nd3Al5O12,209.1628
+La3Al5O12 hyp,203.9044
+Np cub,75.0
+Np ht3,120.0
+KAlH4 m,13.13
+KOs2O6 rt,116.6
+NaOs2O6 hyp,113.9
+RbOs2O6 hyp,118.8
+TiFeO3 hp2,207.0
+K3AlH6 rt,23.2
+Al0.5In0.5N hyp,172.1
+Al0.5Ga0.5N hyp,203.0
+PuRhGa5,104.0
+PrFe4P12 lt,214.0
+Sb0.5BN0.5,133.0
+Sb0.25BP0.75 hyp,119.0
+Sb0.75BAs0.25 hyp,109.0
+Zr[SiO4] hp,271.3
+Cu3RhN hyp,164.0
+Cu3RuN hyp,162.0
+CrCo2Si,227.0
+Si hyp,81.877
+Al3BC3 hp,158.0
+B rhom3,180.0
+TaNO hyp,299.0
+Zr2AlN,177.1
+W2AlC,262.0
+Mo2AlC,232.0
+Sc2AlC,93.0
+Sn cub,57.4
+CaAlH5 hyp ort1,33.5
+BC2N hyp2,399.2
+BC2N hyp3,353.2
+BC2N hyp,391.4
+BC2N hyp4,367.4
+P hp6,111.0
+BeAlH5 mon2,30.6
+BeAlH5 mon1,31.3
+SrAlH5,34.8
+MgTe0.5S0.5,41.2
+ZnTe0.5S0.5 tet,52.2
+MgZnTe2,37.4
+MgZn3Te4,40.79
+Mg3ZnS4,65.14
+MgZnTe0.44S1.56,53.3
+Mg4Te2S2,47.6
+Zn4TeS3,47.2
+Am hp5,100.0
+MgCo1.5Ni1.5C,45.8
+Fe3O4 lt orth2,169.0
+OsN2 hp,1729.0
+UO2 hp1,200.6
+LaF3 hp2,257.43
+MgS hyp,60.0
+MgSe hyp,49.0
+CdCr15,135.0
+Cr15In,158.0
+Cr15Sn,163.0
+AgCr15,141.0
+Cr15Sb,167.0
+Cr15Rh,185.0
+Sc2O3 trig,180.0
+Lu2O3 A,154.2
+Tm2O3 trig,146.7
+IrN2,238.0
+IrN3,242.0
+RuSi2 orth,198.0
+HgPo tet tet,44.9
+La2N3 cub cub,94.0
+La2N3 hex hex,107.0
+HgI2 hp2,114.0
+CeF3 hyp,254.4
+PrF3 hyp,240.05
+NdF3 hyp,262.65
+UBi hp,86.59
+ScAs hyp,108.124
+MnAl,124.32
+CuAl ht,60.96
+Hf7N2O11,269.4
+Ho hp2,39.34
+PrFeO3 hp,354.0
+Nd2TiO5 hp2,184.0
+Ca0.5La0.5MnO3 lt cub,170.0
+WB4 hex,326.0
+BeCN2 hyp,333.0
+Sn hp5,60.1
+[H2] hp cub2,106.0
+Hg hp5,267.0
+BaPb0.75Bi0.25O3,171.0
+Sr2CuBi2O6.4 rt,170.0
+Pt0.5Pd0.5H0.5,200.4
+EuPd2Ge2,81.0
+Ga2SbAs,59.6
+Cd cub1,56.8
+Mg hyp,37.7
+Mg0.5Zn0.5Te hyp,37.5
+Y2Hf2O7,262.0
+Pa orth,118.0
+La0.3Yb0.7Rh2Si2,189.0
+Cs2NaY0.998Cr0.002Cl6,101.2
+FeBiO3 mon,79.0
+Cr3InO8 hyp,83.32
+CuCr3O8 mon,20.17
+AgCr3O8 mon,23.34
+AuCr3O8 hyp,68.04
+LiCr3O8 mon,53.522
+MgTe0.75Se0.25 hyp,37.9
+Sr2Bi2O5 hp1,71.0
+Th0.15U2.85Al2Ge3,100.0
+Th0.15U2.85Al2Si3,100.0
+ZnIn2O4 hyp,123.0
+Na2BeH4 rt,14.0
+Na2BeH4 hp,25.1
+Ti3VAl2,117.5
+V0.75Ga0.25N,267.8
+MgSiO3 hyp,621.0
+Ba8Si43,100.0
+Cr3O8 hyp,4.396
+AlH3 alpha,40.0
+MgS hyp hex,63.0
+MgTe hp2,51.0
+ZrMn2 hex,180.0
+ZrMn2 cub,197.0
+Al2O3 hp2,229.0
+Ga0.75B0.25N,228.0
+ZnF2 hp,115.0
+Sc2InC,95.0
+TlSc2C,90.0
+OsC hex,292.0
+AlBi,40.0
+LaBi tet,65.1342
+LaP lt,91.1523
+MgPm,39.29
+MgYb,24.1
+Al0.75B0.25N,235.0
+Y hp3,61.57
+Cu0.5Ga0.5S hp,105.0
+LaGa hp,58.39
+Sb2Se3 hp,217.0
+Ba4Ga8Ge15 cub1,67.2
+GaAs hyp,74.0
+Cu2Ga0.05Ge0.95Se3,34.1
+Ca0.3La0.42Pr0.28MnO3,151.0
+RbFe[MoO4]2 hp,80.0
+AuGa2 hp1,112.0
+AuGa2 hp2,157.0
+Li2[SO4] ht,18.0
+Zn cub1,91.9
+Zn cub2,78.9
+Cd cub2,56.2
+Hg hyp,80.5
+Hg cub,37.4
+MgSiN2 hyp,195.0
+[C70] hp,351.0
+Np hex,110.0
+SiO2 BGB1,21.5
+Pu3Al5O12,209.8391
+Mg[NCN] hyp,210.0
+BeSiN2 hyp,240.0
+Si hp,93.25
+Pu3Fe5O12,171.2287
+La3Fe5O12,168.5557
+Ra cub2,10.0
+CrFe3N,267.0
+TiFe3N,596.0
+CdTeClx,0.45
+Cd0.5Te0.5 hp,68.7
+TcFe hyp hyp,241.0
+FeRu hyp hyp,230.0
+AgFe hyp hyp,120.0
+FePd hyp,182.0
+MoPd3 hyp hyp,235.0
+SnGe,57.0
+LiAl hyp hyp,61.57
+TiO2 hyp,282.0
+KNa hyp hyp,5.14
+HgPo hyp hyp,40.9
+B2O hyp,206.0
+Ni3Al hyp1,143.5
+GaAs hp7,73.0
+NiO hp,325.0
+Co[C2O4][NO2][NH3]5,28.0
+ZnS hyp hp,92.0
+BeS hyp hp,127.5
+RbH hp,18.4
+W0.513Mo0.331Re0.156,303.9
+Hf0.0124Ta0.9102W0.0774,100.0
+Ti3AlH cub,1.6
+Y0.03Cr0.97,203.0
+Rb hp6 tet,1.92
+V0.5Ni3Al0.5,2.3e-07
+Nb0.75Ni3Al0.25,140.8
+Ag0.5FePd0.5,145.0
+FeRu0.5Rh0.5,222.0
+Tc0.5FeRu0.5,229.0
+CdAlxTe,0.45
+ZnTeBrx,0.53
+CdTeBrx,0.45
+ZnTeIx,0.53
+La2CeIn,96.0
+MgZn3Se4,52.96
+MgZnSe2,49.18
+V3SiC2,219.0
+Cr3SiC2,234.0
+Zr3SiC2,173.0
+Ta3SiC2,231.0
+W3SiC2,273.0
+ZnCdO2,137.79
+Nb3SiC2,201.0
+Mo3SiC2,236.0
+Hf3SiC2,185.0
+MgZnO2,148.13
+MgNi3B,172.0
+CrGe3Te4,53.0
+VGe3Te4,52.0
+CrGeTe2,54.0
+VGeTe2,55.0
+MgNi3N,205.0
+BeZn3S4,74.589
+Be2Zn2Te4,49.769
+GaAs0.031N0.969,194.0
+Be2Zn2S4,80.748
+BeZn3Se4,60.81
+BeZn3Te4,46.183
+Al2CO hyp,165.0
+Li2BeH4 hp,37.2
+GaBiO3 cub,218.0
+ScBiO3 cub,178.5
+AlBiO3 cub,208.0
+ZnTe0.5S0.5 cub,52.41
+Sc0.25In0.75N,123.7
+Sc0.75In0.25N,182.0
+Fe3BN,239.82
+Sn4Si23,97.0
+Si23Br4,92.0
+Kr4Si23,87.0
+Si17I3,90.0
+PtN2 mon mon,352.0
+Xe4Si23,87.0
+Ge4Si23,97.0
+Xe3Si17,84.0
+CeS hp calc,86.45
+CeTe hp,59.48
+ZnO hp2,205.4
+CeSe hp,73.93
+B4N,105.48
+Os2Ge3 hyp,219.0
+P hyp,90.0
+ScP hyp,112.684
+ScN hyp,159.759
+Si3N4 hp-ht,262.9
+GeC,176.0
+TlSb,67.08
+TlBi tet,61.43
+Os2Si3 ht,250.0
+PtC hyp,218.8
+SmNiO3 hp hp,167.0
+Ge3N4 hp-ht hp-ht,182.3
+TlAs,44.37
+LiH rt,28.1
+LiD,28.8
+Pb[CrO4] hp1,57.0
+U7N12,157.0
+Sc hp1,18.65
+CsI hp2,11.1
+OsB cub,378.0
+GaSb hp3,44.7
+HfO2 hp3,550.0
+Ga[AsO4] hp,177.0
+Sr2Fe2O5 hp,200.0
+Te hp2,54.0
+Bi hp3,53.0
+NaxCa0.12Mg1.48TixCrxMn0.01Fe0.35AlxSi1.97O6,112.4
+Sb hp2,75.0
+Fe1.11Te hp1,88.0
+Al2CO orth,164.0
+Sb hp1,71.0
+[C70] hp2,11.0
+K hp2,8.8
+HfPbO3 ht1,169.0
+VH0.9,174.0
+TiH0.71 hp,146.0
+Hf[MoO4]2 hp2,56.0
+FeBiO3 hp II,122.0
+FeBiO3 hp III,122.0
+Cs[N3] hp2,27.0
+C3N4 m1,442.0
+Ti2MnO5 hp,197.0
+Gd0.75Ga1.25O3 ht-hp,979.0
+Na4[C60] hp2,600.0
+NbH0.75 lt,198.0
+ScC2,200.0
+LiAl7 hyp,75.6
+Ti3Al5,120.0
+Hf omega,143.4
+Ba2Cu3YO6 ht,144.9
+Ca0.995Ti0.99Nb0.01O3,58.0
+Ca4MgTiNb2O12,181.0
+Ca4ZnTiNb2O12,164.0
+V3FeN,240.0
+VFe3N,490.0
+GaAs0.9375N0.0625,74.9
+GaAs0.5N0.5 cub,110.0
+GaAs0.96875N0.03125,73.1
+GaAs0.969N0.031,77.5
+Ba8Ge43 hp hp,137.0
+HexSiO2,56.0
+V4N,280.0
+Ho hp4,45.34
+Y2Ti2O7 lt,185.0
+BaHoCo4O7 ht,123.0
+CrSb hp2,48.09
+Ba8Si43 hp hp,100.0
+Sc0.5Ta0.5PbO3 ht2,100.0
+Cs[SCN] hp1,13.2
+Cs[SCN] hp2,13.2
+C SHP,188.0
+Mg0.02Cu0.02Zn0.06Al0.90,69.7
+BN clu,367.0
+Ca0.25La0.75MnO3 hp,260.0
+LiMgP,59.31
+Fe4RuP12,170.0
+Na1.5Pr1.5F6,77.8
+Ni[SiO4][H2O]6,30.3
+Gd2Ti2O7 hp,208.0
+Eu3[C70],25.4
+Au0.50Ni0.50,213.0
+BC,23.0
+Cu2S hp1,86.0
+IrH3,190.0
