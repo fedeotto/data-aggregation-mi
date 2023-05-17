@@ -21,7 +21,7 @@ props_list = [
                 'seebeck',
                 'rho',
                 'sigma',
-                # 'shearmodulus'                
+                'shearmodulus'                
               ]
 
 pairs={
@@ -34,9 +34,9 @@ pairs={
         }
 
 tasks_list = [
-                # 'linear_regression',
-                # 'random_forest_regression',    
-                # 'crabnet_regression',
+                'linear_regression',
+                'random_forest_regression',    
+                'crabnet_regression',
                 'logistic_classification',  
                 # 'crabnet_classification'
                 ]
