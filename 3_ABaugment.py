@@ -21,7 +21,7 @@ props_list = [
                 'seebeck',
                 'rho',
                 'sigma',
-                'shearmodulus'                
+                # 'shearmodulus'                
               ]
 
 pairs={
