@@ -16,11 +16,11 @@ import warnings
 warnings.filterwarnings('ignore')
 
 props_list = [ 
-                'bulkmodulus',
-                'bandgap',
-                'seebeck',
-                'rho',
-                'sigma',
+                # 'bulkmodulus',
+                # 'bandgap',
+                # 'seebeck',
+                # 'rho',
+                # 'sigma',
                 'shearmodulus'                
               ]
 
@@ -34,8 +34,8 @@ pairs={
         }
 
 tasks_list = [
-                'linear_regression',
-                'random_forest_regression',    
+                # 'linear_regression',
+                # 'random_forest_regression',    
                 # 'crabnet_regression',
                 'logistic_classification',  
                 # 'crabnet_classification'
@@ -43,9 +43,9 @@ tasks_list = [
 
 models_list = [ 
                 'baseline',
-                'concat',
-                'elem_concat',
-                'disco'
+                # 'concat',
+                # 'elem_concat',
+                # 'disco'
                 ]
 
 
