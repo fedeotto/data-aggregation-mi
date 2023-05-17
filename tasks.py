@@ -371,6 +371,8 @@ def apply_all_tasks(train,
                     test_key,
                     tasks_list,
                     crabnet_kwargs = {'epochs':100},
+                    reg_metrics = ['mae','mse','r2','mre'],
+                    clas_metrics = ['acc'],
                     random_state = 1234,
                     verbose=False
                     ):
@@ -400,13 +402,13 @@ def apply_all_tasks(train,
              
         ### prepare output ###
           if 'regression' in task:
-              metrics=['mae','mse','r2','mre']
+              metrics=reg_metrics
               true = test.loc[:, ['formula', 'target']]
               d['train_out'] = train.loc[:,'target']
               d['test_out']  = test.loc[:,'target']
               # d['val_out'] = val.loc[:,'target']
           elif 'classification' in task:
-              metrics=['acc']
+              metrics=clas_metrics
               true = test.loc[:,['formula', f'extraord|{test_key}']]
               d['train_out'] = train.loc[:,f'extraord|{test_key}']
               d['test_out']  = test.loc[:,f'extraord|{test_key}']

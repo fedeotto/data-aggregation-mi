@@ -5,7 +5,7 @@ from preprocessing import preprocess_dataset, add_column
 import settings
 import tasks
 import matplotlib.pyplot as plt
-from models.baseline import concat
+from models.baseline import concat, elem_concat
 from settings import ascending_setting
 from sklearn.preprocessing import MinMaxScaler
 import utils
@@ -21,41 +21,65 @@ pio.templates.default="simple_white"
 device = torch.device('cpu')
 
 props_list = [ 
-                # 'bulkmodulus',
+                'bulkmodulus',
                 # 'bandgap',
                 # 'seebeck',
-                'rho',
+                # 'rho',
                 # 'sigma',
-                # 'shearmodulus'   
-        
-            ]
+                # 'shearmodulus'                
+              ]
 
-split='random'
-model = 'disco'
-n_repetitions = 5
-med_sigma_multiplier = 0.5  # in 'median' merging values with duplicates with std > 0.5*median are discarted
-epsilon_T = 5               # controls the window size around ambient temperature
-mult_outliers = 3           # values above mean + 3*sigma are discarted
-n_top = 5
+pairs={
+        'bulkmodulus'  : ['aflow', 'mpds'],   #'mp'
+        'bandgap'      : ['zhuo', 'mpds'],    #'mp'
+        'seebeck'      : ['te', 'mpds'],
+        'rho'          : ['te', 'mpds'],
+        'sigma'        : ['te', 'mpds'],
+        'shearmodulus' : ['aflow', 'mpds']   #'mp'
+        }
+
+
 reg_method = 'random_forest_regression'
+tasks_list = [reg_method]
+model = 'elem_concat'
+n_top = 5
+
+"""global params"""
+n_repetitions = 5
+# preprocessing
+epsilon_T = 15               # controls the window size around ambient temperature
 merging='median'              # 'median'/'best' (drop duplicates and save best value) 
+med_sigma_multiplier = 0.5  # in 'median' merging values with duplicates with std > 0.5*median are discarted
+mult_outliers = 3           # values above mean + 3*sigma are discarted
+# split
+split = 'random' # 'top' # 'novelty'
 shuffle_after_split = True
 extraord_size = 0.2                               # best 20% will be extraord.
 train_size, val_size, test_size = [0.7, 0.1, 0.2] # % train /val /test
-k_val, k_test = [0.33, 0.33]
-metric = 'mae'
+k_val, k_test = [0.33, 0.33]                      # % top for val and test. 
+# featurization
+elem_prop = 'magpie'
+# kwarg
+k_elemconcat = 5
+n_elemconcat = 10
 
-discover_kwargs = {'thresh' : 0.9, 
-                   'n_iter':5,
-                   'batch_size':30,
+crabnet_kwargs = {'epochs':300, 'verbose':False, 'discard_n':10}
+discover_kwargs = {'exit_mode': 'thr',  #'thr' / 'percentage'
+                   'batch_size': 5,
+                   #------
+                   # in threshold mode
+                   'thresh' : 0.9999, 
+                   # in percentage mode
+                   'percentage' : 0.1,
+                   #------
                    'scaled' : True,
-                   'scaler' : MinMaxScaler, 
+                   'scaler' : MinMaxScaler(), 
                    'density_weight':1.0,
                    'target_weight':1.0,
                    'scores': ['density']
                    }
 
-crabnet_kwargs = {'epochs':2, 'verbose':False, 'discard_n':10}
+metric = 'mae'
 
 # main loop
 for prop in props_list:
@@ -67,126 +91,131 @@ for prop in props_list:
     # load datsets
     data_raw = utils.load_dataset(prop)  
     keys_list = list(data_raw.keys())
-    key_star = keys_list[0]; assert key_star != 'mpds'
+    key_A = pairs[prop][0]; assert key_A != 'mpds'
+    key_B = pairs[prop][1]
     utils.print_info(data_raw, prop); print('')
     
     """PREPROCESSING"""
     # preprocessing
-    data_clean = preprocess_dataset(data_raw, 
-                                    prop, 
-                                    merging,
+    data_clean = preprocess_dataset(data_raw, prop, merging,
                                     epsilon_T, 
                                     med_sigma_multiplier,
                                     mult_outliers,
-                                    ascending_setting[prop]) 
-    
+                                    ascending_setting[prop])
     print(''); utils.print_info(data_clean, prop)
     
-    # dictionary of clean datasets
-    data_clean = add_column(data_clean, 
-                            extraord_size, 
-                            ascending_setting[prop])
+    # add extraord column to all datasets(0/1)
+    data_clean = add_column(data_clean, extraord_size, ascending_setting[prop])
     
-    outputs={'mae':[],
-             'mse':[],
-             'R2':[],
-             'mre':[]}
     
     '''Training and computing class-MAE before augmentation'''
     for n in range(n_repetitions):
-        print(f'{n+1}-',end='')
+        print(f'### seed = {n+1} ###')
         random_state = n
-        # train/test split of acceptor dataset
+        # SPLIT DATASETS IN TRAIN AND TEST
         train, _, test = tasks.apply_split(split_type = split,
-                                           df = data_clean[key_star],
-                                           test_size=test_size,
+                                           df = data_clean[key_A],
+                                           val_size=0, test_size=0.2, k_test=0.5,
                                            random_state=random_state,
-                                           shuffle=shuffle_after_split,
-                                           verbose=False)
+                                           ascending=ascending_setting[prop],
+                                           shuffle=shuffle_after_split)
+        data_B = data_clean[key_B]
         
-        # print(f'\n\t---Baseline model on {key_star}')
-        train_feat = utils.featurize(train, elem_prop='magpie')
-        test_feat  = utils.featurize(test, elem_prop='magpie')
+        # FEATURIZE TEST
+        test_feat  = utils.featurize(test, elem_prop=elem_prop)
+        
         '''tasks'''
+        print(f'--- tasks before augmentation ---')
+        # FEATURIZE TRAIN
+        train_feat = utils.featurize(train, elem_prop=elem_prop)
+        # TASKS
         #out: global scores, freq_df_before: scores on occ before augment.
-        out, freq_df_before = tasks.apply_all_tasks(train_feat, test_feat, 
-                                                    key_star, [reg_method], 
-                                                    crabnet_kwargs,
-                                                    random_state=random_state,
-                                                    verbose=False)
+        out, freq_df_before = tasks.apply_all_tasks(train_feat, test_feat, key_A,
+                                                    tasks_list, crabnet_kwargs,
+                                                    reg_metrics = [metric],
+                                                    random_state=random_state, verbose=False)
+        num_results_before = [out[task][metric] for task in tasks_list]
         
+        print(f'--- computing augmentation ---')
         '''Applying augmentation''' #acceptor training augmented with all mpds.        
         if model == 'concat':
-            augmented_df = concat(dfs_dict={key_star:train, 'mpds':data_clean['mpds']}, 
-                                  merging=settings.merging, 
-                                  elem_prop='magpie', ascending=ascending_setting[prop])
+            # CONCATENATE
+            augmented_df = concat(dfs_dict={key_A: train, key_B: data_B}, 
+                                  merging_opt=merging, 
+                                  ascending=ascending_setting[prop])
+            
+        elif model == 'elem_concat':
+            # CONCATENATE
+            augmented_df = elem_concat(dfs_dict={key_A: train, key_B: data_B}, 
+                                       merging_opt=merging, 
+                                       ascending=ascending_setting[prop],
+                                       k=k_elemconcat, n=n_elemconcat, verbose=True,
+                                       random_state=random_state)
+            
             
         elif model =='disco':
-            disco = DiscoAugment({key_star : train, 
-                                  'mpds':data_clean['mpds'].iloc[:30]},
-                                 random_state=random_state)
-
-            augmentations = disco.apply_augmentation(
-                                    **discover_kwargs,
-                                    crabnet_kwargs = crabnet_kwargs)
-
+            # CONCATENATE
+            DAM = DiscoAugment(dfs_dict={key_A: train, key_B: data_B},
+                               self_augment_frac = None, # initial fraction for self_aumgent
+                               random_state = random_state)
+            
+            augmentations = DAM.apply_augmentation(crabnet_kwargs=crabnet_kwargs,
+                                              **discover_kwargs)
             augmented_df = augmentations[-1]
     
+        print(f'--- tasks after augmentation ---')
         '''Training and computing class-MAE after augmentation'''
-        #New train dataset is the augmented one, test remains the same from acceptor
+        # New train dataset is the augmented one, test remains the same from A
         train_feat = utils.featurize(augmented_df, elem_prop='magpie')
-        test_feat  = utils.featurize(test, elem_prop='magpie')
+        
         '''tasks'''
-        out, freq_df_after = tasks.apply_all_tasks(train_feat, test_feat, 
-                                                    key_star, [reg_method], 
-                                                    crabnet_kwargs,
-                                                    random_state=random_state,
-                                                    verbose=False)
+        out, freq_df_after = tasks.apply_all_tasks(train_feat, test_feat, key_A,
+                                                   tasks_list, crabnet_kwargs,
+                                                   reg_metrics = [metric],
+                                                   random_state=random_state, verbose=False)
+        num_results_after = [out[task][metric] for task in tasks_list]
         
         freq_df_complete_before = pd.concat([freq_df_complete_before, freq_df_before], axis=0)
         freq_df_complete_after = pd.concat([freq_df_complete_after, freq_df_after], axis=0)
     
-    # Computing class scores before and after augmentation
-    class_score_before = freq_df_complete_before.groupby('elem_test', sort=False).mean().reset_index(drop=False)
+    # group iterations, get mean and std
     
-    std_devs = freq_df_complete_before.groupby('elem_test', sort=False).std().reset_index(drop=False)
-    # we don't need occ_test but just for completeness.
-    class_score_before['occ_test_std'] = std_devs['occ_test']
-    class_score_before['occ_train_std'] = std_devs['occ_train']
-    class_score_before[f'{reg_method}_{metric}_std'] = std_devs[f'{reg_method}_{metric}']
+    # before
+    before = freq_df_complete_before.groupby('elem_test', sort=False).mean()
+    stds = freq_df_complete_before.groupby('elem_test', sort=False).std()
+    for col in stds.columns:
+        before[f'{col}_std'] = stds[f'{col}']
+        
+    # after
+    after = freq_df_complete_after.groupby('elem_test', sort=False).mean()
+    stds = freq_df_complete_after.groupby('elem_test', sort=False).std()
+    for col in stds.columns:
+        after[f'{col}_std'] = stds[f'{col}']
 
-    class_score_after = freq_df_complete_after.groupby('elem_test', sort=False).mean().reset_index(drop=False)
-    std_devs          = freq_df_complete_after.groupby('elem_test', sort=False).std().reset_index(drop=False)
+    # Check the new MAE for worst (high test mae) and best (high occ train) elements before augmentation
+    worst_before = before.sort_values(f'{reg_method}_{metric}', ascending=False).iloc[:n_top]
+    best_before  = before.sort_values('occ_train', ascending=False).iloc[:n_top]
+    print(f'\n--- Elements {list(worst_before.index)} have highest {metric} in test set. ---\n')
+    print(f'\n--- Elements {list(best_before.index)} have highest occ_train. ---\n')
     
-    class_score_after[f'{reg_method}_{metric}_std'] = std_devs[f'{reg_method}_{metric}']
-    class_score_after['occ_test_std'] = std_devs['occ_test']
-    class_score_after['occ_train_std'] = std_devs['occ_train']
-    class_score_after[f'{reg_method}_{metric}_std'] = std_devs[f'{reg_method}_{metric}']
-
-    # Test elements with highest MAE and highest train occurrence before doing the augmentation.
-    worst_class_score_before = class_score_before.sort_values(f'{reg_method}_{metric}', ascending=False)
-    best_class_score_before  = class_score_before.sort_values('occ_train', ascending=False)
-    
-    worst_class_score_before = worst_class_score_before.iloc[:n_top]
-    worst_elems_before       = list(worst_class_score_before['elem_test'])
-    
-    best_class_score_before = best_class_score_before.iloc[:n_top]
-    best_elems_before       = list(best_class_score_before['elem_test'])
-    
-    print(f'\n--- Elements {worst_elems_before} have highest {metric} in test set. ---\n')
-    print(f'\n--- Elements {best_elems_before} have highest occ_train. ---\n')
-
-    # Check the new MAE for worst(high test mae) and best (high occ train) elements after augmentation
-    worst_class_score_after = class_score_after[class_score_after['elem_test'].isin(worst_elems_before)]
-    best_class_score_after = class_score_after[class_score_after['elem_test'].isin(best_elems_before)]
+    # same after augmentation
+    worst_after = after.loc[worst_before.index]
+    best_after  = after.loc[best_before.index]
 
     '''Plotting augmentation results with respect to worst elems'''
     # sorting by alphabetic order
-    worst_class_score_before = worst_class_score_before.sort_values('elem_test')
-    worst_class_score_after  = worst_class_score_after.sort_values('elem_test')
+    worst_before = worst_before.sort_index()
+    worst_after  = worst_after.sort_index()
+    best_before  = best_before.sort_index()
+    best_after   = best_after.sort_index()
     
-    best_class_score_before  = best_class_score_before.sort_values('elem_test')
-    best_class_score_after   = best_class_score_after.sort_values('elem_test')
+    
+    
+    
+    
+    
+    
+    
     
     # scatterplot    
     fig, ax = plt.subplots(nrows=1,  ncols=2,figsize=(14,9))
@@ -200,15 +229,15 @@ for prop in props_list:
     #                color='blue',
     #                label='Before augment')
     
-    ax[0].scatter(x=worst_class_score_before['occ_train'],
-                  y=worst_class_score_before[f'{reg_method}_{metric}'],
+    ax[0].scatter(x=worst_before['occ_train'],
+                  y=worst_before[f'{reg_method}_{metric}'],
                   color='blue',
                   label='Before augment')
         
     count=0
-    for x,y in zip(worst_class_score_before['occ_train'], 
-                   worst_class_score_before[f'{reg_method}_{metric}']):
-        ax[0].text(x,y,worst_class_score_before.iloc[count]['elem_test'])
+    for x,y in zip(worst_before['occ_train'], 
+                   worst_before[f'{reg_method}_{metric}']):
+        ax[0].text(x,y,worst_before.index[count])
         count+=1
     
     # ax[0].errorbar(x=worst_class_score_after['count_train'],
@@ -220,16 +249,16 @@ for prop in props_list:
     #                label='After augment'
     #                )
     
-    ax[0].scatter(x=worst_class_score_after['occ_train'],
-                  y=worst_class_score_after[f'{reg_method}_{metric}'],
+    ax[0].scatter(x=worst_after['occ_train'],
+                  y=worst_after[f'{reg_method}_{metric}'],
                   color='orange',
                   label='After augment'
                   )
     
     count=0
-    for x,y in zip(worst_class_score_after['occ_train'], 
-                   worst_class_score_after[f'{reg_method}_{metric}']):
-        ax[0].text(x,y,worst_class_score_after.iloc[count]['elem_test'])
+    for x,y in zip(worst_after['occ_train'], 
+                   worst_after[f'{reg_method}_{metric}']):
+        ax[0].text(x,y,worst_after.index[count])
         count+=1
     
     # ax[0].set_xscale('log')
@@ -245,15 +274,15 @@ for prop in props_list:
     #                label='Before augment'
     #                )
     
-    ax[1].scatter(x=best_class_score_before['occ_train'],
-                  y=best_class_score_before[f'{reg_method}_{metric}'],
+    ax[1].scatter(x=best_before['occ_train'],
+                  y=best_before[f'{reg_method}_{metric}'],
                   color='blue',
                   label='Before augment')
     
     count=0
-    for x,y in zip(best_class_score_before['occ_train'], 
-                   best_class_score_before[f'{reg_method}_{metric}']):
-        ax[1].text(x,y,best_class_score_before.iloc[count]['elem_test'])
+    for x,y in zip(best_before['occ_train'], 
+                   best_before[f'{reg_method}_{metric}']):
+        ax[1].text(x,y,best_before.index[count])
         count+=1
     
     # ax[1].errorbar(x=best_class_score_after['count_train'], 
@@ -264,15 +293,15 @@ for prop in props_list:
     #                color='orange',
     #                label='After augment')
     
-    ax[1].scatter(x=best_class_score_after['occ_train'], 
-                  y=best_class_score_after[f'{reg_method}_{metric}'],
+    ax[1].scatter(x=best_after['occ_train'], 
+                  y=best_after[f'{reg_method}_{metric}'],
                   color='orange',
                   label='After augment')
         
     count=0
-    for x,y in zip(best_class_score_after['occ_train'], 
-                   best_class_score_after[f'{reg_method}_{metric}']):
-        ax[1].text(x,y,best_class_score_after.iloc[count]['elem_test'])
+    for x,y in zip(best_after['occ_train'], 
+                   best_after[f'{reg_method}_{metric}']):
+        ax[1].text(x,y,best_after.index[count])
         count+=1
         
     ax[1].set_xscale('log')
@@ -283,13 +312,13 @@ for prop in props_list:
     # barplot (worst elems)
     fig, ax= plt.subplots(nrows=1,ncols=2,figsize=(12,6))
     
-    elems           = tuple(worst_class_score_before['elem_test'])
+    elems           = tuple(worst_before.index)
     
-    mean_mae_before = list(worst_class_score_before['MAE'])
-    std_mae_before  = list(worst_class_score_before['score_std'])
+    mean_mae_before = list(worst_before[f'{reg_method}_{metric}'])
+    std_mae_before  = list(worst_before[f'{reg_method}_{metric}_std'])
 
-    mean_mae_after  = list(worst_class_score_after['MAE'])
-    std_mae_after   = list(worst_class_score_after['score_std'])
+    mean_mae_after  = list(worst_after[f'{reg_method}_{metric}'])
+    std_mae_after   = list(worst_after[f'{reg_method}_{metric}_std'])
     
     x = np.arange(len(elems))
     width = 0.25  #width of bars.
@@ -320,12 +349,12 @@ for prop in props_list:
     ax[0].set_xticks(x, elems)
     
     # barplot (best elems)
-    elems           = tuple(best_class_score_before['elem_test'])
-    mean_mae_before = list(best_class_score_before['MAE'])
-    std_mae_before  = list(best_class_score_before['score_std'])
+    elems           = tuple(best_before.index)
+    mean_mae_before = list(best_before[f'{reg_method}_{metric}'])
+    std_mae_before  = list(best_before[f'{reg_method}_{metric}_std'])
 
-    mean_mae_after  = list(best_class_score_after['MAE'])
-    std_mae_after   = list(best_class_score_after['score_std'])
+    mean_mae_after  = list(best_after[f'{reg_method}_{metric}'])
+    std_mae_after   = list(best_after[f'{reg_method}_{metric}_std'])
     
     x = np.arange(len(elems))
     width = 0.25  #width of bars.
