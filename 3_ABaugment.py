@@ -64,11 +64,11 @@ train_size, val_size, test_size = [0.7, 0.1, 0.2] # % train /val /test
 k_val, k_test = [0.33, 0.33]                      # % top for val and test. 
 # featurization
 elem_prop = 'magpie'
-# kwargs
+# kwarg
 k_elemconcat = 5
 n_elemconcat = 10
 crabnet_kwargs = {'epochs':300, 'verbose':False, 'discard_n':10}
-discover_kwargs = {'exit_mode': 'thr',  #'thr' / 'percentage'
+discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    'batch_size': 5,
                    #------
                    # in threshold mode
@@ -77,7 +77,7 @@ discover_kwargs = {'exit_mode': 'thr',  #'thr' / 'percentage'
                    'percentage' : 0.1,
                    #------
                    'scaled' : True,
-                   'scaler' : MinMaxScaler(), 
+                   'scaler' : RobustScaler(), 
                    'density_weight':1.0,
                    'target_weight':1.0,
                    'scores': ['density']
