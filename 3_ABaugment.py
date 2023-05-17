@@ -16,12 +16,12 @@ import warnings
 warnings.filterwarnings('ignore')
 
 props_list = [ 
-                'bulkmodulus',
-                'bandgap',
-                'seebeck',
+                # 'bulkmodulus',
+                # 'bandgap',
+                # 'seebeck',
                 'rho',
-                'sigma',
-                'shearmodulus'                
+                # 'sigma',
+                # 'shearmodulus'                
               ]
 
 pairs={
@@ -35,22 +35,22 @@ pairs={
 
 tasks_list = [
                 'linear_regression',
-                'random_forest_regression',    
-                'crabnet_regression',
-                'logistic_classification',  
+                # 'random_forest_regression',    
+                # 'crabnet_regression',
+                # 'logistic_classification',  
                 # 'crabnet_classification'
                 ]
 
 models_list = [ 
                 'baseline',
-                'concat',
-                'elem_concat',
+                # 'concat',
+                # 'elem_concat',
                 'disco'
                 ]
 
 
 """global params"""
-n_repetitions = 10
+n_repetitions = 1
 # preprocessing
 epsilon_T = 15               # controls the window size around ambient temperature
 merging='median'              # 'median'/'best' (drop duplicates and save best value) 
@@ -68,9 +68,14 @@ elem_prop = 'magpie'
 k_elemconcat = 5
 n_elemconcat = 10
 crabnet_kwargs = {'epochs':300, 'verbose':False, 'discard_n':10}
-discover_kwargs = {'thresh' : 0.9, 
-                   'n_iter': 100000000,
+discover_kwargs = {'exit_mode': 'thr',  #'thr' / 'percentage'
                    'batch_size': 5,
+                   #------
+                   # in threshold mode
+                   'thresh' : 0.9999, 
+                   # in percentage mode
+                   'percentage' : 0.1,
+                   #------
                    'scaled' : True,
                    'scaler' : MinMaxScaler(), 
                    'density_weight':1.0,

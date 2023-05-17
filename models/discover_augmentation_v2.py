@@ -129,11 +129,12 @@ class DiscoAugment(object):
         self.umap_r_orig = umap_r_orig 
     
 
-    def compute_density_scores(self, A_ilist, B_ilist, new=False):
+    def compute_density_scores(self, A_ilist_, B_ilist_, new=False):
         # B_ilist with respect to dataset B
         """given umap embeddings, calculate the density scores"""
         """uses current A_ilist and B_ilist"""
-        
+        A_ilist = A_ilist_.copy()
+        B_ilist = B_ilist_.copy()
         if new:
             new_points = A_ilist[self.nA:]
             del A_ilist[self.nA:]
@@ -184,9 +185,10 @@ class DiscoAugment(object):
         return final_score
     
     
-    def apply_augmentation(self,                 
+    def apply_augmentation(self,       
+                           exit_mode: str = 'percentage',
                            thresh: float = 0.5,
-                           n_iter: int   = 15,
+                           percentage: float = 0.1,
                            batch_size: int = 5,
                            model_type :str ='crabnet',            # predictive model for target score
                            crabnet_kwargs: dict = {'epochs':40},  # keywargs for crabnet
@@ -202,7 +204,7 @@ class DiscoAugment(object):
         self.model_type = model_type
         self.crabnet_kwargs = crabnet_kwargs
         self.scaled = scaled
-        self.scaler = scaler()
+        self.scaler = scaler
         df_A_sub = self.df_A.copy()
         df_B_sub = self.df_B.copy()
         output_list = [df_A_sub]
@@ -224,13 +226,24 @@ class DiscoAugment(object):
         
         final_scores = self.compute_final_score(target, density)
         
-        for it in tqdm(range(n_iter)):
+        print("Size of A:", len(self.df_A), ' ➪ ', end='')
+        
+        if exit_mode == 'percentage':
+            thr_size = int(percentage * self.nB)
+            thresh = -np.inf
+        elif exit_mode == 'thr':
+            thr_size = np.inf
+        
+        while (len(self.A_ilist)-self.nA) < thr_size:
             # extract indices of top (batch_size) points which are above threshold
             df_B_sub['score'] = final_scores
             mask_thr  = (df_B_sub['score'] >= thresh)
             ordered  = df_B_sub[(mask_thr)].sort_values(by=['score'],ascending=False)
             # store indices
             idxs     = list(ordered.iloc[:batch_size].index)
+            
+            # exit loop if no more points above threshold
+            if not idxs: break
             
             # remove from B
             df_B_sub = df_B_sub.drop(idxs, axis=0)
@@ -244,12 +257,14 @@ class DiscoAugment(object):
             output_list.append(df_A_sub.reset_index(drop=True))  # append iteration to output list (all augmentations)
             # add to A ilist
             self.A_ilist = self.A_ilist + idxs
-            
+            print(f'{len(df_A_sub)} ➪ ', end='')
+                
             # update density scores
             density = self.compute_density_scores(self.A_ilist, self.B_ilist, new=True)
             if scaled: density = self.scaler.transform(-1*density)
             final_scores = self.compute_final_score(target, density)
         
+        print('finished')
         return output_list
         
         
