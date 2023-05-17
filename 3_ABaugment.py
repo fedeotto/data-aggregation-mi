@@ -67,7 +67,7 @@ elem_prop = 'magpie'
 # kwargs
 k_elemconcat = 5
 n_elemconcat = 10
-crabnet_kwargs = {'epochs':1, 'verbose':False, 'discard_n':10}
+crabnet_kwargs = {'epochs':300, 'verbose':False, 'discard_n':10}
 discover_kwargs = {'exit_mode': 'thr',  #'thr' / 'percentage'
                    'batch_size': 5,
                    #------
