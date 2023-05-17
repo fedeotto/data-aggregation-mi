@@ -50,7 +50,7 @@ models_list = [
 
 
 """global params"""
-n_repetitions = 1
+n_repetitions = 5
 # preprocessing
 epsilon_T = 15               # controls the window size around ambient temperature
 merging='median'              # 'median'/'best' (drop duplicates and save best value) 

@@ -19,6 +19,8 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, explained_v
 from sklearn.model_selection import ShuffleSplit, GridSearchCV
 import utils
 
+device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+
 """ SPLITTING FUNCTIONS """
 def rnd_split(df_: pd.DataFrame,
               val_size=0.,
@@ -321,9 +323,7 @@ def crabnet(train_in, train_out,
         train_out.name = 'target'
         # val_out.name = 'target'
         test_out.name = 'target'
-        
-    device = torch.device('cpu')
-    
+            
     train_df = pd.concat([train_in, train_out],axis=1)
     test_df = pd.concat([test_in, test_out],axis=1)
     
@@ -335,15 +335,9 @@ def crabnet(train_in, train_out,
                           random_state=random_state,
                           verbose=crabnet_kwargs['verbose'],
                           discard_n=crabnet_kwargs['discard_n'])
-
-    crabnet_model = Model(CrabNet(compute_device=device).to(device),
-                          classification=False,
-                          random_state=random_state,
-                          verbose=crabnet_kwargs['verbose'],
-                          discard_n=crabnet_kwargs['discard_n'])
     
     # little_val for early stopping
-    little_val = train_df.sample(frac=0.15)
+    little_val = train_df.sample(frac=0.10, random_state=random_state)
     train_df = train_df.drop(index=little_val.index)
     
     crabnet_model.load_data(train_df, train=True)
