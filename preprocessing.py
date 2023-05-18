@@ -254,13 +254,13 @@ def add_column(df_collection_, size, ascending=False):
     # add extraord columns w.r.t. all datasets thresholds
     for key_o in df_collection.keys():
         for key_i in df_collection.keys():
-            df_collection[key_o][f'extraord|{key_i}'] = np.zeros(len(df_collection[key_o])).astype(int)
+            df_collection[key_o][f'extraord|{key_i}'] = 0
             # change to 1 values above the calculated threshold
             if  ascending==False:
                 mask = df_collection[key_o]['target']>thr[key_i]   
             elif ascending==True: 
                 mask = df_collection[key_o]['target']<thr[key_i]
-            df_collection[key_o][mask] = df_collection[key_o][mask].assign(**{f'extraord|{key_i}':1}) 
+            df_collection[key_o].loc[mask,f'extraord|{key_i}'] = 1
             
     return df_collection
         
