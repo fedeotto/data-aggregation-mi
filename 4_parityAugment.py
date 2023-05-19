@@ -22,10 +22,10 @@ device = torch.device('cpu')
 
 props_list = [ 
                 # 'bulkmodulus',
-                # 'bandgap',
+                'bandgap',
                 # 'seebeck',
                 # 'rho',
-                'sigma',
+                # 'sigma',
                 # 'shearmodulus'                
               ]
 
@@ -41,7 +41,7 @@ pairs={
 
 reg_method = 'random_forest_regression'
 tasks_list = [reg_method]
-model = 'disco'
+model = 'concat'
 n_top = 5
 
 """global params"""
@@ -83,7 +83,6 @@ metric = 'mae'
 
 # main loop
 for prop in props_list:
-     
     freq_df_complete_before = pd.DataFrame()        
     freq_df_complete_after = pd.DataFrame()        
 
@@ -347,7 +346,9 @@ for prop in props_list:
         length=10)
     
     ax[0].set_ylabel('MAE')
-    ax[0].set_xticks(x, elems)
+    ax[0].set_xticks(x)
+    ax[0].set_xticklabels(x)
+
     
     # barplot (best elems)
     elems           = tuple(best_before.index)
@@ -382,7 +383,8 @@ for prop in props_list:
         width=2.5,
         length=10)
     
-    ax[1].set_xticks(x, elems)
+    ax[1].set_xticks(x)
+    ax[1].set_xticklabels(elems)
     
     plt.legend()
     

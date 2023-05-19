@@ -9,9 +9,9 @@ from settings import ascending_setting
 
 props_list = [ 
                 # 'bulkmodulus',
-                'bandgap',
+                # 'bandgap',
                 # 'seebeck',
-                # 'rho',
+                'rho',
                 # 'sigma',
                 # 'shearmodulus'                
               ]
@@ -41,7 +41,7 @@ k_val, k_test = [0.33, 0.33]                      # % top for val and test.
 crabnet_kwargs = {'epochs':100, 'verbose':False}
 
 task = 'random_forest_regression'   #'random_forest_regression'   # crabnet_regression
-metric = 'mape'
+metric = 'mae'
 
 elem_prop = 'magpie'
 
