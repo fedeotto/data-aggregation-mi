@@ -13,7 +13,9 @@ from sklearn.linear_model import Ridge, LogisticRegression
 from sklearn.ensemble import RandomForestRegressor
 from CrabNet.kingcrab import CrabNet
 from CrabNet.model import Model
-from sklearn.metrics import mean_absolute_error, mean_squared_error, explained_variance_score, accuracy_score
+# metrics
+from sklearn.metrics import mean_absolute_error, mean_squared_error 
+from sklearn.metrics import explained_variance_score, mean_absolute_percentage_error, accuracy_score
 
 # tasks
 from sklearn.model_selection import ShuffleSplit, GridSearchCV
@@ -195,12 +197,14 @@ def apply_split(split_type,
 
 
 """ TASKS """
+epsilon = 1e-10
 def score_evaluation(Y_true, Y_pred, metric):
-        if   metric=='mae': score = mean_absolute_error(Y_true, Y_pred)       
-        elif metric=='mse': score = mean_squared_error(Y_true, Y_pred)  
-        elif metric=='r2':  score = explained_variance_score(Y_true, Y_pred)  
-        elif metric=='mre': score = (np.abs((Y_pred - Y_true)/Y_true )).mean()
-        elif metric=='acc': score = accuracy_score(Y_true, Y_pred)
+        if   metric=='mae':  score = mean_absolute_error(Y_true, Y_pred)       
+        elif metric=='mse':  score = mean_squared_error(Y_true, Y_pred)  
+        elif metric=='r2':   score = explained_variance_score(Y_true, Y_pred)  
+        elif metric=='mape': score = mean_absolute_percentage_error(Y_true, Y_pred)
+        elif metric=='mre':  score = np.abs(Y_pred - Y_true).sum() / np.abs(Y_true).sum()
+        elif metric=='acc':  score = accuracy_score(Y_true, Y_pred)
         else: raise RuntimeError('Invalid regression metric')    
         return score
     
@@ -371,7 +375,7 @@ def apply_all_tasks(train,
                     test_key,
                     tasks_list,
                     crabnet_kwargs = {'epochs':100},
-                    reg_metrics = ['mae','mse','r2','mre'],
+                    reg_metrics = ['mae','mse','r2','mape','mre'],
                     clas_metrics = ['acc'],
                     random_state = 1234,
                     verbose=False

@@ -21,11 +21,11 @@ pio.templates.default="simple_white"
 device = torch.device('cpu')
 
 props_list = [ 
-                'bulkmodulus',
+                # 'bulkmodulus',
                 # 'bandgap',
                 # 'seebeck',
                 # 'rho',
-                # 'sigma',
+                'sigma',
                 # 'shearmodulus'                
               ]
 
@@ -41,11 +41,11 @@ pairs={
 
 reg_method = 'random_forest_regression'
 tasks_list = [reg_method]
-model = 'elem_concat'
+model = 'disco'
 n_top = 5
 
 """global params"""
-n_repetitions = 5
+n_repetitions = 10
 # preprocessing
 epsilon_T = 15               # controls the window size around ambient temperature
 merging='median'              # 'median'/'best' (drop duplicates and save best value) 
@@ -64,7 +64,7 @@ k_elemconcat = 5
 n_elemconcat = 10
 
 crabnet_kwargs = {'epochs':300, 'verbose':False, 'discard_n':10}
-discover_kwargs = {'exit_mode': 'thr',  #'thr' / 'percentage'
+discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    'batch_size': 5,
                    #------
                    # in threshold mode
@@ -304,6 +304,7 @@ for prop in props_list:
         ax[1].text(x,y,best_after.index[count])
         count+=1
         
+    ax[1].set_xticks([100,300,500,800])
     ax[1].set_xscale('log')
     ax[0].set_ylabel(f'{metric}')
     

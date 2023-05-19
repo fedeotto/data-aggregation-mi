@@ -8,12 +8,12 @@ from preprocessing import preprocess_dataset, add_column
 from settings import ascending_setting
 
 props_list = [ 
-                'bulkmodulus',
+                # 'bulkmodulus',
                 'bandgap',
-                'seebeck',
-                'rho',
-                'sigma',
-                'shearmodulus'                
+                # 'seebeck',
+                # 'rho',
+                # 'sigma',
+                # 'shearmodulus'                
               ]
 pairs={
         'bulkmodulus'  : ['aflow', 'mpds'],   #'mp'
@@ -41,7 +41,7 @@ k_val, k_test = [0.33, 0.33]                      # % top for val and test.
 crabnet_kwargs = {'epochs':100, 'verbose':False}
 
 task = 'random_forest_regression'   #'random_forest_regression'   # crabnet_regression
-metric = 'mae'
+metric = 'mape'
 
 elem_prop = 'magpie'
 
@@ -76,6 +76,7 @@ for prop in props_list:
     outputs={
         'mae':[],
         'mse':[],
+        'mape':[],
         'r2':[],
         'mre':[],
         # 'acc':[]

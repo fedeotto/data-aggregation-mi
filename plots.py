@@ -171,6 +171,7 @@ def plot_elem_class_score(freq_df, task, metric, prop, web=True):
         borderpad=4,
         bgcolor="#ff7f0e"
         )
+    # fig.update_xaxes(type="log")
     if web: fig.write_html('figure.html', auto_open=True)
     fig.show()       
     
