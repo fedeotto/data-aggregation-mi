@@ -154,16 +154,15 @@ def plot_elem_class_score_matplotlib(freq_df, task, metric, prop, web=True):
                 freq_df[f'{task}_{metric}'], 
                 yerr=freq_df[f'{task}_{metric}_std'],
                 fmt='none', 
-                ecolor='blue', 
-                elinewidth=1, 
-                alpha=0.3, 
-                capsize=2)
+                ecolor='gray', 
+                elinewidth=5, 
+                alpha=0.2, 
+                capsize=1)
     
     # ax.fill_between(freq_df['occ_train'],lower_error, upper_error)
     
     ax.set_xlabel('Occurrences in train', labelpad=15)
     ax.set_ylabel('MAE', labelpad=15)
-
     
         
     
