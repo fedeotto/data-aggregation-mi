@@ -159,7 +159,7 @@ for prop in props_list:
                                random_state = random_state)
             
             augmentations = DAM.apply_augmentation(crabnet_kwargs=crabnet_kwargs,
-                                              **discover_kwargs)
+                                                   **discover_kwargs)
             augmented_df = augmentations[-1]
     
         print(f'--- tasks after augmentation ---')

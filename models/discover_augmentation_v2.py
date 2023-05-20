@@ -45,8 +45,8 @@ class DiscoAugment(object):
             # calculate the number of rows in first block
             nA = int(len(shuffled) * self_augment_frac)  
             # split the dataframe into two blocks
-            df_A  = shuffled[:nA]
-            df_B = shuffled[nA:]
+            df_A  = shuffled[:nA].reset_index(drop=True)
+            df_B = shuffled[nA:].reset_index(drop=True)
             
         else:
             raise ValueError('self_augment_frac is invalid')
@@ -244,7 +244,7 @@ class DiscoAugment(object):
             
             # exit loop if no more points above threshold
             if not idxs: break
-            
+        
             # remove from B
             df_B_sub = df_B_sub.drop(idxs, axis=0)
             # remove from B ilist
@@ -258,6 +258,9 @@ class DiscoAugment(object):
             # add to A ilist
             self.A_ilist = self.A_ilist + idxs
             print(f'{len(df_A_sub)} ➪ ', end='')
+            
+            # exit loop if no more points to add
+            if not self.B_ilist: break
                 
             # update density scores
             density = self.compute_density_scores(self.A_ilist, self.B_ilist, new=True)
