@@ -21,6 +21,9 @@ from metrics import equitability_index
 pio.renderers.default="svg"    # 'svg' or 'browser'
 pio.templates.default="simple_white"
 
+plt.rcParams['figure.dpi'] = 700
+plt.rcParams['font.size']  = 16
+
 def plot_distinct_histos(dfs, bins, prop, extraord=True):
     n = len(dfs)
     fig = make_subplots(rows=n, cols=1)
@@ -130,7 +133,37 @@ def plot_distinct_histos(dfs, bins, prop, extraord=True):
 #     # fig.show()   
     
 #     return freq_df
+
+
+def plot_elem_class_score_matplotlib(freq_df, task, metric, prop, web=True):
     
+    fig, ax = plt.subplots(figsize=(14,8))
+    
+    ax.scatter(freq_df['occ_train'],
+               freq_df[f'{task}_{metric}'],
+               edgecolor='k',
+               linewidth=0.5)
+    
+    lower_error = freq_df[f'{task}_{metric}'] - freq_df[f'{task}_{metric}_std']
+    lower_error = lower_error.fillna(0)
+    
+    upper_error = freq_df[f'{task}_{metric}'] + freq_df[f'{task}_{metric}_std']
+    upper_error = upper_error.fillna(0)
+    
+    ax.errorbar(freq_df['occ_train'], 
+                freq_df[f'{task}_{metric}'], 
+                yerr=freq_df[f'{task}_{metric}_std'],
+                fmt='none', 
+                ecolor='blue', 
+                elinewidth=1, 
+                alpha=0.3, 
+                capsize=2)
+    
+    # ax.fill_between(freq_df['occ_train'],lower_error, upper_error)
+    
+    ax.set_xlabel('Occurrences in train', labelpad=15)
+    ax.set_ylabel('MAE', labelpad=15)
+
     
         
     

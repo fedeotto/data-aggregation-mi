@@ -7,7 +7,7 @@ import tasks
 import matplotlib.pyplot as plt
 from models.baseline import concat, elem_concat
 from settings import ascending_setting
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, RobustScaler
 import utils
 import warnings
 import torch
@@ -18,6 +18,8 @@ warnings.filterwarnings('ignore')
 pio.renderers.default="svg"    # 'svg' or 'browser'
 pio.templates.default="simple_white"
 
+plt.rcParams['font.size'] = 35 
+plt.rcParams['figure.dpi'] = 700
 device = torch.device('cpu')
 
 props_list = [ 
@@ -31,21 +33,21 @@ props_list = [
 
 pairs={
         'bulkmodulus'  : ['aflow', 'mpds'],   #'mp'
-        'bandgap'      : ['zhuo', 'mpds'],    #'mp'
-        'seebeck'      : ['te', 'mpds'],
-        'rho'          : ['te', 'mpds'],
-        'sigma'        : ['te', 'mpds'],
+        'bandgap'      : ['zhuo', 'mpds' ],    #'mp'
+        'seebeck'      : ['te', 'mpds'   ],
+        'rho'          : ['te', 'mpds'   ],
+        'sigma'        : ['te', 'mpds'   ],
         'shearmodulus' : ['aflow', 'mpds']   #'mp'
         }
 
 
 reg_method = 'random_forest_regression'
 tasks_list = [reg_method]
-model = 'concat'
+model = 'disco'
 n_top = 5
 
 """global params"""
-n_repetitions = 10
+n_repetitions = 1
 # preprocessing
 epsilon_T = 15               # controls the window size around ambient temperature
 merging='median'              # 'median'/'best' (drop duplicates and save best value) 
@@ -73,7 +75,7 @@ discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    'percentage' : 0.1,
                    #------
                    'scaled' : True,
-                   'scaler' : MinMaxScaler(), 
+                   'scaler' : RobustScaler(), 
                    'density_weight':1.0,
                    'target_weight':1.0,
                    'scores': ['density']
@@ -208,18 +210,10 @@ for prop in props_list:
     best_before  = best_before.sort_index()
     best_after   = best_after.sort_index()
     
-    
-    
-    
-    
-    
-    
-    
-    
     # scatterplot    
-    fig, ax = plt.subplots(nrows=1,  ncols=2,figsize=(14,9))
+    fig, ax = plt.subplots(nrows=1,  ncols=2,figsize=(22,16))
     
-    ax[0].set_title('Worst elems (high MAE)')
+    ax[0].set_title('Highest MAE elements')
     # ax[0].errorbar(x=worst_class_score_before['count_train'],
     #                xerr = worst_class_score_before['count_std'],
     #                yerr = worst_class_score_before['score_std'],
@@ -230,6 +224,8 @@ for prop in props_list:
     
     ax[0].scatter(x=worst_before['occ_train'],
                   y=worst_before[f'{reg_method}_{metric}'],
+                  s=100,
+                  edgecolor='k',
                   color='blue',
                   label='Before augment')
         
@@ -250,6 +246,8 @@ for prop in props_list:
     
     ax[0].scatter(x=worst_after['occ_train'],
                   y=worst_after[f'{reg_method}_{metric}'],
+                  s=100,
+                  edgecolor='k',
                   color='orange',
                   label='After augment'
                   )
@@ -262,7 +260,7 @@ for prop in props_list:
     
     # ax[0].set_xscale('log')
     
-    ax[1].set_title('Best elems (high count train)')
+    ax[1].set_title('Highest train occurrences')
 
     # ax[1].errorbar(x=best_class_score_before['count_train'],
     #                xerr = best_class_score_before['count_std'],
@@ -275,6 +273,8 @@ for prop in props_list:
     
     ax[1].scatter(x=best_before['occ_train'],
                   y=best_before[f'{reg_method}_{metric}'],
+                  s=100,
+                  edgecolor='k',
                   color='blue',
                   label='Before augment')
     
@@ -294,6 +294,8 @@ for prop in props_list:
     
     ax[1].scatter(x=best_after['occ_train'], 
                   y=best_after[f'{reg_method}_{metric}'],
+                  s=100,
+                  edgecolor='k',
                   color='orange',
                   label='After augment')
         
@@ -302,10 +304,14 @@ for prop in props_list:
                    best_after[f'{reg_method}_{metric}']):
         ax[1].text(x,y,best_after.index[count])
         count+=1
-        
-    ax[1].set_xticks([100,300,500,800])
-    ax[1].set_xscale('log')
-    ax[0].set_ylabel(f'{metric}')
+    
+    xticks = np.arange(0, best_after['occ_train'].max(), 300)
+    ax[1].set_xticks(xticks)
+
+    ax[0].set_ylabel('MAE', labelpad=10)
+    ax[0].set_xlabel('Train occurrences', labelpad=10)
+    ax[1].set_xlabel('Train occurrences', labelpad=10)
+
     
     plt.legend()
     
@@ -347,7 +353,7 @@ for prop in props_list:
     
     ax[0].set_ylabel('MAE')
     ax[0].set_xticks(x)
-    ax[0].set_xticklabels(x)
+    ax[0].set_xticklabels(elems)
 
     
     # barplot (best elems)
@@ -377,14 +383,23 @@ for prop in props_list:
     # ax[0].set_title(f'{prop} elements score comparison')
     
     ax[1].tick_params(
-        axis='x',
-        which='major',
-        direction='in',
-        width=2.5,
-        length=10)
+                        axis='x',
+                        which='major',
+                        direction='in',
+                        width=2.5,
+                        length=10
+                        )
     
     ax[1].set_xticks(x)
     ax[1].set_xticklabels(elems)
     
     plt.legend()
     
+
+
+
+
+
+
+
+

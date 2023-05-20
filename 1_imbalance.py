@@ -114,7 +114,8 @@ for prop in props_list:
     stds  = freq_df_complete.groupby('elem_test', sort=True).std().loc[:,['occ_train', f'{task}_{metric}']]
     stds.columns = [f'{col}_std' for col in stds.columns]
     of_interest = pd.concat([means,stds], axis=1)
-    plots.plot_elem_class_score(of_interest, task, metric, prop, web=True)
+    plots.plot_elem_class_score_matplotlib(of_interest, task, metric, prop, web=True)
+    # plots.plot_elem_class_score(of_interest, task, metric, prop, web=True)
 
     print('\n')
     for score in outputs.keys():
