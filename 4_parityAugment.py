@@ -33,13 +33,12 @@ props_list = [
 
 pairs={
         'bulkmodulus'  : ['aflow', 'mpds'],  #'mp'
-        'bandgap'      : ['zhuo', 'mpds' ],  #'mp'
-        'seebeck'      : ['te', 'mpds'   ],
-        'rho'          : ['te', 'mpds'   ],
-        'sigma'        : ['te', 'mpds'   ],
+        'bandgap'      : ['zhuo' , 'mpds'],  #'mp'
+        'seebeck'      : ['te'   , 'mpds'],
+        'rho'          : ['te'   , 'mpds'],
+        'sigma'        : ['te'   , 'mpds'],
         'shearmodulus' : ['aflow', 'mpds']   #'mp'
-        }
-
+       }
 
 reg_method = 'random_forest_regression'
 tasks_list = [reg_method]
@@ -49,10 +48,10 @@ n_top = 5
 """global params"""
 n_repetitions = 1
 # preprocessing
-epsilon_T = 15               # controls the window size around ambient temperature
-merging='median'              # 'median'/'best' (drop duplicates and save best value) 
-med_sigma_multiplier = 0.5  # in 'median' merging values with duplicates with std > 0.5*median are discarted
-mult_outliers = 3           # values above mean + 3*sigma are discarted
+epsilon_T = 15               #controls the window size around ambient temperature
+merging='median'              #'median'/'best' (drop duplicates and save best value) 
+med_sigma_multiplier = 0.5  #in 'median' merging values with duplicates with std > 0.5*median are discarted
+mult_outliers = 3           #values above mean + 3*sigma are discarted
 # split
 split = 'random' # 'top' # 'novelty'
 shuffle_after_split = True

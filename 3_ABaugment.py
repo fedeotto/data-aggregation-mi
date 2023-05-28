@@ -14,12 +14,12 @@ import warnings
 warnings.filterwarnings('ignore')
 
 props_list = [ 
-                # 'bulkmodulus',
-                'bandgap',
+                'bulkmodulus',
+                # 'bandgap',
                 # 'seebeck',
                 # 'rho',
                 # 'sigma',
-                # 'shearmodulus'                
+                'shearmodulus'                
               ]
 
 pairs={
@@ -142,7 +142,7 @@ for prop in props_list:
                                               tasks_list, crabnet_kwargs,
                                               random_state=seed)
             num_results = [output[task][metric_reg] if ('regression' in task) 
-                           else output[task][metric_class] for task in tasks_list]
+                            else output[task][metric_class] for task in tasks_list]
             cols = results.columns.get_level_values('model')=='baseline'
             results.loc[(prop,n),cols] = num_results
             
@@ -159,7 +159,7 @@ for prop in props_list:
                                               tasks_list, crabnet_kwargs,
                                               random_state=seed)
             num_results = [output[task][metric_reg] if ('regression' in task) 
-                           else output[task][metric_class] for task in tasks_list]
+                            else output[task][metric_class] for task in tasks_list]
             cols = results.columns.get_level_values('model')=='concat'
             results.loc[(prop,n),cols] = num_results
 
@@ -168,9 +168,9 @@ for prop in props_list:
             print(f'--- elem concat ---')
             # CONCATENATE
             train_concat = elem_concat(dfs_dict={key_A:train, key_B:data_B}, merging_opt=merging, 
-                                       ascending=ascending_setting[prop],
-                                       k=k_elemconcat, n=n_elemconcat, verbose=False,
-                                       random_state=seed)
+                                        ascending=ascending_setting[prop],
+                                        k=k_elemconcat, n=n_elemconcat, verbose=False,
+                                        random_state=seed)
             # FEATURIZE TRAIN
             train_feat = utils.featurize(train_concat, elem_prop=elem_prop)
             # TASKS
@@ -178,7 +178,7 @@ for prop in props_list:
                                               tasks_list, crabnet_kwargs,
                                               random_state=seed)
             num_results = [output[task][metric_reg] if ('regression' in task) 
-                           else output[task][metric_class] for task in tasks_list]
+                            else output[task][metric_class] for task in tasks_list]
             cols = results.columns.get_level_values('model')=='elem_concat'
             results.loc[(prop,n),cols] = num_results
 
@@ -205,9 +205,13 @@ for prop in props_list:
             results.loc[(prop,n),cols] = num_results
             
 # saving results
-with open('results.pkl', 'wb') as handle:
+# with open('results.pkl', 'wb') as handle:
+#     pickle.dump(results, handle)
+
+# saving results (bulk & shear)
+with open('results_bulk_shear.pkl', 'wb') as handle:
     pickle.dump(results, handle)
-        
+
 #average across repetitions
 results_mean = results.groupby('prop').mean()
 results_std = results.groupby('prop').std()
