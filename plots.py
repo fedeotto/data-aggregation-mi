@@ -137,6 +137,8 @@ def plot_distinct_histos(dfs, bins, prop, extraord=True):
 
 def plot_elem_class_score_matplotlib(freq_df, task, metric, prop, web=True):
     
+    plt.rcParams['font.size'] = 16
+    
     fig, ax = plt.subplots(figsize=(14,8))
     
     ax.scatter(freq_df['occ_train'],
@@ -155,13 +157,13 @@ def plot_elem_class_score_matplotlib(freq_df, task, metric, prop, web=True):
                 yerr=freq_df[f'{task}_{metric}_std'],
                 fmt='none', 
                 ecolor='gray', 
-                elinewidth=5, 
-                alpha=0.2, 
-                capsize=1)
+                elinewidth=1, 
+                alpha=0.4, 
+                capsize=2)
     
     # ax.fill_between(freq_df['occ_train'],lower_error, upper_error)
     
-    ax.set_xlabel('Occurrences in train', labelpad=15)
+    ax.set_xlabel('Train occurrences', labelpad=15)
     ax.set_ylabel('MAE', labelpad=15)
     
         

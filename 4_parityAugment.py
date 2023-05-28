@@ -32,8 +32,8 @@ props_list = [
               ]
 
 pairs={
-        'bulkmodulus'  : ['aflow', 'mpds'],   #'mp'
-        'bandgap'      : ['zhuo', 'mpds' ],    #'mp'
+        'bulkmodulus'  : ['aflow', 'mpds'],  #'mp'
+        'bandgap'      : ['zhuo', 'mpds' ],  #'mp'
         'seebeck'      : ['te', 'mpds'   ],
         'rho'          : ['te', 'mpds'   ],
         'sigma'        : ['te', 'mpds'   ],
@@ -211,9 +211,9 @@ for prop in props_list:
     best_after   = best_after.sort_index()
     
     # scatterplot    
-    fig, ax = plt.subplots(nrows=1,  ncols=2,figsize=(22,16))
+    fig, ax = plt.subplots(nrows=1,  ncols=2,figsize=(28,16))
     
-    ax[0].set_title('Highest MAE elements')
+    # ax[0].set_title('Highest MAE elements')
     # ax[0].errorbar(x=worst_class_score_before['count_train'],
     #                xerr = worst_class_score_before['count_std'],
     #                yerr = worst_class_score_before['score_std'],
@@ -260,7 +260,7 @@ for prop in props_list:
     
     # ax[0].set_xscale('log')
     
-    ax[1].set_title('Highest train occurrences')
+    # ax[1].set_title('Highest train occurrences')
 
     # ax[1].errorbar(x=best_class_score_before['count_train'],
     #                xerr = best_class_score_before['count_std'],
@@ -305,15 +305,17 @@ for prop in props_list:
         ax[1].text(x,y,best_after.index[count])
         count+=1
     
-    xticks = np.arange(0, best_after['occ_train'].max(), 300)
+    xticks = np.arange(0, best_after['occ_train'].max(), 200)
     ax[1].set_xticks(xticks)
 
-    ax[0].set_ylabel('MAE', labelpad=10)
-    ax[0].set_xlabel('Train occurrences', labelpad=10)
-    ax[1].set_xlabel('Train occurrences', labelpad=10)
+    ax[0].set_ylabel('MAE', labelpad=15)
+    ax[0].set_xlabel('Train occurrences', labelpad=15)
+    ax[1].set_xlabel('Train occurrences', labelpad=15)
 
     
     plt.legend()
+    
+    # END SCATTERPLOT
     
     # barplot (worst elems)
     fig, ax= plt.subplots(nrows=1,ncols=2,figsize=(12,6))

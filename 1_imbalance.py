@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-
 import plots
 import utils
 import tasks
@@ -9,12 +8,12 @@ from settings import ascending_setting
 
 props_list = [ 
                 # 'bulkmodulus',
-                # 'bandgap',
+                'bandgap',
                 # 'seebeck',
-                'rho',
+                # 'rho',
                 # 'sigma',
                 # 'shearmodulus'                
-              ]
+              ] 
 pairs={
         'bulkmodulus'  : ['aflow', 'mpds'],   #'mp'
         'bandgap'      : ['zhuo', 'mpds'],    #'mp'
@@ -25,7 +24,7 @@ pairs={
         }
 
 """global params"""
-n_repetitions = 10
+n_repetitions = 5
 # preprocessing
 epsilon_T = 15               # controls the window size around ambient temperature
 merging='median'            # 'median'/'best' (drop duplicates and save best value) 
@@ -114,8 +113,8 @@ for prop in props_list:
     stds  = freq_df_complete.groupby('elem_test', sort=True).std().loc[:,['occ_train', f'{task}_{metric}']]
     stds.columns = [f'{col}_std' for col in stds.columns]
     of_interest = pd.concat([means,stds], axis=1)
-    plots.plot_elem_class_score_matplotlib(of_interest, task, metric, prop, web=True)
-    # plots.plot_elem_class_score(of_interest, task, metric, prop, web=True)
+    # plots.plot_elem_class_score_matplotlib(of_interest, task, metric, prop, web=True)
+    plots.plot_elem_class_score(of_interest, task, metric, prop, web=True)
 
     print('\n')
     for score in outputs.keys():

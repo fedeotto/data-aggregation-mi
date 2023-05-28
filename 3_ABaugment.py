@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-
 import plots
 import utils
 import tasks
@@ -8,7 +7,6 @@ import pickle
 from preprocessing import preprocess_dataset, add_column
 from settings import ascending_setting
 from sklearn.preprocessing import MinMaxScaler, RobustScaler
-
 from models.baseline import elem_concat, concat
 from models.discover_augmentation_v2 import DiscoAugment
 
@@ -17,20 +15,20 @@ warnings.filterwarnings('ignore')
 
 props_list = [ 
                 # 'bulkmodulus',
-                # 'bandgap',
+                'bandgap',
                 # 'seebeck',
                 # 'rho',
                 # 'sigma',
-                'shearmodulus'                
+                # 'shearmodulus'                
               ]
 
 pairs={
-        'bulkmodulus'  : ['aflow', 'mpds'],   #'mp'
-        'bandgap'      : ['zhuo', 'mpds'],    #'mp'
+        'bulkmodulus'  : ['aflow', 'mp'],   #'mp' (calculated)
+        'bandgap'      : ['zhuo', 'mpds'],  #'mp'
         'seebeck'      : ['te', 'mpds'],
         'rho'          : ['te', 'mpds'],
         'sigma'        : ['te', 'mpds'],
-        'shearmodulus' : ['aflow', 'mpds']   #'mp'
+        'shearmodulus' : ['aflow', 'mp']    #'mp' (calculated)
         }
 
 tasks_list = [
