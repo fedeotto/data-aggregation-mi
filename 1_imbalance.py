@@ -7,20 +7,20 @@ from preprocessing import preprocess_dataset, add_column
 from settings import ascending_setting
 
 props_list = [ 
-                # 'bulkmodulus',
-                'bandgap',
+                'bulkmodulus',
+                # 'bandgap',
                 # 'seebeck',
                 # 'rho',
                 # 'sigma',
-                # 'shearmodulus'                
+                'shearmodulus'                
               ] 
 pairs={
-        'bulkmodulus'  : ['aflow', 'mpds'],   #'mp'
+        'bulkmodulus'  : ['aflow', 'mp'],   #'mp'
         'bandgap'      : ['zhuo', 'mpds'],    #'mp'
         'seebeck'      : ['te', 'mpds'],
         'rho'          : ['te', 'mpds'],
         'sigma'        : ['te', 'mpds'],
-        'shearmodulus' : ['aflow', 'mpds']   #'mp'
+        'shearmodulus' : ['aflow', 'mp']   #'mp'
         }
 
 """global params"""
