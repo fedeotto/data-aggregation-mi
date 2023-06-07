@@ -15,11 +15,11 @@ from models.discover_augmentation_v2 import DiscoAugment
 from models.random_augmentation import RandomAugment
 
 warnings.filterwarnings('ignore')
+device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 pio.renderers.default="svg"    # 'svg' or 'browser'
 pio.templates.default="simple_white"
 
-device = torch.device('cpu')
 
 props_list = [ 
                 # 'bulkmodulus',
@@ -33,15 +33,16 @@ props_list = [
 pairs={
         'bulkmodulus'  : ['aflow', 'mpds'],   #'mp'
         'bandgap'      : ['zhuo', 'mpds'],    #'mp'
-        'seebeck'      : ['te', 'mpds'],
+        'seebeck'      : ['te',   'mpds'],
         'rho'          : ['te', 'mpds'],
         'sigma'        : ['te', 'mpds'],
         'shearmodulus' : ['aflow', 'mpds']   #'mp'
         }
 
 
-reg_method = 'random_forest_regression'
-tasks_list = [reg_method]
+reg_method   = 'random_forest_regression'
+class_method = 'logistic_classification'
+tasks_list = [class_method]
 model = 'disco'
 initial_size = 0.05
 batch_size = 100
@@ -90,7 +91,7 @@ discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    'scores': ['density']
                    }
 
-metric = 'mae'
+metric = 'acc'
 columns = pd.MultiIndex.from_product([['disco','random'],range(1,n_repetitions+1)]) 
 results = {f'{prop}': pd.DataFrame(data=np.nan, columns=columns, index=range(1000)) for prop in props_list}
 
@@ -176,7 +177,8 @@ for prop in props_list:
                                            clas_metrics = [metric],
                                            random_state=random_state, verbose=False)
             
-            scores.append(out[reg_method][metric])
+            # scores.append(out[reg_method][metric])
+            scores.append(out[class_method][metric])
         print('')
         results[prop].loc[:,('disco',n+1)] = pd.Series(data=scores)
         
@@ -195,7 +197,8 @@ for prop in props_list:
                                            clas_metrics = [metric],
                                            random_state=random_state, verbose=False)
             
-            scores.append(out[reg_method][metric])
+            # scores.append(out[reg_method][metric])
+            scores.append(out[class_method][metric])
         print('')
         results[prop].loc[:,('random',n+1)] = pd.Series(data=scores)    
     
@@ -218,6 +221,7 @@ for prop in props_list:
     fig, ax = plt.subplots(figsize=(8,6))
     ax.plot(x,
             means_disco,
+            color='#2c7fb8',
             linestyle='--',
             marker='o',
             markersize=5,
@@ -226,10 +230,12 @@ for prop in props_list:
     ax.fill_between(x,
                     means_disco-stds_disco, 
                     means_disco+stds_disco,
-                    alpha=0.2)
+                    color='#2c7fb8',
+                    alpha=0.1)
     
     ax.plot(x,
             means_random,
+            color='#31a354',
             linestyle='--',
             marker='o',
             markersize=5,
@@ -238,11 +244,14 @@ for prop in props_list:
     ax.fill_between(x,
                     means_random-stds_random, 
                     means_random+stds_random,
-                    alpha=0.2)
+                    color='#31a354',
+                    alpha=0.1)
     
+    ax.grid()
+        
     # ax.set_title(f'{prop} self_augment')
-    ax.set_xlabel('Train set ratio')
-    ax.set_ylabel('MAE')
+    ax.set_xlabel('Train ratio (%)', labelpad=10)
+    ax.set_ylabel('Accuracy', labelpad=10)
     
-    plt.legend(loc='upper right')
+    # plt.legend(loc='upper right')
             

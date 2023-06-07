@@ -14,12 +14,12 @@ import warnings
 warnings.filterwarnings('ignore')
 
 props_list = [ 
-                'bulkmodulus',
+                # 'bulkmodulus',
                 # 'bandgap',
                 # 'seebeck',
-                # 'rho',
+                'rho',
                 # 'sigma',
-                'shearmodulus'                
+                # 'shearmodulus'                
               ]
 
 pairs={
