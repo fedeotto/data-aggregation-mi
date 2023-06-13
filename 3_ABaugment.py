@@ -31,10 +31,10 @@ pairs={
         'shearmodulus' : ['aflow', 'mp']    #'mp' (calculated)
         }
 
-tasks_list = [
+tasks_list = [  'crabnet_regression',
+                'roost_regression',
                 'linear_regression',
                 'random_forest_regression',    
-                'crabnet_regression',
                 'logistic_classification',  
                 # 'crabnet_classification'
                 ]

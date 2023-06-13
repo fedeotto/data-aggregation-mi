@@ -1,0 +1,38 @@
+data_params:
+  batch_size: 128
+  data_seed: 0
+  pin_memory: false
+  shuffle: true
+epochs: 50
+evaluate: true
+model_name: roost
+model_params:
+  batchnorm: false
+  comp_heads: 4
+  elem_heads: 4
+  f_comp_dim: 256
+  f_elem_dim: 256
+  g_comp_dim: 256
+  g_elem_dim: 256
+  hidden_layer_dims:
+  - 1024
+  - 512
+  - 256
+  - 128
+  - 64
+  input_dim: 200
+  internal_elem_dim: 64
+  n_graphs: 3
+  negative_slope: 0.2
+  output_dim: 1
+patience: 10
+seed: 0
+setup_params:
+  learning_rate: 0.0003
+  loss: !!python/name:torch.nn.modules.loss.L1Loss ''
+  momentum: 0.9
+  optim: AdamW
+  weight_decay: 1.0e-06
+test_size: 0.1
+train: true
+val_size: 0.1

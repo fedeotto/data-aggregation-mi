@@ -13,6 +13,9 @@ from sklearn.linear_model import Ridge, LogisticRegression
 from sklearn.ensemble import RandomForestRegressor
 from CrabNet.kingcrab import CrabNet
 from CrabNet.model import Model
+from roost.Model import RoostLightning, roost_config, PrintRoostLoss
+import pytorch_lightning as pl
+from pytorch_lightning.callbacks import EarlyStopping
 # metrics
 from sklearn.metrics import mean_absolute_error, mean_squared_error 
 from sklearn.metrics import explained_variance_score, mean_absolute_percentage_error, accuracy_score
@@ -367,6 +370,41 @@ def crabnet(train_in, train_out,
     #     output['mre']  = score_evaluation(test_out, test_pred, 'mre')
     #     # plots.plot_parity(test_out, test_pred, output['mae'])
     # return output
+    
+    
+def roost(train_in, train_out,
+          test_in, test_out,
+          n_epochs:int = 5,
+          random_state: int = 1234):
+    
+    train_df = pd.concat([train_in, train_out],axis=1)
+    test_df = pd.concat([test_in, test_out],axis=1)
+    
+    roost = RoostLightning(**roost_config)
+    
+    val_df       = train_df.sample(frac=0.10, random_state=random_state)
+    train_df     = train_df.drop(index=val_df.index)
+    
+    roost.load_data(train_df, which='train')
+    roost.load_data(val_df, which='val')
+    roost.load_data(test_df, which='test')
+    
+    trainer = pl.Trainer(max_epochs=n_epochs,
+                         accelerator=device.type,
+                         callbacks=[PrintRoostLoss(),
+                                    EarlyStopping(monitor="val_loss", 
+                                                  mode='min',
+                                                  patience=20, 
+                                                  verbose=True)
+                                    ])
+    trainer.fit(roost, 
+                train_dataloaders=roost.train_loader,
+                val_dataloaders  =roost.val_loader)
+    
+    preds = roost.predict(roost.test_loader)
+    
+    return preds
+
 
 
 def apply_all_tasks(train,
@@ -395,7 +433,7 @@ def apply_all_tasks(train,
     for task in tasks_list:
           scores[task]={}
         ### prepare input ###
-          if 'crabnet' in task:
+          if ('crabnet' in task) or ('roost' in task):
               d['train_in']  = train.loc[:,'formula']
               d['test_in']   = test.loc[:,'formula']
               # d['val_in']  = val.loc[:,'formula']
@@ -438,6 +476,11 @@ def apply_all_tasks(train,
                             classification=False,
                             crabnet_kwargs = crabnet_kwargs,
                             random_state=random_state)
+        
+          elif task == 'roost_regression':
+              pred = roost(d['train_in'], d['train_out'],
+                           d['test_in'], d['test_out'],
+                           random_state = random_state)
 
           # extraord classification
           elif task=='logistic_classification':       
