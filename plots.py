@@ -8,9 +8,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 # imports
 from chem_wasserstein.ElM2D_ import ElM2D
-import tasks
 import umap
-import utils
 # from pymatviz.pymatviz.ptable import ptable_heatmap
 import pandas as pd
 from chem import _element_composition
@@ -18,11 +16,109 @@ from collections import Counter
 from operator import attrgetter
 from metrics import equitability_index
 
-pio.renderers.default="svg"    # 'svg' or 'browser'
+pio.renderers.default="browser"    # 'svg' or 'browser'
 pio.templates.default="simple_white"
 
-plt.rcParams['figure.dpi'] = 700
+plt.rcParams['figure.dpi'] = 1500
 plt.rcParams['font.size']  = 16
+
+
+def add_prop_to_violins(fig, col, dfs, prop, l):
+    colors = {'mpds':'orange', 'te':'green', 'mp':'blue', 'aflow':'grey', 'zhuo':'red'}
+    sides = ['negative', 'positive']    
+    units = {'seebeck':'μV / K', 'rho':'Ω · cm', 
+             'sigma':'S/cm', 'bandgap':'eV', 
+             'bulkmodulus':'GPa', 'shearmodulus':'GPa'}
+    names = list(dfs.keys())
+    for i, (key, df) in enumerate(dfs.items()):
+        fig.add_trace(go.Violin(#x=pd.Series(data=[prop for i in range(len(df))]), 
+                                y=df['target'], 
+                                # box_visible=True,
+                                meanline_visible=True, 
+                                side=sides[i],
+                                # legendgroup=key, 
+                                # offsetgroup=prop,
+                                scalegroup=prop,
+                                marker=dict(size=4, opacity=0.6),
+                                points='outliers',
+                                scalemode='width',
+                                # fillcolor=colors[i], 
+                                line_color=colors[key],
+                                opacity=0.6, 
+                                name=key,
+                                showlegend=True if key not in l else False,
+                                x0=prop+f'[{units[prop]}]',
+                                yaxis=f'y{col}'
+                                ),
+                      row=1, col=col)
+        l.append(key)
+    
+    # fig.update_xaxes(title_text=prop, row=1, col=col)
+    return fig
+
+def plot_violins(fig):
+    fig.update_layout(legend=dict(
+        orientation="h",
+        yanchor="top",
+        y=1.05,
+        xanchor="left",
+        x=0.02,
+        font=dict(size=16)
+    ))
+    st = 0.
+    tk=dict(size=8)
+    tf=dict(size=15)
+    fig.update_layout(
+        yaxis=dict(title_standoff=st,
+                   titlefont=tf,
+                   tickfont=tk),
+        yaxis2=dict(
+            overlaying="y",
+            side="left",
+            title_standoff=st,
+            titlefont=tf,
+            tickfont=tk
+        ),
+        yaxis3=dict(
+            overlaying="y",
+            side="left",
+            title_standoff=st,
+            titlefont=tf,
+            tickfont=tk
+        ),
+        yaxis4=dict(
+            overlaying="y",
+            side="left",
+            title_standoff=st,
+            titlefont=tf,
+            tickfont=tk
+        ),
+        yaxis5=dict(
+            overlaying="y",
+            side="left",
+            title_standoff=st,
+            titlefont=tf,
+            tickfont=tk
+        ),
+        yaxis6=dict(
+            overlaying="y",
+            side="left",
+            title_standoff=st,
+            titlefont=tf,
+            tickfont=tk
+        )
+    )
+    # fig.update_traces(meanline_visible=True)
+    fig.update_layout(width=1000,
+                      height=500,
+                      margin=dict(l=10, r=10, t=10, b=10)
+                    #   violingap=0.05, 
+                    #   violinmode='overlay',
+                    #   showlegend=False
+    )
+    fig.show() 
+    
+
 
 def plot_distinct_histos(dfs, bins, prop, extraord=True):
     n = len(dfs)

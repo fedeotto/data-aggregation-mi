@@ -1,20 +1,27 @@
 import numpy as np
 import pandas as pd
+from plotly.subplots import make_subplots
 
-import plots
-import utils
-import tasks
+from plots import plot_super_histos, plot_distinct_histos, add_prop_to_violins, plot_violins
+from utils import load_dataset, print_info
 from preprocessing import preprocess_dataset, add_column
 from settings import ascending_setting
 
-props_list = [ 
-                # 'bulkmodulus',
+props_list = [  'seebeck',
+                'rho',
+                'sigma',
                 'bandgap',
-                # 'seebeck',
-                # 'rho',
-                # 'sigma',
-                # 'shearmodulus'                
+                'bulkmodulus',
+                'shearmodulus'                
               ]
+pairs={
+        'bulkmodulus'  : ['aflow', 'mp'],   #'mp'
+        'bandgap'      : ['zhuo', 'mpds'],    #'mp'
+        'seebeck'      : ['te', 'mpds'],
+        'rho'          : ['te', 'mpds'],
+        'sigma'        : ['te', 'mpds'],
+        'shearmodulus' : ['aflow', 'mp']   #'mp'
+        }
 
 """global params"""
 # preprocessing
@@ -33,19 +40,25 @@ split = 'random'
 
     
 
+# violin plot
+violin_fig = make_subplots(rows=1, cols=len(props_list), 
+                           shared_xaxes=True, 
+                           horizontal_spacing=0.07)
+l=[]
 
 # main loop
-for prop in props_list:
-     
+for i, prop in enumerate(props_list):
     
     freq_df_complete = pd.DataFrame()        
     """LOADING"""
     # load datsets
-    data_raw = utils.load_dataset(prop)  
+    data_raw = load_dataset(prop)  
     keys_list = list(data_raw.keys())
-    key_star = keys_list[0]; assert key_star != 'mpds'
-    utils.print_info(data_raw, prop); print('')
-    
+    key_A = pairs[prop][0]; assert key_A != 'mpds'
+    key_B = pairs[prop][1]
+    data_raw = {key_A:data_raw[key_A], key_B:data_raw[key_B]}
+    print_info(data_raw, prop)
+    print('')
     
     """PREPROCESSING"""
     # preprocessing
@@ -54,15 +67,17 @@ for prop in props_list:
                                     med_sigma_multiplier,
                                     mult_outliers,
                                     ascending_setting[prop]) 
-    print(''); utils.print_info(data_clean, prop)
-    plots.plot_super_histos(data_clean, 60, prop, op1=0.6, extraord=False)
+    print('')
+    print_info(data_clean, prop)
+    # plot_super_histos(data_clean, 60, prop, op1=0.6, extraord=False)
     
+    violin_fig = add_prop_to_violins(violin_fig, i+1, data_clean, prop, l)
     # add extraord column to all datasets(0/1)
-    data_clean = add_column(data_clean, extraord_size, ascending_setting[prop])
-    plots.plot_distinct_histos(data_clean, 60, prop, extraord=True)
+    # data_clean = add_column(data_clean, extraord_size, ascending_setting[prop])
+    # plot_distinct_histos(data_clean, 60, prop, extraord=True)
     # plots.plot_super_histos(data_clean, 60, prop, op1=0.65, op2=0.8, extraord=True)
 
-
+plot_violins(violin_fig)
 
 
 
