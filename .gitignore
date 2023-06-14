@@ -10,3 +10,6 @@ datasets_backup
 distance_matrices
 CrabNet/models
 CrabNet/__pycache__
+
+results_ratios.pkl
+results_ratios_bandgap.pkl
