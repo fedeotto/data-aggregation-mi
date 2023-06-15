@@ -16,6 +16,8 @@ props_list = [
                 'shearmodulus'                
               ] 
 
+# settings imported from settings.py
+
 task = 'random_forest_regression'   #'random_forest_regression'   # crabnet_regression
 metric = 'mae'
 

@@ -16,7 +16,7 @@ props_list = [  'thermalcond',
                 'shearmodulus'                
               ]
 
-
+# settings imported from settings.py
 
 def plot_all():    
 

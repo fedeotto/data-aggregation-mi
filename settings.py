@@ -1,3 +1,5 @@
+from sklearn.preprocessing import MinMaxScaler, RobustScaler
+
 """global params"""
 n_repetitions = 5
 # preprocessing
@@ -15,13 +17,21 @@ k_val, k_test = [0.33, 0.33]                      # % top for val and test.
 elem_prop = 'magpie'
 # models
 crabnet_kwargs = {'epochs':300, 'verbose':False, 'discard_n':10}
-# discover_kwargs = {'thresh' : 0.9, 
-#                    'n_iter':100000, 
-#                    'batch_size':1, 
-#                    'proxy_weight':1.0,
-#                    'pred_weight':1.0,
-#                    'clusters' : False
-#                    }
+
+discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
+                   'batch_size': 5,
+                   #------
+                   # in threshold mode
+                   'thresh' : 0.9999, 
+                   # in percentage mode
+                   'percentage' : 0.1,
+                   #------
+                   'scaled' : True,
+                   'scaler' : RobustScaler(), 
+                   'density_weight':1.0,
+                   'target_weight':1.0,
+                   'scores': ['density']
+                   }
 
 ascending_setting = {'thermalcond': False,
                     'bulkmodulus' : False,
