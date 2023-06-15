@@ -17,8 +17,8 @@ props_list = [
                 # 'bulkmodulus',
                 # 'bandgap',
                 # 'seebeck',
-                'rho',
-                # 'sigma',
+                # 'rho',
+                'sigma',
                 # 'shearmodulus'                
               ]
 
@@ -32,18 +32,18 @@ pairs={
         }
 
 tasks_list = [  'crabnet_regression',
-                'roost_regression',
-                'linear_regression',
-                'random_forest_regression',    
-                'logistic_classification',  
+                # 'roost_regression',
+                # 'linear_regression',
+                # 'random_forest_regression',    
+                # 'logistic_classification',  
                 # 'crabnet_classification'
                 ]
 
 models_list = [ 
                 'baseline',
-                'concat',
-                'elem_concat',
-                'disco'
+                # 'concat',
+                # 'elem_concat',
+                # 'disco'
                 ]
 
 

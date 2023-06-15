@@ -19,7 +19,7 @@ from metrics import equitability_index
 pio.renderers.default="browser"    # 'svg' or 'browser'
 pio.templates.default="simple_white"
 
-plt.rcParams['figure.dpi'] = 1500
+plt.rcParams['figure.dpi'] = 700
 plt.rcParams['font.size']  = 16
 
 
@@ -35,7 +35,7 @@ def add_prop_to_violins(fig, col, dfs, prop, l):
                                 y=df['target'], 
                                 # box_visible=True,
                                 meanline_visible=True, 
-                                side=sides[i],
+                                # side=sides[i],
                                 # legendgroup=key, 
                                 # offsetgroup=prop,
                                 scalegroup=prop,
@@ -47,13 +47,13 @@ def add_prop_to_violins(fig, col, dfs, prop, l):
                                 opacity=0.6, 
                                 name=key,
                                 showlegend=True if key not in l else False,
-                                x0=prop+f'[{units[prop]}]',
+                                # x0=prop+f'[{units[prop]}]',
+                                x0 = key,
                                 yaxis=f'y{col}'
                                 ),
                       row=1, col=col)
         l.append(key)
-    
-    # fig.update_xaxes(title_text=prop, row=1, col=col)
+    fig.update_xaxes(title_text=prop, row=1, col=col)
     return fig
 
 def plot_violins(fig):
@@ -109,7 +109,7 @@ def plot_violins(fig):
         )
     )
     # fig.update_traces(meanline_visible=True)
-    fig.update_layout(width=1000,
+    fig.update_layout(width=1500,
                       height=500,
                       margin=dict(l=10, r=10, t=10, b=10)
                     #   violingap=0.05, 
@@ -261,6 +261,10 @@ def plot_elem_class_score_matplotlib(freq_df, task, metric, prop, web=True):
     
     ax.set_xlabel('Train occurrences', labelpad=15)
     ax.set_ylabel('MAE', labelpad=15)
+
+    # save the plot as a file in the plots/fig1 folder
+    plt.savefig(f'plots/fig1/{prop}_distinct.png', dpi=300)
+
     
         
     

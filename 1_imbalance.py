@@ -4,46 +4,19 @@ import plots
 import utils
 import tasks
 from preprocessing import preprocess_dataset, add_column
-from settings import ascending_setting
+from settings import *
 
 props_list = [ 
                 'bulkmodulus',
-                # 'bandgap',
-                # 'seebeck',
-                # 'rho',
-                # 'sigma',
+                'bandgap',
+                'seebeck',
+                'rho',
+                'sigma',
                 'shearmodulus'                
               ] 
-pairs={
-        'bulkmodulus'  : ['aflow', 'mp'],   #'mp'
-        'bandgap'      : ['zhuo', 'mpds'],    #'mp'
-        'seebeck'      : ['te', 'mpds'],
-        'rho'          : ['te', 'mpds'],
-        'sigma'        : ['te', 'mpds'],
-        'shearmodulus' : ['aflow', 'mp']   #'mp'
-        }
-
-"""global params"""
-n_repetitions = 5
-# preprocessing
-epsilon_T = 15               # controls the window size around ambient temperature
-merging='median'            # 'median'/'best' (drop duplicates and save best value) 
-med_sigma_multiplier = 0.5  # in 'median' merging values with duplicates with std > 0.5*median are discarted
-mult_outliers = 3           # values above mean + 3*sigma are discarted
-# split
-split = 'random' # 'top' # 'novelty'
-shuffle_after_split = True
-extraord_size = 0.2                               # best 20% will be extraord.
-train_size, val_size, test_size = [0.7, 0.1, 0.2] # % train /val /test
-k_val, k_test = [0.33, 0.33]                      # % top for val and test. 
-# featurization
-crabnet_kwargs = {'epochs':100, 'verbose':False}
 
 task = 'random_forest_regression'   #'random_forest_regression'   # crabnet_regression
 metric = 'mae'
-
-elem_prop = 'magpie'
-
 
 # main loop
 for prop in props_list:
@@ -113,8 +86,8 @@ for prop in props_list:
     stds  = freq_df_complete.groupby('elem_test', sort=True).std().loc[:,['occ_train', f'{task}_{metric}']]
     stds.columns = [f'{col}_std' for col in stds.columns]
     of_interest = pd.concat([means,stds], axis=1)
-    # plots.plot_elem_class_score_matplotlib(of_interest, task, metric, prop, web=True)
-    plots.plot_elem_class_score(of_interest, task, metric, prop, web=True)
+    plots.plot_elem_class_score_matplotlib(of_interest, task, metric, prop, web=True)
+    # plots.plot_elem_class_score(of_interest, task, metric, prop, web=True)
 
     print('\n')
     for score in outputs.keys():
