@@ -17,7 +17,8 @@ props_list = [
                 # 'bandgap',
                 # 'seebeck',
                 # 'rho',
-                'sigma',
+                'thermalcond',
+                # 'sigma',
                 # 'shearmodulus'                
               ]
 
@@ -27,7 +28,8 @@ pairs={
         'seebeck'      : ['te', 'mpds'],
         'rho'          : ['te', 'mpds'],
         'sigma'        : ['te', 'mpds'],
-        'shearmodulus' : ['aflow', 'mp']    #'mp' (calculated)
+        'shearmodulus' : ['aflow', 'mp'],    #'mp' (calculated)
+        'thermalcond'  : ['citrine', 'mpds']
         }
 
 tasks_list = [  #'crabnet_regression',

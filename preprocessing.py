@@ -66,7 +66,7 @@ def preprocess_dataset(data_raw_: dict,
             print(f' ambient T ({l_bef-l_af}); ', end='')
             
         # logarithm of large range properties    
-        if property_name in ['sigma','rho']:
+        if property_name in ['sigma','rho', 'thermalcond']:
             v['target'] = np.log10(v['target'])
             print(' log10; ', end='')
         
