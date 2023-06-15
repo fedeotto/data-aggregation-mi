@@ -7,6 +7,7 @@ from preprocessing import preprocess_dataset, add_column
 from settings import *
 
 props_list = [ 
+                'thermalcond',
                 'bulkmodulus',
                 'bandgap',
                 'seebeck',
@@ -93,6 +94,7 @@ for prop in props_list:
     for score in outputs.keys():
         print(f'AVERAGE {score} = {round(np.mean(outputs[score]),3)} ', end='')
         print(f'+- {round(np.std(outputs[score]),3)}')
+    
     
     
 

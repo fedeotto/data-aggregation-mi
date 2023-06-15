@@ -29,7 +29,6 @@ def load_dataset(property_name: str = 'bulkmodulus'):
         df = pd.read_csv(f'./datasets/{file}.csv')
         df = df.rename(columns={df.columns[-1] : 'target'})
 
-        
         if file=='bulkmodulus_mpds':
             df = clean_MPDS_dataset(df)
             df = df[df['formula']!='Ca3Al2SiO43']

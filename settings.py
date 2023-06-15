@@ -23,7 +23,8 @@ crabnet_kwargs = {'epochs':300, 'verbose':False, 'discard_n':10}
 #                    'clusters' : False
 #                    }
 
-ascending_setting = {'bulkmodulus' : False,
+ascending_setting = {'thermalcond': False,
+                    'bulkmodulus' : False,
                     'bandgap'     : False,
                     'seebeck'     : False,
                     'rho'         : True,
@@ -31,7 +32,8 @@ ascending_setting = {'bulkmodulus' : False,
                     'shearmodulus': False
                     }
 
-pairs={'bulkmodulus'  : ['aflow', 'mp'],   #'mp'
+pairs={'thermalcond'   : ['citrine', 'mpds'], 
+        'bulkmodulus'  : ['aflow', 'mp'],   #'mp'
         'bandgap'      : ['zhuo', 'mpds'],    #'mp'
         'seebeck'      : ['te', 'mpds'],
         'rho'          : ['te', 'mpds'],
