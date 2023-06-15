@@ -16,7 +16,8 @@ k_val, k_test = [0.33, 0.33]                      # % top for val and test.
 # featurization
 elem_prop = 'magpie'
 # models
-crabnet_kwargs = {'epochs':300, 'verbose':False, 'discard_n':10}
+crabnet_kwargs = {'epochs':300, 'batch_size':128, 'verbose':False, 'discard_n':10}
+roost_kwargs   = {'epochs': 300, 'batch_size':128}
 
 discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    'batch_size': 5,
@@ -34,15 +35,17 @@ discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    }
 
 ascending_setting = {'thermalcond': False,
-                    'bulkmodulus' : False,
-                    'bandgap'     : False,
-                    'seebeck'     : False,
-                    'rho'         : True,
-                    'sigma'       : False,
-                    'shearmodulus': False
+                     'superconT'  : False,
+                     'bulkmodulus' : False,
+                     'bandgap'     : False,
+                     'seebeck'     : False,
+                     'rho'         : True,
+                     'sigma'       : False,
+                     'shearmodulus': False
                     }
 
 pairs={'thermalcond'   : ['citrine', 'mpds'], 
+       'superconT'     : ['japdata', 'mpds'],
         'bulkmodulus'  : ['aflow', 'mp'],   #'mp'
         'bandgap'      : ['zhuo', 'mpds'],    #'mp'
         'seebeck'      : ['te', 'mpds'],

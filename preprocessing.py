@@ -81,7 +81,7 @@ def preprocess_dataset(data_raw_: dict,
             v['std'] = std    # add std column in grouped dataset
             v = v.reset_index(drop=False)
             # save indices of values with std > 0.5*median (high deviation)
-            i_drop = v[v['std']>med_sigma_multiplier*v['target']].index
+            i_drop = v[v['std']>med_sigma_multiplier*np.abs(v['target'])].index
             # drop rows and reset indices
             v = v.drop(index=i_drop, axis=0).reset_index(drop=True)    
             v = v.drop('std', axis=1)

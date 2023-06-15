@@ -347,14 +347,14 @@ def crabnet(train_in, train_out,
     little_val = train_df.sample(frac=0.10, random_state=random_state)
     train_df = train_df.drop(index=little_val.index)
     
-    crabnet_model.load_data(train_df, train=True)
-    crabnet_model.load_data(little_val, train=False)
+    crabnet_model.load_data(train_df, batch_size=crabnet_kwargs['batch_size'], train=True)
+    crabnet_model.load_data(little_val, batch_size=crabnet_kwargs['batch_size'], train=False)
     crabnet_model.fit(epochs = crabnet_kwargs['epochs'])
     
     #predict on test set
     
     # loading test dataset
-    crabnet_model.load_data(test_df, train=False)
+    crabnet_model.load_data(test_df, batch_size=crabnet_kwargs['batch_size'], train=False)
     
     test_out, test_pred, _, _ = crabnet_model.predict(crabnet_model.data_loader)
     return test_pred
@@ -374,12 +374,13 @@ def crabnet(train_in, train_out,
     
 def roost(train_in, train_out,
           test_in, test_out,
-          n_epochs:int = 5,
+          roost_kwargs,
           random_state: int = 1234):
     
     train_df = pd.concat([train_in, train_out],axis=1)
     test_df = pd.concat([test_in, test_out],axis=1)
     
+    roost_config['data_params']['batch_size'] = roost_kwargs['batch_size']
     roost = RoostLightning(**roost_config)
     
     val_df       = train_df.sample(frac=0.10, random_state=random_state)
@@ -389,7 +390,7 @@ def roost(train_in, train_out,
     roost.load_data(val_df, which='val')
     roost.load_data(test_df, which='test')
     
-    trainer = pl.Trainer(max_epochs=n_epochs,
+    trainer = pl.Trainer(max_epochs=roost_kwargs['epochs'],
                          accelerator=device.type,
                          callbacks=[PrintRoostLoss(),
                                     EarlyStopping(monitor="val_loss", 
@@ -412,7 +413,8 @@ def apply_all_tasks(train,
                     test,
                     test_key,
                     tasks_list,
-                    crabnet_kwargs = {'epochs':100},
+                    crabnet_kwargs = {'epochs':100, 'batch_size':128},
+                    roost_kwargs   = {'epochs':100, 'batch_size':128},
                     reg_metrics = ['mae','mse','r2','mape','mre'],
                     clas_metrics = ['acc'],
                     random_state = 1234,
@@ -480,6 +482,7 @@ def apply_all_tasks(train,
           elif task == 'roost_regression':
               pred = roost(d['train_in'], d['train_out'],
                            d['test_in'], d['test_out'],
+                           roost_kwargs = roost_kwargs,
                            random_state = random_state)
 
           # extraord classification

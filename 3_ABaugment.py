@@ -13,30 +13,32 @@ import warnings
 warnings.filterwarnings('ignore')
 
 props_list = [ 
-                # 'bulkmodulus',
-                # 'bandgap',
-                # 'seebeck',
-                # 'rho',
+                'bulkmodulus',
+                'bandgap',
+                'seebeck',
+                'rho',
                 'thermalcond',
-                # 'sigma',
-                # 'shearmodulus'                
+                'superconT',
+                'sigma',
+                'shearmodulus'                
               ]
 
 pairs={
-        'bulkmodulus'  : ['aflow', 'mp'],   #'mp' (calculated)
-        'bandgap'      : ['zhuo', 'mpds'],  #'mp'
-        'seebeck'      : ['te', 'mpds'],
-        'rho'          : ['te', 'mpds'],
-        'sigma'        : ['te', 'mpds'],
-        'shearmodulus' : ['aflow', 'mp'],    #'mp' (calculated)
-        'thermalcond'  : ['citrine', 'mpds']
+        'bulkmodulus'  : ['aflow',  'mp'],   #'mp' (calculated)
+        'bandgap'      : ['zhuo',   'mpds'],  #'mp'
+        'seebeck'      : ['te',     'mpds'],
+        'rho'          : ['te',     'mpds'],
+        'superconT'    : ['japdata','mpds'],
+        'sigma'        : ['te',     'mpds'],
+        'shearmodulus' : ['aflow',  'mp'],    #'mp' (calculated)
+        'thermalcond'  : ['citrine','mpds']
         }
 
-tasks_list = [  #'crabnet_regression',
+tasks_list = [  'crabnet_regression',
                 'roost_regression',
-                # 'linear_regression',
-                # 'random_forest_regression',    
-                # 'logistic_classification',  
+                'linear_regression',
+                'random_forest_regression',    
+                'logistic_classification',  
                 # 'crabnet_classification'
                 ]
 
@@ -113,8 +115,8 @@ def main_exp():
                 train_feat = utils.featurize(train, elem_prop=elem_prop)
                 # TASKS
                 output, _ = tasks.apply_all_tasks(train_feat, test_feat, key_A,
-                                                tasks_list, crabnet_kwargs,
-                                                random_state=seed)
+                                                  tasks_list, crabnet_kwargs,roost_kwargs,
+                                                  random_state=seed)
                 num_results = [output[task][metric_reg] if ('regression' in task) 
                                 else output[task][metric_class] for task in tasks_list]
                 cols = results.columns.get_level_values('model')=='baseline'
@@ -130,7 +132,7 @@ def main_exp():
                 train_feat = utils.featurize(train_concat, elem_prop=elem_prop)
                 # TASKS
                 output, _ = tasks.apply_all_tasks(train_feat, test_feat, key_A,
-                                                tasks_list, crabnet_kwargs,
+                                                tasks_list, crabnet_kwargs, roost_kwargs,
                                                 random_state=seed)
                 num_results = [output[task][metric_reg] if ('regression' in task) 
                                 else output[task][metric_class] for task in tasks_list]
@@ -179,12 +181,12 @@ def main_exp():
                 results.loc[(prop,n),cols] = num_results
                 
     # saving results
-    # with open('results.pkl', 'wb') as handle:
-    #     pickle.dump(results, handle)
+    with open('results.pkl', 'wb') as handle:
+        pickle.dump(results, handle)
 
     # saving results (bulk & shear)
-    with open('results_bulk_shear.pkl', 'wb') as handle:
-        pickle.dump(results, handle)
+    # with open('results_bulk_shear.pkl', 'wb') as handle:
+    #     pickle.dump(results, handle)
 
     #average across repetitions
     results_mean = results.groupby('prop').mean()
@@ -203,3 +205,12 @@ def main_exp():
 
 if __name__ == '__main__':
     main_exp()
+    
+    
+    
+    
+    
+    
+    
+    
+    
