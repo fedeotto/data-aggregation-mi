@@ -87,6 +87,18 @@ def load_dataset(property_name: str = 'bulkmodulus'):
         
         if file=='shearmodulus_aflow':
             pass
+            
+        if file=='thermalcond_mpds':
+            df = clean_MPDS_dataset(df)
+        
+        if file=='thermalcond_citrine':
+            pass
+
+        if file=='superconT_mpds':
+            df = clean_MPDS_dataset(df)
+        
+        if file=='superconT_japdata':
+            pass
                    
         key = file.split('_')[1]
         
