@@ -13,14 +13,14 @@ import warnings
 warnings.filterwarnings('ignore')
 
 props_list = [  'thermalcond',
-                'superconT',
+                # 'superconT',
                 'seebeck',
                 'rho',
                 'sigma',
                 'bandgap',
                 'bulkmodulus',
                 'shearmodulus'                
-              ]
+            ]
 
 pairs={
         'bulkmodulus'  : ['aflow',  'mp'],   #'mp' (calculated)
@@ -43,9 +43,9 @@ tasks_list = [  'crabnet_regression',
 
 models_list = [ 
                 'baseline',
-                # 'concat',
-                # 'elem_concat',
-                # 'disco'
+                'concat',
+                'elem_concat',
+                'disco'
                 ]
 
 # settings imported from settings.py
