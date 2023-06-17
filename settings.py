@@ -1,7 +1,7 @@
 from sklearn.preprocessing import MinMaxScaler, RobustScaler
 
 """global params"""
-n_repetitions = 1
+n_repetitions = 5
 # preprocessing
 epsilon_T = 15              # controls the window size around ambient temperature
 merging='median'            # 'median'/'best' (drop duplicates and save best value) 
@@ -16,8 +16,8 @@ k_val, k_test = [0.33, 0.33]                      # % top for val and test.
 # featurization
 elem_prop = 'magpie'
 # models
-crabnet_kwargs = {'epochs':300, 'batch_size':128, 'verbose':False, 'discard_n':10}
-roost_kwargs   = {'epochs': 300, 'batch_size':128}
+crabnet_kwargs = {'epochs':300, 'batch_size':32, 'verbose':False, 'discard_n':10}
+roost_kwargs   = {'epochs': 300, 'batch_size':32}
 
 discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    'batch_size': 5,

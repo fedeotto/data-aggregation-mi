@@ -12,14 +12,13 @@ from models.discover_augmentation_v2 import DiscoAugment
 import warnings
 warnings.filterwarnings('ignore')
 
-props_list = [ 
-                'bulkmodulus',
-                'bandgap',
+props_list = [  'thermalcond',
+                'superconT',
                 'seebeck',
                 'rho',
-                'thermalcond',
-                'superconT',
                 'sigma',
+                'bandgap',
+                'bulkmodulus',
                 'shearmodulus'                
               ]
 
@@ -39,7 +38,7 @@ tasks_list = [  'crabnet_regression',
                 'linear_regression',
                 'random_forest_regression',    
                 'logistic_classification',  
-                # 'crabnet_classification'
+                # # # # # 'crabnet_classification'
                 ]
 
 models_list = [ 
@@ -52,8 +51,8 @@ models_list = [
 # settings imported from settings.py
 
 # kwarg
-k_elemconcat = 5
-n_elemconcat = 10
+k_elemconcat = 5      # n elements
+n_elemconcat = 10     # n points per element
 
 # metrics
 metric_reg = 'mae'
@@ -181,7 +180,7 @@ def main_exp():
                 results.loc[(prop,n),cols] = num_results
                 
     # saving results
-    with open('results.pkl', 'wb') as handle:
+    with open('results_3.pkl', 'wb') as handle:
         pickle.dump(results, handle)
 
     # saving results (bulk & shear)

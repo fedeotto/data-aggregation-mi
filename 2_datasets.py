@@ -8,6 +8,7 @@ from preprocessing import preprocess_dataset, add_column
 from settings import *
 
 props_list = [  'thermalcond',
+                'superconT',
                 'seebeck',
                 'rho',
                 'sigma',

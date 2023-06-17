@@ -24,9 +24,11 @@ plt.rcParams['font.size']  = 16
 
 
 def add_prop_to_violins(fig, col, dfs, prop, l):
-    colors = {'mpds':'orange', 'te':'green', 'mp':'blue', 'aflow':'grey', 'zhuo':'red'}
+    colors = {'japdata':'purple','citrine':'pink', 'mpds':'orange', 'te':'green', 
+              'mp':'blue', 'aflow':'grey', 'zhuo':'red'}
     sides = ['negative', 'positive']    
-    units = {'seebeck':'μV / K', 'rho':'Ω · cm', 
+    units = {'thermalcond': ' ', 'superconT':' ',
+            'seebeck':'μV / K', 'rho':'Ω · cm', 
              'sigma':'S/cm', 'bandgap':'eV', 
              'bulkmodulus':'GPa', 'shearmodulus':'GPa'}
     names = list(dfs.keys())
@@ -53,7 +55,7 @@ def add_prop_to_violins(fig, col, dfs, prop, l):
                                 ),
                       row=1, col=col)
         l.append(key)
-    fig.update_xaxes(title_text=prop, row=1, col=col)
+    fig.update_xaxes(title_text=prop+f' [{units[prop]}]', row=1, col=col)
     return fig
 
 def plot_violins(fig):

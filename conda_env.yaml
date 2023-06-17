@@ -32,5 +32,6 @@ dependencies:
       - tabulate
       - chem_wasserstein
       - seaborn
+      - hdbscan
 # cd tsl 
 # pip install -e .
