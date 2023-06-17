@@ -34,6 +34,12 @@ discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    'scores': ['density']
                    }
 
+rnd_kwargs      = {'exit_mode': 'percentage',    # percentage or iters
+                   'batch_size': 5,
+                   'n_iters': 10,     # used if 'exit_mode' = 'iters'
+                   'percentage': 1.,  # used if 'exit_mode' = 'percentage'
+                   }
+
 ascending_setting = {'thermalcond': False,
                      'superconT'  : False,
                      'bulkmodulus' : False,

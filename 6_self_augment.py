@@ -6,9 +6,10 @@ import settings
 import tasks
 import matplotlib.pyplot as plt
 from models.baseline import concat, elem_concat
-from settings import ascending_setting
+from settings import *
 from sklearn.preprocessing import MinMaxScaler
 import utils
+import itertools
 import warnings
 import torch
 from models.discover_augmentation_v2 import DiscoAugment
@@ -22,16 +23,27 @@ pio.templates.default="simple_white"
 
 
 props_list = [ 
-                # 'bulkmodulus',
+                'bulkmodulus',
+                'thermalcond',
                 'bandgap',
-                # 'seebeck',
-                # 'rho',
-                # 'sigma',
-                # 'shearmodulus'                
+                'seebeck',
+                'rho',
+                'sigma',
+                'shearmodulus'                
               ]
+
+tasks_list = [  
+                'roost_regression',
+                'crabnet_regression',
+                'linear_regression',
+                'random_forest_regression',    
+                'logistic_classification',  
+                #'crabnet_classification'
+                ]
 
 pairs={
         'bulkmodulus'  : ['aflow', 'mpds'],   #'mp'
+        'thermalcond'  : ['citrine', 'mpds'],
         'bandgap'      : ['zhuo', 'mpds'],    #'mp'
         'seebeck'      : ['te',   'mpds'],
         'rho'          : ['te', 'mpds'],
@@ -40,60 +52,22 @@ pairs={
         }
 
 
-reg_method   = 'random_forest_regression'
+reg_method   = 'roost_regression'
 class_method = 'logistic_classification'
-tasks_list = [class_method]
+# tasks_list = [class_method]
 model = 'disco'
 initial_size = 0.05
-batch_size = 100
 
-"""global params"""
-n_repetitions = 5
-# preprocessing
-epsilon_T = 15               # controls the window size around ambient temperature
-merging='median'              # 'median'/'best' (drop duplicates and save best value) 
-med_sigma_multiplier = 0.5  # in 'median' merging values with duplicates with std > 0.5*median are discarted
-mult_outliers = 3           # values above mean + 3*sigma are discarted
-# split
-split = 'random' # 'top' # 'novelty'
-shuffle_after_split = True
-extraord_size = 0.2                               # best 20% will be extraord.
-train_size, val_size, test_size = [0.7, 0.1, 0.2] # % train /val /test
-k_val, k_test = [0.33, 0.33]                      # % top for val and test. 
-# featurization
-elem_prop = 'magpie'
 # kwarg
 k_elemconcat = 5
 n_elemconcat = 10
 
-crabnet_kwargs = {'epochs':300, 'verbose':False, 'discard_n':10}
-
-
-
-rnd_kwargs      = {'exit_mode': 'percentage',    # percentage or iters
-                   'batch_size': batch_size,
-                   'n_iters': 10,     # used if 'exit_mode' = 'iters'
-                   'percentage': 1.,  # used if 'exit_mode' = 'percentage'
-                   }
-
-discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
-                   'batch_size': batch_size,
-                   #------
-                   # in threshold mode
-                   'thresh' : 0.9999, 
-                   # in percentage mode
-                   'percentage' : 1.,
-                   #------
-                   'scaled' : True,
-                   'scaler' : MinMaxScaler(), 
-                   'density_weight':1.0,
-                   'target_weight':1.0,
-                   'scores': ['density']
-                   }
-
 metric = 'acc'
 columns = pd.MultiIndex.from_product([['disco','random'],range(1,n_repetitions+1)]) 
-results = {f'{prop}': pd.DataFrame(data=np.nan, columns=columns, index=range(1000)) for prop in props_list}
+results = {f'{prop}_{task}': pd.DataFrame(data=np.nan, columns=columns, index=range(1000)) for prop, task in itertools.product(props_list,tasks_list)}
+
+# all the p
+discover_kwargs['percentage'] = 1
 
 # main loop
 for prop in props_list:     
@@ -172,12 +146,18 @@ for prop in props_list:
             
             '''tasks'''
             out, _ = tasks.apply_all_tasks(train_feat, test_feat, key_A,
-                                           tasks_list, crabnet_kwargs,
-                                           reg_metrics = [metric],
-                                           clas_metrics = [metric],
-                                           random_state=random_state, verbose=False)
+                                            tasks_list, crabnet_kwargs,
+                                            reg_metrics = ['mae'],
+                                            clas_metrics = ['acc'],
+                                            random_state=random_state, verbose=False)
             
-            # scores.append(out[reg_method][metric])
+            for task in tasks_list:
+                if task != 'logistic_classification':
+                    results[f'{prop}_{task}'].loc[:,('disco', n+1)][i] = out[task]['mae']
+                else:
+                    results[f'{prop}_{task}'].loc[:,('disco', n+1)][i] = out[task]['acc']
+                    
+            scores.append(out[reg_method][metric])
             scores.append(out[class_method][metric])
         print('')
         results[prop].loc[:,('disco',n+1)] = pd.Series(data=scores)
@@ -193,14 +173,23 @@ for prop in props_list:
             '''tasks'''
             out, _ = tasks.apply_all_tasks(train_feat, test_feat, key_A,
                                            tasks_list, crabnet_kwargs,
-                                           reg_metrics = [metric],
-                                           clas_metrics = [metric],
+                                           reg_metrics = ['mae'],
+                                           clas_metrics = ['acc'],
                                            random_state=random_state, verbose=False)
             
+            for task in tasks_list:
+                if task != 'logistic_classification':
+                    results[f'{prop}_{task}'].loc[:,('random', n+1)][i] = out[task]['mae']
+                else:
+                    results[f'{prop}_{task}'].loc[:,('random', n+1)][i] = out[task]['acc']
+            
             # scores.append(out[reg_method][metric])
-            scores.append(out[class_method][metric])
-        print('')
-        results[prop].loc[:,('random',n+1)] = pd.Series(data=scores)    
+            # scores.append(out[class_method][metric])
+        # print('')
+        # results[prop].loc[:,('random',n+1)] = pd.Series(data=scores)
+    
+    with open('results_self_augment.pkl', 'wb') as handle:
+        pickle.dump(results, handle)
     
     # clean result data
     results[prop] = results[prop].drop(np.where(results[prop].isna())[0],axis=0)
@@ -218,40 +207,40 @@ for prop in props_list:
     means_random = np.array(results[prop].mean(axis=1, level=0)['random'].values)
     stds_random = np.array(results[prop].std(axis=1, level=0)['random'].values)
     
-    fig, ax = plt.subplots(figsize=(8,6))
-    ax.plot(x,
-            means_disco,
-            color='#2c7fb8',
-            linestyle='--',
-            marker='o',
-            markersize=5,
-            label='DiSCoVeR')
+    # fig, ax = plt.subplots(figsize=(8,6))
+    # ax.plot(x,
+    #         means_disco,
+    #         color='#2c7fb8',
+    #         linestyle='--',
+    #         marker='o',
+    #         markersize=5,
+    #         label='DiSCoVeR')
     
-    ax.fill_between(x,
-                    means_disco-stds_disco, 
-                    means_disco+stds_disco,
-                    color='#2c7fb8',
-                    alpha=0.1)
+    # ax.fill_between(x,
+    #                 means_disco-stds_disco, 
+    #                 means_disco+stds_disco,
+    #                 color='#2c7fb8',
+    #                 alpha=0.1)
     
-    ax.plot(x,
-            means_random,
-            color='#31a354',
-            linestyle='--',
-            marker='o',
-            markersize=5,
-            label='Random')
+    # ax.plot(x,
+    #         means_random,
+    #         color='#31a354',
+    #         linestyle='--',
+    #         marker='o',
+    #         markersize=5,
+    #         label='Random')
     
-    ax.fill_between(x,
-                    means_random-stds_random, 
-                    means_random+stds_random,
-                    color='#31a354',
-                    alpha=0.1)
+    # ax.fill_between(x,
+    #                 means_random-stds_random, 
+    #                 means_random+stds_random,
+    #                 color='#31a354',
+    #                 alpha=0.1)
     
-    ax.grid()
+    # ax.grid()
         
     # ax.set_title(f'{prop} self_augment')
-    ax.set_xlabel('Train ratio (%)', labelpad=10)
-    ax.set_ylabel('Accuracy', labelpad=10)
+    # ax.set_xlabel('Train ratio (%)', labelpad=10)
+    # ax.set_ylabel('Accuracy', labelpad=10)
     
     # plt.legend(loc='upper right')
             
