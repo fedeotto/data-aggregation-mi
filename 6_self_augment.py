@@ -192,20 +192,19 @@ for prop in props_list:
         pickle.dump(results, handle)
     
     # clean result data
-    results[prop] = results[prop].drop(np.where(results[prop].isna())[0],axis=0)
+    # results[prop] = results[prop].drop(np.where(results[prop].isna())[0],axis=0)
     # get x axis labels    
-    ratios = np.array([len(my_augmentations[i])/len(train) for i in range(len(my_augmentations))])    
-    assert (ratios==np.array([len(rnd_augmentations[i])/len(train) for i in range(len(rnd_augmentations))])).all()
-    results[prop].index = ratios.round(2)
+    # ratios = np.array([len(my_augmentations[i])/len(train) for i in range(len(my_augmentations))])    
+    # assert (ratios==np.array([len(rnd_augmentations[i])/len(train) for i in range(len(rnd_augmentations))])).all()
+    # results[prop].index = ratios.round(2)
     
+    # x = np.array(results[prop].index)
     
-    x = np.array(results[prop].index)
+    # means_disco = np.array(results[prop].mean(axis=1, level=0)['disco'].values)
+    # stds_disco = np.array(results[prop].std(axis=1, level=0)['disco'].values)
     
-    means_disco = np.array(results[prop].mean(axis=1, level=0)['disco'].values)
-    stds_disco = np.array(results[prop].std(axis=1, level=0)['disco'].values)
-    
-    means_random = np.array(results[prop].mean(axis=1, level=0)['random'].values)
-    stds_random = np.array(results[prop].std(axis=1, level=0)['random'].values)
+    # means_random = np.array(results[prop].mean(axis=1, level=0)['random'].values)
+    # stds_random = np.array(results[prop].std(axis=1, level=0)['random'].values)
     
     # fig, ax = plt.subplots(figsize=(8,6))
     # ax.plot(x,
