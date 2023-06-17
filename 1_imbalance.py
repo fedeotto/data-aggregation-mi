@@ -6,6 +6,9 @@ import tasks
 from preprocessing import preprocess_dataset, add_column
 from settings import *
 
+import warnings
+warnings.filterwarnings('ignore')
+
 props_list = [ 
                 'thermalcond',
                 'bulkmodulus',
