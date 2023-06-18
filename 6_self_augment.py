@@ -24,17 +24,17 @@ pio.templates.default="simple_white"
 
 
 props_list = [ 
-                # 'bulkmodulus',
                 'thermalcond',
-                # 'bandgap',
-                # 'seebeck',
-                # 'rho',
-                # 'sigma',
-                # 'shearmodulus'                
+                'bulkmodulus',
+                'bandgap',
+                'seebeck',
+                'rho',
+                'sigma',
+                'shearmodulus'                
               ]
 
 tasks_list = [  
-                'roost_regression',
+                # 'roost_regression',
                 'crabnet_regression',
                 # 'linear_regression',
                 'random_forest_regression',    
@@ -64,8 +64,8 @@ k_elemconcat = 5
 n_elemconcat = 10
 
 metric = 'acc'
-columns = pd.MultiIndex.from_product([['disco','random'],range(1,n_repetitions+1)]) 
-results = {f'{prop}_{task}': pd.DataFrame(data=np.nan, columns=columns, index=range(1000)) for prop, task in itertools.product(props_list,tasks_list)}
+columns = pd.MultiIndex.from_product([tasks_list, ['disco','random'],range(1,n_repetitions+1)]) 
+results = {f'{prop}': pd.DataFrame(data=np.nan, columns=columns, index=range(1000)) for prop in props_list}
 
 # all the p
 discover_kwargs['percentage'] = 1
@@ -137,8 +137,7 @@ for prop in props_list:
         pd.testing.assert_frame_equal(last_my, last_rnd)
         
         
-        
-        print(f'performing {reg_method} for disco augmentations...')
+        print(f'performing tasks for disco augmentations...')
         # scores = []
         print('it = ', end=' ')
         for i,augment in enumerate(my_augmentations):
@@ -154,9 +153,9 @@ for prop in props_list:
             
             for task in tasks_list:
                 if task != 'logistic_classification':
-                    results[f'{prop}_{task}'].loc[:,('disco', n+1)][i] = out[task]['mae']
+                    results[f'{prop}'].loc[:,(f'{task}','disco', n+1)][i] = out[task]['mae']
                 else:
-                    results[f'{prop}_{task}'].loc[:,('disco', n+1)][i] = out[task]['acc']
+                    results[f'{prop}'].loc[:,(f'{task}','disco', n+1)][i] = out[task]['acc']
                     
         #     scores.append(out[reg_method][metric])
         #     scores.append(out[class_method][metric])
@@ -164,7 +163,7 @@ for prop in props_list:
         # results[prop].loc[:,('disco',n+1)] = pd.Series(data=scores)
         
         
-        print(f'performing {reg_method} for random augmentations...')
+        print(f'performing tasks for random augmentations...')
         # scores = []
         print('it = ', end=' ')
         for i,augment in enumerate(rnd_augmentations):
@@ -180,17 +179,17 @@ for prop in props_list:
             
             for task in tasks_list:
                 if task != 'logistic_classification':
-                    results[f'{prop}_{task}'].loc[:,('random', n+1)][i] = out[task]['mae']
+                    results[f'{prop}'].loc[:,(f'{task}','random', n+1)][i] = out[task]['mae']
                 else:
-                    results[f'{prop}_{task}'].loc[:,('random', n+1)][i] = out[task]['acc']
+                    results[f'{prop}'].loc[:,(f'{task}','random', n+1)][i] = out[task]['acc']
             
             # scores.append(out[reg_method][metric])
             # scores.append(out[class_method][metric])
         # print('')
         # results[prop].loc[:,('random',n+1)] = pd.Series(data=scores)
-    
-    with open('results_self_augment.pkl', 'wb') as handle:
-        pickle.dump(results, handle)
+        
+    with open('./results/results_6_{prop}.pkl', 'wb') as handle:
+        pickle.dump(results[f'{prop}'], handle)
     
     # clean result data
     # results[prop] = results[prop].drop(np.where(results[prop].isna())[0],axis=0)
