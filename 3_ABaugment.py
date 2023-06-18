@@ -161,11 +161,11 @@ def main_exp():
             if 'disco' in models_list:
                 print(f'--- discover ---')
                 # CONCATENATE
-                DAM = DiscoAugment(dfs_dict={key_A:train, key_B:data_B},
+                dam = DiscoAugment(dfs_dict={key_A:train, key_B:data_B},
                                 self_augment_frac = None,         # initial fraction for self_aumgent
                                 random_state = seed)
                 
-                aug_list = DAM.apply_augmentation(crabnet_kwargs=crabnet_kwargs,
+                aug_list = dam.apply_augmentation(crabnet_kwargs=crabnet_kwargs,
                                                 **discover_kwargs)
                 train_discoaug = aug_list[-1]
                 # FEATURIZE TRAIN
@@ -179,9 +179,9 @@ def main_exp():
                 cols = results.columns.get_level_values('model')=='disco'
                 results.loc[(prop,n),cols] = num_results
                 
-    # saving results
-    with open('results_3.pkl', 'wb') as handle:
-        pickle.dump(results, handle)
+        # saving results
+        with open(f'results/results_3_{prop}.pkl', 'wb') as handle:
+            pickle.dump(results, handle)
 
     # saving results (bulk & shear)
     # with open('results_bulk_shear.pkl', 'wb') as handle:

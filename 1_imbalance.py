@@ -105,7 +105,7 @@ def plot_all():
             print(f'AVERAGE {score} = {round(np.mean(outputs[score]),3)} ', end='')
             print(f'+- {round(np.std(outputs[score]),3)}')
         
-    with open('results_1_crab.pkl', 'wb') as f:
+    with open('results/results_1_crab.pkl', 'wb') as f:
         pickle.dump(to_save, f)
     
     
