@@ -12,7 +12,7 @@ warnings.filterwarnings('ignore')
 
 props_list = [  
                 'thermalcond',
-                # 'superconT',
+                'superconT',
                 'seebeck',
                 'rho',
                 'sigma',
@@ -23,7 +23,7 @@ props_list = [
 
 # settings imported from settings.py
 
-task = 'crabnet_regression'   #'random_forest_regression'   # crabnet_regression
+task = 'random_forest_regression'   #'random_forest_regression'   # crabnet_regression
 metric = 'mae'
 
 to_save = {}
@@ -105,7 +105,7 @@ def plot_all():
             print(f'AVERAGE {score} = {round(np.mean(outputs[score]),3)} ', end='')
             print(f'+- {round(np.std(outputs[score]),3)}')
         
-    with open('results/results_1_crab.pkl', 'wb') as f:
+    with open('results/results_1_rf.pkl', 'wb') as f:
         pickle.dump(to_save, f)
     
     

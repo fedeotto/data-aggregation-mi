@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from plotly.subplots import make_subplots
+import plotly.io as pio
 
 from plots import plot_super_histos, plot_distinct_histos, add_prop_to_violins, plot_violins
 from utils import load_dataset, print_info
@@ -58,8 +59,8 @@ def plot_all():
         # plot_distinct_histos(data_clean, 60, prop, extraord=True)
         # plots.plot_super_histos(data_clean, 60, prop, op1=0.65, op2=0.8, extraord=True)
 
-    plot_violins(violin_fig)
-
+    fig = plot_violins(violin_fig)
+    pio.write_image(fig, 'plots/fig2/violin.png')
 
 
 if __name__ == '__main__': plot_all()

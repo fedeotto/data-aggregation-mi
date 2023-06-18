@@ -12,18 +12,18 @@ from models.discover_augmentation_v2 import DiscoAugment
 import warnings
 warnings.filterwarnings('ignore')
 
-props_list = [  'thermalcond',
+props_list = [  #'thermalcond',
                 # 'superconT',
-                'seebeck',
-                'rho',
-                'sigma',
-                'bandgap',
+                # 'seebeck',
+                # 'rho',
+                # 'sigma',
+                # 'bandgap',
                 'bulkmodulus',
-                'shearmodulus'                
+                # 'shearmodulus'                
             ]
 
 pairs={
-        'bulkmodulus'  : ['aflow',  'mp'],   #'mp' (calculated)
+        'bulkmodulus'  : ['aflow',  'mpds'],   #'mp' (calculated)
         'bandgap'      : ['zhuo',   'mpds'],  #'mp'
         'seebeck'      : ['te',     'mpds'],
         'rho'          : ['te',     'mpds'],
@@ -180,7 +180,7 @@ def main_exp():
                 results.loc[(prop,n),cols] = num_results
                 
         # saving results
-        with open(f'results/results_3_{prop}.pkl', 'wb') as handle:
+        with open(f'results/results_3_{prop}_mpds.pkl', 'wb') as handle:
             pickle.dump(results, handle)
 
     # saving results (bulk & shear)

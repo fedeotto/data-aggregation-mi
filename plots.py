@@ -119,6 +119,7 @@ def plot_violins(fig):
                     #   showlegend=False
     )
     fig.show() 
+    return fig
     
 
 
@@ -265,7 +266,7 @@ def plot_elem_class_score_matplotlib(freq_df, task, metric, prop, web=True):
     ax.set_ylabel('MAE', labelpad=15)
 
     # save the plot as a file in the plots/fig1 folder
-    plt.savefig(f'plots/fig1/{prop}_distinct.png', dpi=300)
+    plt.savefig(f'plots/fig1_rf/{prop}_distinct.png', dpi=300)
 
     
         
