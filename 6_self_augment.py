@@ -188,7 +188,7 @@ for prop in props_list:
         # print('')
         # results[prop].loc[:,('random',n+1)] = pd.Series(data=scores)
         
-    with open('./results/results_6_{prop}.pkl', 'wb') as handle:
+    with open(f'./results/results_6_{prop}.pkl', 'wb') as handle:
         pickle.dump(results[f'{prop}'], handle)
     
     # clean result data
