@@ -139,7 +139,7 @@ for prop in props_list:
         
         
         print(f'performing {reg_method} for disco augmentations...')
-        scores = []
+        # scores = []
         print('it = ', end=' ')
         for i,augment in enumerate(my_augmentations):
             print(f'{i}...', end=' ')
@@ -158,14 +158,14 @@ for prop in props_list:
                 else:
                     results[f'{prop}_{task}'].loc[:,('disco', n+1)][i] = out[task]['acc']
                     
-            scores.append(out[reg_method][metric])
-            scores.append(out[class_method][metric])
-        print('')
-        results[prop].loc[:,('disco',n+1)] = pd.Series(data=scores)
+        #     scores.append(out[reg_method][metric])
+        #     scores.append(out[class_method][metric])
+        # print('')
+        # results[prop].loc[:,('disco',n+1)] = pd.Series(data=scores)
         
         
         print(f'performing {reg_method} for random augmentations...')
-        scores = []
+        # scores = []
         print('it = ', end=' ')
         for i,augment in enumerate(rnd_augmentations):
             print(f'{i}...', end=' ')
