@@ -108,9 +108,8 @@ for prop in props_list:
         
         # FEATURIZE TEST
         test_feat  = utils.featurize(test, elem_prop=elem_prop)
-    
         
-        
+        discover_kwargs['batch_size'] = int(0.05*len(train))
         # running Discover augmentation
         print('performing disco augmentation')
         DAM = DiscoAugment(dfs_dict={key_A: train, key_B: train},
@@ -120,6 +119,7 @@ for prop in props_list:
         my_augmentations = DAM.apply_augmentation(crabnet_kwargs=crabnet_kwargs,
                                                   **discover_kwargs)
         
+        rnd_kwargs['batch_size'] = int(0.05*len(train))
         #Running rnd_augment
         print('performing random augmentation')
         rnd_augment = RandomAugment(dfs_dict={key_A: train, key_B: train},
