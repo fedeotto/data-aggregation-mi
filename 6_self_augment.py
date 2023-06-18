@@ -43,9 +43,9 @@ tasks_list = [
                 ]
 
 pairs={
-        'bulkmodulus'  : ['aflow', 'mpds'],   #'mp'
+        'bulkmodulus'  : ['aflow',   'mpds'],   #'mp'
         'thermalcond'  : ['citrine', 'mpds'],
-        'bandgap'      : ['zhuo', 'mpds'],    #'mp'
+        'bandgap'      : ['zhuo',    'mpds'],    #'mp'
         'seebeck'      : ['te',   'mpds'],
         'rho'          : ['te', 'mpds'],
         'sigma'        : ['te', 'mpds'],
