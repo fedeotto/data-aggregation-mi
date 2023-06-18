@@ -18,8 +18,8 @@ props_list = [  #'thermalcond',
                 # 'rho',
                 # 'sigma',
                 # 'bandgap',
-                # 'bulkmodulus',
-                'shearmodulus'                
+                'bulkmodulus',
+                # 'shearmodulus'                
             ]
 
 pairs={
@@ -34,16 +34,16 @@ pairs={
         }
 
 tasks_list = [  
-                # 'crabnet_regression',
                 'roost_regression',
-                # 'linear_regression',
-                # 'random_forest_regression',    
+                'crabnet_regression',
+                'linear_regression',
+                'random_forest_regression',    
                 'logistic_classification',  
                 # # # # # 'crabnet_classification'
                 ]
 
 models_list = [ 
-                # 'baseline',
+                'baseline',
                 'concat',
                 'elem_concat',
                 'disco'
