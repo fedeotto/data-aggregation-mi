@@ -18,8 +18,8 @@ props_list = [  #'thermalcond',
                 # 'rho',
                 # 'sigma',
                 # 'bandgap',
-                'bulkmodulus',
-                # 'shearmodulus'                
+                # 'bulkmodulus',
+                'shearmodulus'                
             ]
 
 pairs={
@@ -38,7 +38,7 @@ tasks_list = [
                 'roost_regression',
                 # 'linear_regression',
                 # 'random_forest_regression',    
-                # 'logistic_classification',  
+                'logistic_classification',  
                 # # # # # 'crabnet_classification'
                 ]
 
@@ -151,8 +151,8 @@ def main_exp():
                 train_feat = utils.featurize(train_concat, elem_prop=elem_prop)
                 # TASKS
                 output, _ = tasks.apply_all_tasks(train_feat, test_feat, key_A,
-                                                tasks_list, crabnet_kwargs,
-                                                random_state=seed)
+                                                  tasks_list, crabnet_kwargs,
+                                                  random_state=seed)
                 num_results = [output[task][metric_reg] if ('regression' in task) 
                                 else output[task][metric_class] for task in tasks_list]
                 cols = results.columns.get_level_values('model')=='elem_concat'
@@ -167,7 +167,7 @@ def main_exp():
                                 random_state = seed)
                 
                 aug_list = dam.apply_augmentation(crabnet_kwargs=crabnet_kwargs,
-                                                **discover_kwargs)
+                                                  **discover_kwargs)
                 train_discoaug = aug_list[-1]
                 # FEATURIZE TRAIN
                 train_feat = utils.featurize(train_discoaug, elem_prop=elem_prop)
