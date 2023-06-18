@@ -18,8 +18,8 @@ props_list = [  #'thermalcond',
                 # 'rho',
                 # 'sigma',
                 # 'bandgap',
-                # 'bulkmodulus',
-                'shearmodulus'                
+                'bulkmodulus',
+                # 'shearmodulus'                
             ]
 
 pairs={
