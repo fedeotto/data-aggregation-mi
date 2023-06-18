@@ -24,17 +24,17 @@ pio.templates.default="simple_white"
 
 
 props_list = [ 
-                'bulkmodulus',
+                # 'bulkmodulus',
                 'thermalcond',
-                'bandgap',
-                'seebeck',
-                'rho',
-                'sigma',
-                'shearmodulus'                
+                # 'bandgap',
+                # 'seebeck',
+                # 'rho',
+                # 'sigma',
+                # 'shearmodulus'                
               ]
 
 tasks_list = [  
-                # 'roost_regression',
+                'roost_regression',
                 'crabnet_regression',
                 # 'linear_regression',
                 'random_forest_regression',    

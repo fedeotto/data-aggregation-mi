@@ -18,13 +18,13 @@ props_list = [  #'thermalcond',
                 # 'rho',
                 # 'sigma',
                 # 'bandgap',
-                'bulkmodulus',
-                # 'shearmodulus'                
+                # 'bulkmodulus',
+                'shearmodulus'                
             ]
 
 pairs={
         'bulkmodulus'  : ['aflow',  'mpds'],   #'mp' (calculated)
-        'bandgap'      : ['zhuo',   'mpds'],  #'mp'
+        'bandgap'      : ['zhuo',   'mpds'],   #'mp'
         'seebeck'      : ['te',     'mpds'],
         'rho'          : ['te',     'mpds'],
         'superconT'    : ['japdata','mpds'],
@@ -33,16 +33,17 @@ pairs={
         'thermalcond'  : ['citrine','mpds']
         }
 
-tasks_list = [  'crabnet_regression',
+tasks_list = [  
+                # 'crabnet_regression',
                 'roost_regression',
-                'linear_regression',
-                'random_forest_regression',    
-                'logistic_classification',  
+                # 'linear_regression',
+                # 'random_forest_regression',    
+                # 'logistic_classification',  
                 # # # # # 'crabnet_classification'
                 ]
 
 models_list = [ 
-                'baseline',
+                # 'baseline',
                 'concat',
                 'elem_concat',
                 'disco'
