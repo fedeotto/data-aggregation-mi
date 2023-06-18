@@ -34,11 +34,11 @@ props_list = [
               ]
 
 tasks_list = [  
-                'roost_regression',
+                # 'roost_regression',
                 'crabnet_regression',
-                'linear_regression',
+                # 'linear_regression',
                 'random_forest_regression',    
-                'logistic_classification',  
+                # 'logistic_classification',  
                 #'crabnet_classification'
                 ]
 
