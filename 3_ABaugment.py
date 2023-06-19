@@ -29,7 +29,7 @@ pairs={
         'rho'          : ['te',     'mpds'],
         'superconT'    : ['japdata','mpds'],
         'sigma'        : ['te',     'mpds'],
-        'shearmodulus' : ['aflow',  'mpds'],    # 'mp' (calculated)
+        'shearmodulus' : ['aflow',  'mp'],    # 'mp' (calculated)
         'thermalcond'  : ['citrine','mpds']
         }
 
@@ -181,7 +181,7 @@ def main_exp():
                 results.loc[(prop,n),cols] = num_results
                 
         # saving results
-        with open(f'results/results_3_{prop}_mpds_regr.pkl', 'wb') as handle:
+        with open(f'results/results_3_{prop}_mp_regr.pkl', 'wb') as handle:
             pickle.dump(results, handle)
 
     # saving results (bulk & shear)
