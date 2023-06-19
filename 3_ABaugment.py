@@ -29,7 +29,7 @@ pairs={
         'rho'          : ['te',     'mpds'],
         'superconT'    : ['japdata','mpds'],
         'sigma'        : ['te',     'mpds'],
-        'shearmodulus' : ['aflow',  'mp'],    # 'mp' (calculated)
+        'shearmodulus' : ['aflow',  'mpds'],    # 'mp' (calculated)
         'thermalcond'  : ['citrine','mpds']
         }
 
@@ -38,7 +38,7 @@ tasks_list = [
                 'crabnet_regression',
                 'linear_regression',
                 'random_forest_regression',    
-                'logistic_classification',  
+                # 'logistic_classification',  
                 # # # # # 'crabnet_classification'
                 ]
 
@@ -181,7 +181,7 @@ def main_exp():
                 results.loc[(prop,n),cols] = num_results
                 
         # saving results
-        with open(f'results/results_3_{prop}_mp.pkl', 'wb') as handle:
+        with open(f'results/results_3_{prop}_mpds_regr.pkl', 'wb') as handle:
             pickle.dump(results, handle)
 
     # saving results (bulk & shear)
