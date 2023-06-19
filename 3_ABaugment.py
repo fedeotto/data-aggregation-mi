@@ -23,13 +23,13 @@ props_list = [  #'thermalcond',
             ]
 
 pairs={
-        'bulkmodulus'  : ['aflow',  'mpds'],   #'mp' (calculated)
+        'bulkmodulus'  : ['aflow',  'mp'],   #'mp' (calculated)
         'bandgap'      : ['zhuo',   'mpds'],   #'mp'
         'seebeck'      : ['te',     'mpds'],
         'rho'          : ['te',     'mpds'],
         'superconT'    : ['japdata','mpds'],
         'sigma'        : ['te',     'mpds'],
-        'shearmodulus' : ['aflow',  'mp'],    #'mp' (calculated)
+        'shearmodulus' : ['aflow',  'mp'],    # 'mp' (calculated)
         'thermalcond'  : ['citrine','mpds']
         }
 
@@ -181,7 +181,7 @@ def main_exp():
                 results.loc[(prop,n),cols] = num_results
                 
         # saving results
-        with open(f'results/results_3_{prop}_mpds.pkl', 'wb') as handle:
+        with open(f'results/results_3_{prop}_mp.pkl', 'wb') as handle:
             pickle.dump(results, handle)
 
     # saving results (bulk & shear)
