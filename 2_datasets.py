@@ -8,11 +8,11 @@ from utils import load_dataset, print_info
 from preprocessing import preprocess_dataset, add_column
 from settings import *
 
-props_list = [  'thermalcond',
+props_list = [  'rho',
+                'sigma',
+                'thermalcond',
                 'superconT',
                 'seebeck',
-                'rho',
-                'sigma',
                 'bandgap',
                 'bulkmodulus',
                 'shearmodulus'                
@@ -23,9 +23,10 @@ props_list = [  'thermalcond',
 def plot_all():    
 
     # violin plot
-    violin_fig = make_subplots(rows=1, cols=len(props_list), 
-                            shared_xaxes=True, 
-                            horizontal_spacing=0.02)
+    violin_fig = make_subplots(rows=2, cols=4, 
+                               start_cell="top-left",
+                               horizontal_spacing=0.02,
+                               vertical_spacing=0.15)
     l=[]
 
     # main loop
@@ -53,7 +54,7 @@ def plot_all():
         print_info(data_clean, prop)
         # plot_super_histos(data_clean, 60, prop, op1=0.6, extraord=False)
         
-        violin_fig = add_prop_to_violins(violin_fig, i+1, data_clean, prop, l)
+        violin_fig = add_prop_to_violins(violin_fig, i, data_clean, prop, l)
         # add extraord column to all datasets(0/1)
         # data_clean = add_column(data_clean, extraord_size, ascending_setting[prop])
         # plot_distinct_histos(data_clean, 60, prop, extraord=True)

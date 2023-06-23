@@ -19,19 +19,29 @@ from metrics import equitability_index
 pio.renderers.default="browser"    # 'svg' or 'browser'
 pio.templates.default="simple_white"
 
-plt.rcParams['figure.dpi'] = 700
+plt.rcParams['figure.dpi'] = 1400
 plt.rcParams['font.size']  = 16
 
 
-def add_prop_to_violins(fig, col, dfs, prop, l):
+def add_prop_to_violins(fig, ind, dfs, prop, l):
     colors = {'japdata':'purple','citrine':'pink', 'mpds':'orange', 'te':'green', 
               'mp':'blue', 'aflow':'grey', 'zhuo':'red'}
-    sides = ['negative', 'positive']    
-    units = {'thermalcond': ' ', 'superconT':' ',
-            'seebeck':'μV / K', 'rho':'Ω · cm', 
-             'sigma':'S/cm', 'bandgap':'eV', 
+    sides = ['negative', 'positive']  
+    datasets = {'japdata':'MDR','citrine':'Citrine', 'mpds':'MPDS', 'te':'MRL',
+                'mp':'Mat. Proj.', 'aflow':'AFLOW', 'zhuo':'Zhuo et al.'}
+    titles = {'thermalcond': 'Thermal conductivity', 'superconT':'Supercon. Trans. Temp.',
+            'seebeck':'Seebeck', 'rho':'Electrical resistivity', 
+             'sigma':'Electrical conductivity', 'bandgap':'Bandgap', 
+             'bulkmodulus':'Bulk modulus', 'shearmodulus':'Shear modulus'}  
+    units = {'thermalcond': 'W/mK (log10)', 'superconT':'K',
+            'seebeck':'μV / K', 'rho':'Ω · cm (log10)', 
+             'sigma':'S/cm (log10)', 'bandgap':'eV', 
              'bulkmodulus':'GPa', 'shearmodulus':'GPa'}
     names = list(dfs.keys())
+    row = (ind // 4) + 1  # Assign row based on the index
+    col = (ind % 4) + 1  # Assign col cyclically from 1 to 4
+    # row = 1 if ind < 4 else 2  # Assign row based on the index
+    # col = ind+1 if ind < 4 else (ind-3)        # Assign col cyclically from 1 to 4
     for i, (key, df) in enumerate(dfs.items()):
         fig.add_trace(go.Violin(#x=pd.Series(data=[prop for i in range(len(df))]), 
                                 y=df['target'], 
@@ -41,21 +51,27 @@ def add_prop_to_violins(fig, col, dfs, prop, l):
                                 # legendgroup=key, 
                                 # offsetgroup=prop,
                                 scalegroup=prop,
-                                marker=dict(size=4, opacity=0.6),
+                                marker=dict(size=4, opacity=0.),
                                 points='outliers',
                                 scalemode='width',
                                 # fillcolor=colors[i], 
                                 line_color=colors[key],
                                 opacity=0.6, 
-                                name=key,
+                                name=datasets[key],
                                 showlegend=True if key not in l else False,
                                 # x0=prop+f'[{units[prop]}]',
-                                x0 = key,
-                                yaxis=f'y{col}'
+                                x0 = 'A' if i==0 else 'B',
+                                yaxis=f'y{ind+1}'
                                 ),
-                      row=1, col=col)
+                      row=row, 
+                      col=col)
         l.append(key)
-    fig.update_xaxes(title_text=prop+f' [{units[prop]}]', row=1, col=col)
+    fig.update_xaxes(title_text=titles[prop]+'<br>'+f'[{units[prop]}]', 
+                     title_standoff=0,
+                     tickvals=[],
+                     ticktext=[],
+                     row=row, 
+                     col=col)
     return fig
 
 def plot_violins(fig):
@@ -68,51 +84,65 @@ def plot_violins(fig):
         font=dict(size=16)
     ))
     st = 0.
-    tk=dict(size=8)
+    tk=dict(size=10)
     tf=dict(size=15)
-    fig.update_layout(
-        yaxis=dict(title_standoff=st,
-                   titlefont=tf,
-                   tickfont=tk),
-        yaxis2=dict(
-            overlaying="y",
-            side="left",
-            title_standoff=st,
-            titlefont=tf,
-            tickfont=tk
-        ),
-        yaxis3=dict(
-            overlaying="y",
-            side="left",
-            title_standoff=st,
-            titlefont=tf,
-            tickfont=tk
-        ),
-        yaxis4=dict(
-            overlaying="y",
-            side="left",
-            title_standoff=st,
-            titlefont=tf,
-            tickfont=tk
-        ),
-        yaxis5=dict(
-            overlaying="y",
-            side="left",
-            title_standoff=st,
-            titlefont=tf,
-            tickfont=tk
-        ),
-        yaxis6=dict(
-            overlaying="y",
-            side="left",
-            title_standoff=st,
-            titlefont=tf,
-            tickfont=tk
-        )
-    )
+    # fig.update_layout(
+    #     yaxis=dict(title_standoff=st,
+    #                titlefont=tf,
+    #                tickfont=tk),
+    #     yaxis2=dict(
+    #         overlaying="y",
+    #         side="left",
+    #         title_standoff=st,
+    #         titlefont=tf,
+    #         tickfont=tk
+    #     ),
+    #     yaxis3=dict(
+    #         overlaying="y",
+    #         side="left",
+    #         title_standoff=st,
+    #         titlefont=tf,
+    #         tickfont=tk
+    #     ),
+    #     yaxis4=dict(
+    #         overlaying="y",
+    #         side="left",
+    #         title_standoff=st,
+    #         titlefont=tf,
+    #         tickfont=tk
+    #     ),
+    #     yaxis5=dict(
+    #         overlaying="y",
+    #         side="left",
+    #         title_standoff=st,
+    #         titlefont=tf,
+    #         tickfont=tk
+    #     ),
+    #     yaxis6=dict(
+    #         overlaying="y",
+    #         side="left",
+    #         title_standoff=st,
+    #         titlefont=tf,
+    #         tickfont=tk
+    #     ),
+    #     yaxis7=dict(
+    #         overlaying="y",
+    #         side="left",
+    #         title_standoff=st,
+    #         titlefont=tf,
+    #         tickfont=tk
+    #     ),
+    #     yaxis8=dict(
+    #         overlaying="y",
+    #         side="left",
+    #         title_standoff=st,
+    #         titlefont=tf,
+    #         tickfont=tk
+    #     )
+    # )
     # fig.update_traces(meanline_visible=True)
-    fig.update_layout(width=1500,
-                      height=500,
+    fig.update_layout(width=1000,  # 1500
+                      height=800,  # 500
                       margin=dict(l=10, r=10, t=10, b=10)
                     #   violingap=0.05, 
                     #   violinmode='overlay',
