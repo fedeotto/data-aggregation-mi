@@ -12,7 +12,7 @@ split = 'random' # 'top' # 'novelty'
 shuffle_after_split = True
 extraord_size = 0.2                               # best 20% will be extraord.
 train_size, val_size, test_size = [0.7, 0.1, 0.2] # % train /val /test
-k_val, k_test = [0.33, 0.33]                      # % top for val and test. 
+k_val, k_test = [0., 2./3.]                      # % top for val and test. 
 # featurization
 elem_prop = 'magpie'
 # models

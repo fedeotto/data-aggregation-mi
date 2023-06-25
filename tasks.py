@@ -8,6 +8,12 @@ from chem import _element_composition
 # train test split
 from sklearn.model_selection import train_test_split
 # # Discover
+from chem_wasserstein.ElM2D_ import ElM2D
+from models.discover_augmentation_v2 import my_mvn
+import umap
+from operator import attrgetter
+from sklearn.preprocessing import RobustScaler, MinMaxScaler
+
 # from mat_discover.mat_discover_ import Discover
 from sklearn.linear_model import Ridge, LogisticRegression
 from sklearn.ensemble import RandomForestRegressor
@@ -23,6 +29,7 @@ from sklearn.metrics import explained_variance_score, mean_absolute_percentage_e
 # tasks
 from sklearn.model_selection import ShuffleSplit, GridSearchCV
 import utils
+from preprocessing import add_column
 
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
@@ -51,7 +58,7 @@ def rnd_split(df_: pd.DataFrame,
                                             random_state=random_state+1) 
     else: df_val = []
     assert (len(df_train) + len(df_val) + len(df_test)) == len(df)
-    
+
     #shuffle
     if shuffle:
         df_train = df_train.sample(frac=1, random_state=random_state).reset_index(drop=True) 
@@ -119,45 +126,151 @@ def top_split(df_: pd.DataFrame,
     return df_train, df_val, df_test
 
 
-# def disco_split(df_collection: dict,
-#                 dataset_prop = 'property',
-#                 val_size=0.1,
-#                 test_size=0.2,
-#                 k_val=0.5,
-#                 k_test=0.5,
-#                 discover_params:dict={'n_epochs':150, 'score':'peak'}, 
-#                 random_state=1234):
+def rndtop_split(df_: pd.DataFrame,
+                column_name='target',
+                val_size=0.,
+                test_size=0.2,
+                k_val=0.5,
+                k_test=0.5,
+                random_state=1234,
+                ascending=False,
+                verbose=False,
+                shuffle=True):# default is highest on top ---> highest in test
+    if verbose:
+        print('\n--top split in train-val-test')
+    df = df_.copy()
+    N = len(df)
     
-#     print('\n--discover split in train-val-test')
-#     out_train, out_val, out_test = {}, {}, {}
-#     for key, df_ in df_collection.items():
-#         df = df_.copy()
-        
-#         # init Discover
-#         disc = Discover(dummy_run = False,
-#                         crabnet_kwargs={'epochs' : discover_params['n_epochs'], 
-#                                         'model_name':f'disc_{dataset_prop}_{key}'})
-#         # fit Discover on the whole dataset
-#         disc.fit(df)
-        
-#         # extract Discover scores
-#         scores_df, peaks_df = disc.predict(df, return_peak=True)
-#         df = df.drop(['count','emb','r_orig','dens'],axis=1)
-#         if    discover_params['score'] == 'peak':  df['Discover_score'] = peaks_df
-#         elif  discover_params['score'] == 'score': df['Discover_score'] = scores_df
+    df_scores = add_column({column_name: df}, size=test_size, 
+                           column='disco_score', 
+                           ascending=ascending)[column_name]
     
-#         df_train, df_val, df_test = top_split({key:df},'Discover_score', 
-#                                               val_size=val_size,
-#                                               test_size=test_size,
-#                                               k_val=k_val,
-#                                               k_test=k_test,
-#                                               ascending=False)  
+    test_p_size     = int(N * test_size * k_test)
+    df_test_partial = df_scores[df_scores[f'extraord|{column_name}']==1].sample(test_p_size)
+    
+    if val_size!=0:
+       raise NotImplementedError
+    else: val_p_size = 0
+    
+    # select formulas that are not in test yet
+    remaining = df_scores[~df_scores['formula'].isin(df_test_partial['formula'])]
+    # remove extraordinary formulas
+    remaining = remaining[remaining[f'extraord|{column_name}']==0]
+    
+    # fill test with random 
+    sampled = remaining.sample(int(N * test_size * (1-k_test)), 
+                               replace=False, random_state=random_state)
+    df_test = pd.concat([df_test_partial, sampled],axis=0)
+    remaining = remaining.drop(index=list(sampled.index))
+    
+    if val_size!=0:
+        raise NotImplementedError
+    else: df_val = []
         
-#         df_train, df_val, df_test = df_train[key], df_val[key], df_test[key]     
-#         assert (len(df_train) + len(df_val) + len(df_test)) == len(df)
-#         out_train[key], out_val[key], out_test[key] = df_train, df_val, df_test
+    # remain go in the train
+    df_train = df_scores[~df_scores['formula'].isin(df_test['formula'])]
+    
+    assert (len(df_train) + len(df_val) + len(df_test)) == N
+
+    #shuffle
+    if shuffle:
+        df_train = df_train.sample(frac=1, random_state=random_state).reset_index(drop=True) 
+        if df_val: df_val = df_val.sample(frac=1, random_state=random_state).reset_index(drop=True)  
+        df_test = df_test.sample(frac=1, random_state=random_state).reset_index(drop=True)           
+    
+    return df_train, df_val, df_test
+
+
+
+def disco_split(df_: pd.DataFrame,
+                val_size=0.1,
+                test_size=0.2,
+                k_val=0.5,
+                k_test=0.5,
+                random_state=1234,
+                shuffle=True,
+                density_weight=1.0,
+                target_weight=1.0, 
+                scores=['density'],
+                scaled=True,
+                scaler=RobustScaler()):
+    
+    print('\n--discover split in train-val-test')
+    out_train, out_val, out_test = {}, {}, {}
+    df = df_.copy()
+    
+    if 'density' in scores:
+        # apply Discover
+        # ilist = list(range(len(df)))  # to retrieve A points from embedding
+        all_formula = df["formula"]
         
-#     return out_train, out_val, out_test
+        mapper = ElM2D(verbose=False)
+        mapper.fit(all_formula)
+        dm = mapper.dm #distance matrix.
+        umap_init = umap.UMAP(densmap=True,
+                                output_dens=True,
+                                dens_lambda=1.0,
+                                n_neighbors=10,
+                                min_dist=0,
+                                n_components=2,
+                                metric="precomputed",
+                                random_state=random_state,
+                                low_memory=False)
+        umap_trans = umap_init.fit(dm)
+        umap_emb, r_orig_log, r_emb_log = attrgetter("embedding_", 
+                                                        "rad_orig_", 
+                                                        "rad_emb_")(umap_trans)
+        
+        # plots.plot_umap(umap_emb, self.n_a)
+        umap_r_orig = np.exp(r_orig_log)
+
+        emb    = umap_emb
+        r_orig = umap_r_orig
+        
+        #we calculate a list of mvns based on each pair of embeddings of our compounds
+        mvn_list = list(map(my_mvn, emb[:, 0], emb[:, 1], r_orig))
+        pdf_list = [mvn.pdf(emb) for mvn in mvn_list]
+        dens = np.sum(pdf_list, axis=0)
+        density = dens.reshape(-1, 1)
+        if scaled: density = scaler.fit_transform(-1*density)
+
+    if 'target' in scores:
+        raise NotImplementedError
+        target = pred.ravel().reshape(-1, 1)
+        if scaled: target = scaler.fit_transform(pred)
+
+    """from density and target, calculate/update final score"""
+    # determine output score
+    if len(scores)==1:
+        if 'target' in scores:
+            final_score = target
+        if 'density' in scores:   
+            final_score = density
+            
+    elif len(scores)==2:
+        if ('target' in scores and 'density' in scores):
+            # combined scores
+            target  = target_weight * target
+            density = density_weight * density
+            final_score = (target + density)/(density_weight+target_weight)
+            if scaled: final_score = scaler.fit_transform(final_score)        
+
+    df['disco_score'] = final_score
+
+    df_train, df_val, df_test = rndtop_split(df,
+                                            column_name='disco_score',
+                                            val_size=val_size,
+                                            test_size=test_size,
+                                            k_val=k_val,
+                                            k_test=k_test,
+                                            random_state=random_state,
+                                            ascending=False,
+                                            verbose=False,
+                                            shuffle=shuffle) 
+       
+    assert (len(df_train) + len(df_val) + len(df_test)) == len(df)
+        
+    return df_train, df_val, df_test
 
 
 def apply_split(split_type,
@@ -188,13 +301,19 @@ def apply_split(split_type,
                                      ascending=ascending,
                                      verbose=verbose,
                                      shuffle=shuffle)
-    # if split=='novelty':
-    #     train, val, test = disco_split(data_clean_extraord, 
-    #                                    dataset_prop=prop,
-    #                                    val_size=val_size, test_size=test_size,
-    #                                    k_val=k_val,       k_test=k_test,
-    #                                    discover_params=discover_params,
-    #                                    ascending=ascending_setting[prop])
+    if split_type=='novelty':
+        train, val, test = disco_split(df,
+                                        val_size=val_size,
+                                        test_size=test_size,
+                                        k_val=k_val,
+                                        k_test=k_test,
+                                        random_state=random_state,
+                                        shuffle=shuffle,
+                                        density_weight=1.0,
+                                        target_weight=0,
+                                        scores=['density'],
+                                        scaled=False,
+                                        scaler=RobustScaler())
     
     return train, val, test
 

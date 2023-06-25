@@ -22,6 +22,30 @@ from mat_discover.mat_discover_ import Discover
 
 warnings.filterwarnings('ignore')
 
+def my_mvn(mu_x, mu_y, r):
+        """Calculate multivariate normal at (mu_x, mu_y) with constant radius, r."""
+        return multivariate_normal([mu_x, mu_y], [[r, 0], [0, r]])
+
+def weighted_score(pred, proxy, pred_weight=1.0, proxy_weight=1.0):
+        """Calculate weighted discovery score using the predicted target and proxy."""
+        pred = pred.ravel().reshape(-1, 1)
+        proxy = proxy.ravel().reshape(-1, 1)
+        # Scale and weight the cluster data
+        pred_scaler = RobustScaler().fit(pred)
+        pred_scaled = pred_weight * pred_scaler.transform(pred)
+        proxy_scaler = RobustScaler().fit(-1*proxy)
+        proxy_scaled = proxy_weight * proxy_scaler.transform(-1*proxy)
+
+        # combined cluster data
+        comb_data = pred_scaled + proxy_scaled
+        comb_scaler = RobustScaler().fit(comb_data)
+
+        # cluster scores range between 0 and 1
+        score = comb_scaler.transform(comb_data).ravel()
+        
+        return score
+
+
 def run_discover(train_df:pd.DataFrame, 
                  val_df: pd.DataFrame,
                  score: str = 'peak',
@@ -95,10 +119,7 @@ def run_discover(train_df:pd.DataFrame,
     train_df["r_orig"] = train_r_orig
     val_df["emb"] = list(map(tuple, val_emb))
     val_df["r_orig"] = val_r_orig
-    
-    def my_mvn(mu_x, mu_y, r):
-        """Calculate multivariate normal at (mu_x, mu_y) with constant radius, r."""
-        return multivariate_normal([mu_x, mu_y], [[r, 0], [0, r]])
+
     
     #we calculate a list of mvns based on each pair of embeddings of our compounds
     mvn_list = list(map(my_mvn, train_emb[:, 0], train_emb[:, 1], train_r_orig))
@@ -121,25 +142,6 @@ def run_discover(train_df:pd.DataFrame,
     neigh_target = np.array([pred[ind] for ind in neigh_ind], dtype="object")
     k_neigh_avg_targ = np.array([np.mean(t) if len(t) > 0 else float(0) for t in neigh_target])
     val_k_neigh_avg = k_neigh_avg_targ[val_ids] # second proxy: nearest nbrs.
-    
-    def weighted_score(pred, proxy, pred_weight=1.0, proxy_weight=1.0):
-        """Calculate weighted discovery score using the predicted target and proxy."""
-        pred = pred.ravel().reshape(-1, 1)
-        proxy = proxy.ravel().reshape(-1, 1)
-        # Scale and weight the cluster data
-        pred_scaler = RobustScaler().fit(pred)
-        pred_scaled = pred_weight * pred_scaler.transform(pred)
-        proxy_scaler = RobustScaler().fit(-1*proxy)
-        proxy_scaled = proxy_weight * proxy_scaler.transform(-1*proxy)
-
-        # combined cluster data
-        comb_data = pred_scaled + proxy_scaled
-        comb_scaler = RobustScaler().fit(comb_data)
-
-        # cluster scores range between 0 and 1
-        score = comb_scaler.transform(comb_data).ravel()
-        
-        return score
     
     peak_score = weighted_score(val_pred, val_k_neigh_avg)
     dens_score = weighted_score(val_pred, val_dens)

@@ -240,7 +240,7 @@ def clean_MPDS_dataset(df):
 #     return df
 
         
-def add_column(df_collection_, size, ascending=False):
+def add_column(df_collection_, size, ascending=False, column='target'):
     df_collection = df_collection_.copy()
     out={}
     
@@ -248,8 +248,8 @@ def add_column(df_collection_, size, ascending=False):
     thr = {}
     for key, df in df_collection.items():
         N = len(df)
-        df_sorted = df.sort_values('target', ascending=ascending).reset_index(drop=True)
-        thr[key]  = df_sorted['target'][int(N*size)]
+        df_sorted = df.sort_values(column, ascending=ascending).reset_index(drop=True)
+        thr[key]  = df_sorted[column][int(N*size)]
     
     # add extraord columns w.r.t. all datasets thresholds
     for key_o in df_collection.keys():
@@ -257,9 +257,9 @@ def add_column(df_collection_, size, ascending=False):
             df_collection[key_o][f'extraord|{key_i}'] = 0
             # change to 1 values above the calculated threshold
             if  ascending==False:
-                mask = df_collection[key_o]['target']>thr[key_i]   
+                mask = df_collection[key_o][column]>thr[key_i]   
             elif ascending==True: 
-                mask = df_collection[key_o]['target']<thr[key_i]
+                mask = df_collection[key_o][column]<thr[key_i]
             df_collection[key_o].loc[mask,f'extraord|{key_i}'] = 1
             
     return df_collection

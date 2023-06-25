@@ -24,18 +24,18 @@ pio.templates.default="simple_white"
 
 
 props_list = [ 
-                'thermalcond',
-                'bulkmodulus',
-                'bandgap',
-                'seebeck',
+                # 'thermalcond',
+                # 'bulkmodulus',
+                # 'bandgap',
+                # 'seebeck',
                 'rho',
-                'sigma',
-                'shearmodulus'                
+                # 'sigma',
+                # 'shearmodulus'                
               ]
 
 tasks_list = [  
                 # 'roost_regression',
-                'crabnet_regression',
+                # 'crabnet_regression',
                 # 'linear_regression',
                 'random_forest_regression',    
                 # 'logistic_classification',  
@@ -53,10 +53,8 @@ pairs={
         }
 
 
-reg_method   = 'roost_regression'
-class_method = 'logistic_classification'
-# tasks_list = [class_method]
-model = 'disco'
+# settings imported from settings.py
+split = 'novelty' # 'top' # 'novelty'
 initial_size = 0.05
 
 # kwarg
@@ -100,7 +98,7 @@ for prop in props_list:
         # SPLIT DATASETS IN TRAIN AND TEST
         train, _, test = tasks.apply_split(split_type = split,
                                            df = data_clean[key_A],
-                                           val_size=0, test_size=0.2, k_test=0.5,
+                                           val_size=0, test_size=test_size, k_test=k_test,
                                            random_state=random_state,
                                            ascending=ascending_setting[prop],
                                            shuffle=shuffle_after_split)

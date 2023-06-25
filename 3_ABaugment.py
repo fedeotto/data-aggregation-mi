@@ -98,7 +98,7 @@ def main_exp():
             # SPLIT DATASETS IN TRAIN AND TEST
             train, _, test = tasks.apply_split(split_type = split,
                                             df = data_clean[key_A],
-                                            val_size=0, test_size=0.2, k_test=0.5,
+                                            val_size=0, test_size=test_size, k_test=0.5,
                                             random_state=seed,
                                             ascending=ascending_setting[prop],
                                             shuffle=shuffle_after_split)

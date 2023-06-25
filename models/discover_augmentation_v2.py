@@ -162,7 +162,6 @@ class DiscoAugment(object):
         # apply CrabNet to the whole dataset B, 
         pred, true = self.predictive_model()
         pred = pred.ravel().reshape(-1, 1)
-        # Scale the predictions
         return pred
     
     
