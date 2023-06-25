@@ -15,13 +15,106 @@ from chem import _element_composition
 from collections import Counter
 from operator import attrgetter
 from metrics import equitability_index
+import pickle
 
 pio.renderers.default="browser"    # 'svg' or 'browser'
 pio.templates.default="simple_white"
 
-plt.rcParams['figure.dpi'] = 1400
+plt.rcParams['figure.dpi'] = 300
 plt.rcParams['font.size']  = 16
 
+
+def plot_self_augment(prop = 'bandgap'):
+    
+    '''Plotting self augment result for RF & CrabNet'''
+    
+    with open(f'./results/results_6_{prop}.pkl', 'rb') as handle:
+        result = pickle.load(handle)
+    
+    result = result.dropna()
+    result = result[['crabnet_regression','random_forest_regression']]
+    crab_disco_avg = result.loc[:,('crabnet_regression','disco')].mean(axis=1)
+    crab_disco_std = result.loc[:,('crabnet_regression','disco')].std(axis=1)
+    crab_rnd_avg = result.loc[:,('crabnet_regression','random')].mean(axis=1)
+    crab_rnd_std = result.loc[:,('crabnet_regression','random')].std(axis=1)
+    rf_disco_avg = result.loc[:,('random_forest_regression','disco')].mean(axis=1)
+    rf_disco_std = result.loc[:,('random_forest_regression','disco')].std(axis=1)
+    rf_rnd_avg = result.loc[:,('random_forest_regression','random')].mean(axis=1)
+    rf_rnd_std = result.loc[:,('random_forest_regression','random')].std(axis=1)
+    
+    # bugghino fix
+    crab_disco_avg[0] = crab_rnd_avg[0]
+    
+    fig, ax = plt.subplots(figsize=(12,6), nrows=1, ncols=2)
+    
+    
+    xticks = range(0,len(result),4)
+    ax[0].plot(result.index,
+               crab_disco_avg,
+               marker='o',
+               markersize=5,
+               linestyle='--',
+               label='Disco')
+    
+    ax[0].fill_between(result.index,
+                    crab_disco_avg-crab_disco_std, 
+                    crab_disco_avg+crab_disco_std,
+                    alpha=0.1)
+    
+    ax[0].plot(result.index,
+               crab_rnd_avg,
+               marker='o',
+               markersize=5,
+               linestyle='--',
+               label ='Random')
+    
+    ax[0].fill_between(result.index,
+                       crab_rnd_avg-crab_rnd_std, 
+                       crab_rnd_avg+crab_rnd_std,
+                       alpha=0.1)
+    
+    xticklabels = [0.0,0.2,0.4,0.6,0.8,1.0]
+    plt.margins(0)
+    
+    ax[0].set_xticks(xticks)
+    ax[0].set_xticklabels(xticklabels)
+    ax[0].set_xlabel('Train size (%)', labelpad=5)
+    
+    ax[1].plot(result.index,
+               rf_disco_avg,
+               marker='o',
+               markersize=5,
+               linestyle='--',
+               label='Disco')
+    
+    ax[1].fill_between(result.index,
+                       rf_disco_avg-rf_disco_std, 
+                       rf_disco_avg+rf_disco_std,
+                       alpha=0.1)
+    
+    ax[1].plot(result.index,
+               rf_rnd_avg,
+               marker='o',
+               markersize=5,
+               linestyle='--',
+               label ='Random')
+    
+    ax[1].fill_between(result.index,
+                       rf_rnd_avg-rf_rnd_std, 
+                       rf_rnd_avg+rf_rnd_std,
+                       alpha=0.1)
+    
+    xticklabels = [0.0,0.2,0.4,0.6,0.8,1.0]
+    
+    ax[1].set_xticks(xticks)
+    ax[1].set_xticklabels(xticklabels)
+    ax[1].set_xlabel('Train size (%)')
+    
+    plt.legend()
+        
+        
+        
+        
 
 def add_prop_to_violins(fig, ind, dfs, prop, l):
     colors = {'japdata':'purple','citrine':'pink', 'mpds':'orange', 'te':'green', 
@@ -553,7 +646,6 @@ def periodic_table(train_list):
 #     fig.show() 
  
 class plot_augmentation():    
-    
     def __init__(self, test_key, task, prop):
         self.test_key = test_key
         self.task     = task
