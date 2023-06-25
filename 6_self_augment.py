@@ -24,18 +24,18 @@ pio.templates.default="simple_white"
 
 
 props_list = [ 
-                # 'thermalcond',
-                # 'bulkmodulus',
-                # 'bandgap',
-                # 'seebeck',
+                'thermalcond',
+                'bulkmodulus',
+                'bandgap',
+                'seebeck',
                 'rho',
-                # 'sigma',
-                # 'shearmodulus'                
+                'sigma',
+                'shearmodulus'                
               ]
 
 tasks_list = [  
                 # 'roost_regression',
-                # 'crabnet_regression',
+                'crabnet_regression',
                 # 'linear_regression',
                 'random_forest_regression',    
                 # 'logistic_classification',  
@@ -185,9 +185,13 @@ for prop in props_list:
             # scores.append(out[class_method][metric])
         # print('')
         # results[prop].loc[:,('random',n+1)] = pd.Series(data=scores)
-        
-    with open(f'./results/results_6_{prop}.pkl', 'wb') as handle:
-        pickle.dump(results[f'{prop}'], handle)
+    
+    if split == 'novelty':
+        with open(f'./results/results_6_discotest_{prop}.pkl', 'wb') as handle:
+            pickle.dump(results[f'{prop}'], handle)
+    else:
+        with open(f'./results/results_6_{prop}.pkl', 'wb') as handle:
+            pickle.dump(results[f'{prop}'], handle)
     
     # clean result data
     # results[prop] = results[prop].drop(np.where(results[prop].isna())[0],axis=0)
