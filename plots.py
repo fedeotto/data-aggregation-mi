@@ -23,12 +23,17 @@ pio.templates.default="simple_white"
 plt.rcParams['figure.dpi'] = 300
 plt.rcParams['font.size']  = 16
 
-
-def plot_self_augment(prop = 'bandgap'):
+def plot_self_augment(prop = 'bandgap',
+                      discotest=True):
     
     '''Plotting self augment result for RF & CrabNet'''
     
-    with open(f'./results/results_6_{prop}.pkl', 'rb') as handle:
+    if discotest:
+        path = f'./results/results_6_discotest_{prop}.pkl'
+    else:
+        path = f'./results/results_6_{prop}.pkl'
+
+    with open(f'{path}', 'rb') as handle:
         result = pickle.load(handle)
     
     result = result.dropna()
