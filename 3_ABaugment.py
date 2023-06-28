@@ -13,8 +13,8 @@ import warnings
 warnings.filterwarnings('ignore')
 
 props_list = [  #'thermalcond',
-                'superconT',
-                # 'seebeck',
+                # 'superconT',
+                'seebeck',
                 # 'rho',
                 # 'sigma',
                 # 'bandgap',
