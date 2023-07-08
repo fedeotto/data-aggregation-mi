@@ -24,9 +24,10 @@ plt.rcParams['figure.dpi'] = 300
 plt.rcParams['font.size']  = 16
 
 def plot_self_augment(prop = 'bandgap',
-                      discotest=False):
+                      discotest=True):
     
     '''Plotting self augment result for RF & CrabNet'''
+    
     if discotest:
         path = f'./results/results_6_discotest_{prop}.pkl'
     else:
@@ -43,89 +44,93 @@ def plot_self_augment(prop = 'bandgap',
     crab_rnd_std = result.loc[:,('crabnet_regression','random')].std(axis=1)
     rf_disco_avg = result.loc[:,('random_forest_regression','disco')].mean(axis=1)
     rf_disco_std = result.loc[:,('random_forest_regression','disco')].std(axis=1)
-    rf_rnd_avg   = result.loc[:,('random_forest_regression','random')].mean(axis=1)
-    rf_rnd_std   = result.loc[:,('random_forest_regression','random')].std(axis=1)
+    rf_rnd_avg = result.loc[:,('random_forest_regression','random')].mean(axis=1)
+    rf_rnd_std = result.loc[:,('random_forest_regression','random')].std(axis=1)
     
+    # drop only the second last row in all datasets
+    crab_disco_avg = crab_disco_avg.drop(crab_disco_avg.index[-2])
+    crab_disco_std = crab_disco_std.drop(crab_disco_std.index[-2])
+    crab_rnd_avg = crab_rnd_avg.drop(crab_rnd_avg.index[-2])
+    crab_rnd_std = crab_rnd_std.drop(crab_rnd_std.index[-2])
+    rf_disco_avg = rf_disco_avg.drop(rf_disco_avg.index[-2])
+    rf_disco_std = rf_disco_std.drop(rf_disco_std.index[-2])
+    rf_rnd_avg = rf_rnd_avg.drop(rf_rnd_avg.index[-2])
+    rf_rnd_std = rf_rnd_std.drop(rf_rnd_std.index[-2])
+
     # bugghino fix
-    # crab_disco_avg[0] = crab_rnd_avg[0]
+    crab_disco_avg[0] = crab_rnd_avg[0]
     
     fig, ax = plt.subplots(figsize=(12,6), nrows=1, ncols=2)
-    original_df = pd.read_csv('./datasets/bulkmodulus_aflow.csv')
-
-    original_length = len(original_df)
-    increments = [int(original_length * (i/len(crab_disco_avg))) for i in range(1, len(crab_disco_avg)+1)]
-
-    final_tick_position = increments[-1]  # Position of the final tick
-
-    ax[0].plot(increments,
+    
+    x = np.arange(0.05, 1.05, 0.05)
+    
+    # xticks = range(0,len(result),4)
+    ax[0].plot(x,
                crab_disco_avg,
                marker='o',
                markersize=5,
                linestyle='--',
                label='Disco')
     
-    xticks = range(0,original_length,1200)
-    xticklabels = ['',0.20,0.40,0.60,0.80]
-    ax[0].set_xticks(xticks)
-    ax[0].set_xticklabels(xticklabels)
-    # ax[0].set_xticklabels(xticklabels)
+    ax[0].fill_between(x,
+                    crab_disco_avg-crab_disco_std, 
+                    crab_disco_avg+crab_disco_std,
+                    alpha=0.1)
     
-    # ax[0].fill_between(increments,
-    #                     crab_disco_avg-crab_disco_std, 
-    #                     crab_disco_avg+crab_disco_std,
-    #                  alpha=0.1)
+    ax[0].plot(x,
+               crab_rnd_avg,
+               marker='o',
+               markersize=5,
+               linestyle='--',
+               label ='Random')
     
-    # ax[0].plot(increments,
-    #            crab_rnd_avg,
-    #            marker='o',
-    #            markersize=5,
-    #            linestyle='--',
-    #            label ='Random')
-    
-    # ax[0].fill_between(result.index,
-    #                    crab_rnd_avg-crab_rnd_std, 
-    #                    crab_rnd_avg+crab_rnd_std,
-    #                    alpha=0.1)
-    
-    # xticklabels = ['',0.0,0.2,0.4,0.6,0.8,1.0]
-
-    ax[0].grid()
-    
-    # ax[0].set_xticklabels(xticklabels)
-    # ax[0].set_xlabel('Train size (%)', labelpad=5)
-    
-    # ax[1].plot(result.index,
-    #            rf_disco_avg,
-    #            marker='o',
-    #            markersize=5,
-    #            linestyle='--',
-    #            label='Disco')
-    
-    # ax[1].fill_between(result.index,
-    #                    rf_disco_avg-rf_disco_std, 
-    #                    rf_disco_avg+rf_disco_std,
-    #                    alpha=0.1)
-    
-    # ax[1].plot(result.index,
-    #            rf_rnd_avg,
-    #            marker='o',
-    #            markersize=5,
-    #            linestyle='--',
-    #            label ='Random')
-    
-    # ax[1].fill_between(result.index,
-    #                    rf_rnd_avg-rf_rnd_std, 
-    #                    rf_rnd_avg+rf_rnd_std,
-    #                    alpha=0.1)
+    ax[0].fill_between(x,
+                       crab_rnd_avg-crab_rnd_std, 
+                       crab_rnd_avg+crab_rnd_std,
+                       alpha=0.1)
     
     # xticklabels = [0.0,0.2,0.4,0.6,0.8,1.0]
-
-    # ax[1].grid()
+    # plt.margins(0)
+    
+    # ax[0].set_xticks(xticks)
+    # ax[0].set_xticklabels(xticklabels)
+    ax[0].set_xlabel('Train size (%)', labelpad=5)
+    
+    ax[1].plot(x,
+               rf_disco_avg,
+               marker='o',
+               markersize=5,
+               linestyle='--',
+               label='Disco')
+    
+    ax[1].fill_between(x,
+                       rf_disco_avg-rf_disco_std, 
+                       rf_disco_avg+rf_disco_std,
+                       alpha=0.1)
+    
+    ax[1].plot(x,
+               rf_rnd_avg,
+               marker='o',
+               markersize=5,
+               linestyle='--',
+               label ='Random')
+    
+    ax[1].fill_between(x,
+                       rf_rnd_avg-rf_rnd_std, 
+                       rf_rnd_avg+rf_rnd_std,
+                       alpha=0.1)
+    
+    # xticklabels = [0.0,0.2,0.4,0.6,0.8,1.0]
     
     # ax[1].set_xticks(xticks)
-    # # ax[1].set_xticklabels(xticklabels)
-    # ax[1].set_xlabel('Train size (%)')
-    # plt.legend()
+    # ax[1].set_xticklabels(xticklabels)
+    ax[1].set_xlabel('Train size (%)')
+    
+    plt.legend()
+        
+        
+plot_self_augment(prop = 'bulkmodulus',
+                  discotest=True)       
         
 
 def add_prop_to_violins(fig, ind, dfs, prop, l):
@@ -767,9 +772,7 @@ class plot_augmentation():
         
 
 
-if __name__ =='__main__':
-    plot_self_augment(prop='bulkmodulus',
-                      discotest=True)
+
 
 
 
