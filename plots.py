@@ -23,8 +23,8 @@ pio.templates.default="simple_white"
 plt.rcParams['figure.dpi'] = 300
 plt.rcParams['font.size']  = 16
 
-def plot_self_augment(prop = 'bandgap',
-                      discotest=True):
+def plot_self_augment(prop = 'bulkmodulus',
+                      discotest=False):
     
     '''Plotting self augment result for RF & CrabNet'''
     
@@ -122,12 +122,13 @@ def plot_self_augment(prop = 'bandgap',
     # ax[1].set_xticks(xticks)
     # ax[1].set_xticklabels(xticklabels)
     ax[1].set_xlabel('Train size (%)')
-    
+    plt.savefig('self_augment_bulkmodulus_discotest.png')
     plt.legend()
         
         
 plot_self_augment(prop = 'bulkmodulus',
-                  discotest=True)       
+                  discotest=True)
+      
         
 
 def add_prop_to_violins(fig, ind, dfs, prop, l):
