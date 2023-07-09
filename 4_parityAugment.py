@@ -275,8 +275,8 @@ for prop in props_list:
     #     ax[1].text(x+offset_x,y+offset_y,best_after.index[count], fontsize=fontsize)
     #     count+=1
     
-    xticks = np.arange(0, best_after['occ_train'].max(), 100)
-    ax[1].set_xticks(xticks)
+    # xticks = np.arange(0, best_after['occ_train'].max(), 100)
+    # ax[1].set_xticks(xticks)
 
     ax[0].set_ylabel('MAE', labelpad=15)
     ax[0].set_xlabel('Train occurrences', labelpad=15)

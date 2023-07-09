@@ -127,8 +127,8 @@ def plot_self_augment(prop = 'bulkmodulus',
     plt.savefig('self_augment_bulkmodulus_discotest.png')
         
         
-plot_self_augment(prop = 'bulkmodulus',
-                  discotest=True)
+# plot_self_augment(prop = 'bulkmodulus',
+#                   discotest=True)
       
         
 def add_prop_to_violins(fig, ind, dfs, prop, l):
