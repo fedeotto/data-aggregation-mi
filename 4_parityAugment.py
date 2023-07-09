@@ -226,11 +226,11 @@ for prop in props_list:
                   color='blue',
                   label='Before aggregation')
         
-    count=0
-    for x,y in zip(worst_before['occ_train'], 
-                   worst_before[f'{reg_method}_{metric}']):
-        ax[0].text(x + offset_x ,y + offset_y,worst_before.index[count],fontsize=fontsize)
-        count+=1
+    # count=0
+    # for x,y in zip(worst_before['occ_train'], 
+    #                worst_before[f'{reg_method}_{metric}']):
+    #     ax[0].text(x + offset_x ,y + offset_y,worst_before.index[count],fontsize=fontsize)
+    #     count+=1
     
     ax[0].scatter(x=worst_after['occ_train'],
                   y=worst_after[f'{reg_method}_{metric}'],
@@ -240,11 +240,11 @@ for prop in props_list:
                   label='After aggregation'
                   )
     
-    count=0
-    for x,y in zip(worst_after['occ_train'], 
-                   worst_after[f'{reg_method}_{metric}']):
-        ax[0].text(x+offset_x, y + offset_y,worst_after.index[count], fontsize=fontsize)
-        count+=1
+    # count=0
+    # for x,y in zip(worst_after['occ_train'], 
+    #                worst_after[f'{reg_method}_{metric}']):
+    #     ax[0].text(x+offset_x, y + offset_y,worst_after.index[count], fontsize=fontsize)
+    #     count+=1
 
     ax[1].scatter(x=best_before['occ_train'],
                   y=best_before[f'{reg_method}_{metric}'],
@@ -253,14 +253,14 @@ for prop in props_list:
                   color='blue',
                   label='Before aggregation')
         
-    count=0
+    # count=0
     
-    offset_y     = 0.010
-    offset_x     = -15
-    for x,y in zip(best_before['occ_train'], 
-                   best_before[f'{reg_method}_{metric}']):
-        ax[1].text(x+offset_x, y+offset_y,best_before.index[count], fontsize=fontsize)
-        count+=1
+    # offset_y     = 0.010
+    # offset_x     = -15
+    # for x,y in zip(best_before['occ_train'], 
+    #                best_before[f'{reg_method}_{metric}']):
+    #     ax[1].text(x+offset_x, y+offset_y,best_before.index[count], fontsize=fontsize)
+    #     count+=1
     
     ax[1].scatter(x=best_after['occ_train'], 
                   y=best_after[f'{reg_method}_{metric}'],
@@ -269,11 +269,11 @@ for prop in props_list:
                   color='orange',
                   label='After aggregation')
         
-    count=0
-    for x,y in zip(best_after['occ_train'], 
-                   best_after[f'{reg_method}_{metric}']):
-        ax[1].text(x+offset_x,y+offset_y,best_after.index[count], fontsize=fontsize)
-        count+=1
+    # count=0
+    # for x,y in zip(best_after['occ_train'], 
+    #                best_after[f'{reg_method}_{metric}']):
+    #     ax[1].text(x+offset_x,y+offset_y,best_after.index[count], fontsize=fontsize)
+    #     count+=1
     
     xticks = np.arange(0, best_after['occ_train'].max(), 100)
     ax[1].set_xticks(xticks)
@@ -283,6 +283,7 @@ for prop in props_list:
     ax[1].set_xlabel('Train occurrences', labelpad=15)
 
     plt.legend()
+    plt.savefig('parity_bandgap.png')
     
     # END SCATTERPLOT
     

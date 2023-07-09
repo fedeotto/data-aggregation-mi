@@ -88,12 +88,7 @@ def plot_self_augment(prop = 'bandgap',
                        crab_rnd_avg-crab_rnd_std, 
                        crab_rnd_avg+crab_rnd_std,
                        alpha=0.1)
-    
-    # xticklabels = [0.0,0.2,0.4,0.6,0.8,1.0]
-    # plt.margins(0)
-    
-    # ax[0].set_xticks(xticks)
-    # ax[0].set_xticklabels(xticklabels)
+    ax[0].grid()
     ax[0].set_xlabel('Train size (%)', labelpad=5)
     
     ax[1].plot(x,
@@ -119,6 +114,8 @@ def plot_self_augment(prop = 'bandgap',
                        rf_rnd_avg-rf_rnd_std, 
                        rf_rnd_avg+rf_rnd_std,
                        alpha=0.1)
+    
+    ax[1].grid()
     
     # xticklabels = [0.0,0.2,0.4,0.6,0.8,1.0]
     
