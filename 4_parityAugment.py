@@ -23,12 +23,12 @@ plt.rcParams['figure.dpi'] = 400
 device = torch.device('cpu')
 
 props_list = [ 
-                # 'bulkmodulus',
-                'bandgap',
+                'bulkmodulus',
+                # 'bandgap',
                 # 'seebeck',
                 # 'rho',
                 # 'sigma',
-                # 'shearmodulus'                
+                'shearmodulus'                
               ]
 
 pairs={

@@ -97,7 +97,7 @@ def plot_self_augment(prop = 'bulkmodulus',
                marker='o',
                markersize=5,
                linestyle='--',
-               label='Disco')
+               label='DiSCoVeR')
     
     ax[1].fill_between(x,
                        rf_disco_avg-rf_disco_std, 
@@ -123,12 +123,12 @@ def plot_self_augment(prop = 'bulkmodulus',
     # ax[1].set_xticks(xticks)
     # ax[1].set_xticklabels(xticklabels)
     ax[1].set_xlabel('Train size (%)')
-    # plt.legend()
-    plt.savefig('self_augment_bulkmodulus_discotest.png')
+    plt.legend()
+    plt.savefig('self_augment_bulkmodulus_standard.png')
         
         
-# plot_self_augment(prop = 'bulkmodulus',
-#                   discotest=True)
+plot_self_augment(prop = 'bulkmodulus',
+                  discotest=False)
       
         
 def add_prop_to_violins(fig, ind, dfs, prop, l):
