@@ -90,7 +90,7 @@ def plot_self_augment(prop = 'bulkmodulus',
                        alpha=0.1)
     ax[0].grid()
     ax[0].set_xlabel('Train size (%)', labelpad=5)
-    ax[0].set_ylabel('MAE')
+    ax[0].set_ylabel('MAE', labelpad=5)
     
     ax[1].plot(x,
                rf_disco_avg,
@@ -123,12 +123,12 @@ def plot_self_augment(prop = 'bulkmodulus',
     # ax[1].set_xticks(xticks)
     # ax[1].set_xticklabels(xticklabels)
     ax[1].set_xlabel('Train size (%)')
-    plt.savefig('self_augment_bulkmodulus_discotest.png')
+    plt.savefig('self_augment_bulkmodulus_standard.png')
     plt.legend()
         
         
 plot_self_augment(prop = 'bulkmodulus',
-                  discotest=True)
+                  discotest=False)
       
         
 
