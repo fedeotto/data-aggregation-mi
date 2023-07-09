@@ -90,6 +90,7 @@ def plot_self_augment(prop = 'bulkmodulus',
                        alpha=0.1)
     ax[0].grid()
     ax[0].set_xlabel('Train size (%)', labelpad=5)
+    ax[0].set_ylabel('MAE')
     
     ax[1].plot(x,
                rf_disco_avg,
