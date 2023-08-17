@@ -1,10 +1,6 @@
 import torch
 import numpy as np
 import pandas as pd
-from collections import Counter
-# internal imports
-import assets.plots as plots
-from chem import _element_composition
 # train test split
 from sklearn.model_selection import train_test_split
 # # Discover
@@ -14,7 +10,6 @@ import umap
 from operator import attrgetter
 from sklearn.preprocessing import RobustScaler, MinMaxScaler
 
-# from mat_discover.mat_discover_ import Discover
 from sklearn.linear_model import Ridge, LogisticRegression
 from sklearn.ensemble import RandomForestRegressor
 from CrabNet.kingcrab import CrabNet
@@ -28,8 +23,8 @@ from sklearn.metrics import explained_variance_score, mean_absolute_percentage_e
 
 # tasks
 from sklearn.model_selection import ShuffleSplit, GridSearchCV
-import utils
-from preprocessing import add_column
+from assets import utils 
+from assets.preprocessing import add_column
 
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 

@@ -1,6 +1,5 @@
-import pandas as pd
 import numpy as np
-from chem import _fractional_composition_L, _element_composition_L
+from chem import _element_composition_L
 
 def clean_outliers(df_, mult=5):
     df = df_.copy()
@@ -165,9 +164,9 @@ def clean_TE_dataset(df):
           
 
 
+
+
 def clean_MPDS_dataset(df):
-    
-    
     """ 
     clean the MPDS dataset
     
@@ -218,28 +217,9 @@ def clean_MPDS_dataset(df):
     return df_copy
 
 
-# def grouping(df):
-    
-#     """ 
-#     group different measures with different temperatures, and save the 
-#     maximum deviation
-    
-#     Parameters:
-#         df (pandas dataset): input dataset
-    
-#     Returns:
-#         df (pandas dataset): output dataset
         
-#     """
-#     #Calculating max_deviation
-#     values = df.groupby(['formula'], sort=False)
-#     prov = (values.max() - values.min()).values / 2
-#     df = df.groupby(['formula'],sort=False).median().reset_index()
-#     df['max_dev'] = prov
-    
-#     return df
 
-        
+
 def add_column(df_collection_, size, ascending=False, column='target'):
     df_collection = df_collection_.copy()
     out={}

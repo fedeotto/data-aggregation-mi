@@ -17,17 +17,15 @@ warnings.filterwarnings('ignore')
 # settings are imported from settings.py
 from settings import *
 
-props_list = [  
-                'thermalcond',
-                'superconT',
-                'seebeck',
-                'rho',
-                'sigma',
-                'bandgap',
-                'bulkmodulus',
-                'shearmodulus'                
-              ]
-task = 'random_forest_regression'   # task to perform and plot: ('random_forest_regression' / 'rabnet_regression')
+props_list = [ 'rho' ]      # 'thermalcond',
+                            # 'superconT',
+                            # 'seebeck',
+                            # 'rho'
+                            # 'sigma',
+                            # 'bandgap',
+                            # 'bulkmodulus',
+                            # 'shearmodulus'
+task = 'random_forest_regression'   # task to perform and plot: ('random_forest_regression' / 'crabnet_regression')
 metric = 'mae' # metric to plot
 
 to_save = {}
@@ -51,8 +49,8 @@ def plot_all():
                                         epsilon_T, 
                                         med_sigma_multiplier,
                                         mult_outliers,
-                                        ascending_setting[prop]) 
-        print(''); utils.print_info(data_clean, prop)
+                                        ascending_setting[prop])    ;   print('')
+        utils.print_info(data_clean, prop)
         # add 0/1 column indicating extraordinarity
         data_clean = add_column(data_clean, extraord_size, ascending_setting[prop])
         
@@ -85,28 +83,32 @@ def plot_all():
             for score in outputs.keys():
                 outputs[score].append(out[task][score])
 
-
-        to_save[prop] = freq_df_complete   
-        print('\n')
+        to_save[prop] = freq_df_complete   ;   print('\n')
         
+        # compute statistics to plot
         means = freq_df_complete.groupby('elem_test', sort=True).mean().loc[:,['occ_train', f'{task}_{metric}']]
         stds  = freq_df_complete.groupby('elem_test', sort=True).std().loc[:,['occ_train', f'{task}_{metric}']]
         stds.columns = [f'{col}_std' for col in stds.columns]
         of_interest = pd.concat([means,stds], axis=1)
-        
-        plots.plot_elem_class_score_matplotlib(of_interest, task, metric, prop, web=True)
 
-        print('\n')
+        # plot
+        plots.plot_elem_class_score_matplotlib(of_interest, task, metric, prop, web=True)   ;    print('\n')
         for score in outputs.keys():
             print(f'AVERAGE {score} = {round(np.mean(outputs[score]),3)} ', end='')
             print(f'+- {round(np.std(outputs[score]),3)}')
-        
-    with open('results/results_1_rf.pkl', 'wb') as f:
+    
+
+
+    # save results for eventual later use
+    if task=='random_forest_regression':  met = 'rf'
+    elif task=='crabnet_regression':  met = 'crab'
+    with open(f'results/results_1_{met}.pkl', 'wb') as f:
         pickle.dump(to_save, f)
     
     
 
-if __name__ == '__main__': plot_all()
+if __name__ == '__main__': 
+    plot_all()
 
 
 

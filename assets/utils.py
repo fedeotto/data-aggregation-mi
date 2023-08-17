@@ -1,15 +1,13 @@
 import numpy as np
-import sys
-sys.path.append('C:/Users/fedeotto/OneDrive - The University of Liverpool/PHD_FINAL/Projects/Discover_Thermoelectric/mat_discover')
 import pandas as pd
 import sklearn
 import os
-from assets.preprocessing import clean_MPDS_dataset, clean_TE_dataset
 from tabulate import tabulate
 from cbfv.composition import generate_features
-import tasks
 from chem import _element_composition
 
+from assets.preprocessing import clean_MPDS_dataset, clean_TE_dataset
+import assets.tasks as tasks
 
 
 def load_dataset(property_name: str = 'bulkmodulus'):

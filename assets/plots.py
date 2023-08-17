@@ -1,21 +1,20 @@
 # plotly
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import plotly.express as px
 import plotly.io as pio
+
 # matplotlib
 import matplotlib.pyplot as plt
+
+# general imports
 import numpy as np
-# imports
-from chem_wasserstein.ElM2D_ import ElM2D
-import umap
-# from pymatviz.pymatviz.ptable import ptable_heatmap
-import pandas as pd
-from chem import _element_composition
-from collections import Counter
-from operator import attrgetter
-from metrics import equitability_index
 import pickle
+import umap
+from chem_wasserstein.ElM2D_ import ElM2D
+from operator import attrgetter
+
+# internal imports 
+from assets.metrics import equitability_index
 
 pio.renderers.default="browser"    # 'svg' or 'browser'
 pio.templates.default="simple_white"
@@ -126,10 +125,10 @@ def plot_self_augment(prop = 'bulkmodulus',
     plt.legend()
     plt.savefig('self_augment_bulkmodulus_standard.png')
         
-        
-plot_self_augment(prop = 'bulkmodulus',
-                  discotest=False)
-      
+
+
+
+
         
 def add_prop_to_violins(fig, ind, dfs, prop, l):
     colors = {'japdata':'purple','citrine':'pink', 'mpds':'orange', 'te':'green', 
@@ -309,68 +308,6 @@ def plot_distinct_histos(dfs, bins, prop, extraord=True):
     pio.write_image(fig, title, width=4*300, height=4*300, scale=1)
     
     
-# def elem_class_score(targets,
-#                      preds,
-#                      formulae_train: pd.Series,
-#                      formulae_test: pd.Series,
-#                      metric: str = 'MAE',
-#                      web = False
-#                      ): 
-    
-    
-#     train_elems_frequency = []
-    
-#     df = pd.DataFrame(None)
-#     df['formula'] = formulae_test
-#     df['targets'] = targets
-#     df['preds'] = preds
-    
-#     test_dicts = formulae_test.apply(_element_composition)
-#     test_list = [item for row in test_dicts for item in row.keys()]
-#     test_counter = Counter(test_list)
-    
-#     freq_df = pd.DataFrame(None)
-#     freq_df['test_elems'] = test_list
-#     freq_df = freq_df.drop_duplicates('test_elems').reset_index(drop=True)
-    
-#     count_train, scores = [], []
-    
-#     dict_formulae_test = df['formula'].apply(_element_composition)
-#     dict_formulae_train = formulae_train.apply(_element_composition)
-
-#     for elem in freq_df['test_elems']:
-        
-#         good_idxs = [i for i,formula_dict in enumerate(dict_formulae_test)
-#                      if elem in formula_dict.keys()]
-        
-#         temp = df.iloc[good_idxs]
-#         score = tasks.score_evaluation(temp['targets'], temp['preds'], metric)
-        
-#         good_idxs = [i for i,formula_dict in enumerate(dict_formulae_train)
-#                      if elem in formula_dict.keys()]
-        
-#         count_train.append(len(good_idxs))
-#         scores.append(score)
-                
-#     freq_df[f'{metric}'] = scores
-#     freq_df['count_train'] = count_train
-    
-#     fig = go.Figure()
-#     fig.add_trace(go.Scatter(x= freq_df['count_train'],
-#                              y= freq_df[f'{metric}'],
-#                              mode='markers',
-#                              name='',
-#                              marker=dict(size=10),
-#                              hovertext=freq_df['test_elems']
-#                              ))
-#     fig.update_xaxes(title='occurrences in train')
-#     fig.update_yaxes(title='MAE')
-#     fig.update_layout(title='mae vs occurrences plot')
-#     # if web: fig.write_html('figure.html', auto_open=True)
-#     # fig.show()   
-    
-#     return freq_df
-
 
 def plot_elem_class_score_matplotlib(freq_df, task, metric, prop, web=True):
     
@@ -398,7 +335,6 @@ def plot_elem_class_score_matplotlib(freq_df, task, metric, prop, web=True):
                 alpha=0.4, 
                 capsize=2)
     
-    # ax.fill_between(freq_df['occ_train'],lower_error, upper_error)
     
     ax.set_xlabel('Train occurrences', labelpad=15)
     ax.set_ylabel('MAE', labelpad=15)
@@ -621,44 +557,8 @@ def plot_umap_augmentation(datasets_list, random_state=1234):
         N_i = len(dataset)
         
     fig.show()
+    
 
-def periodic_table(train_list):
-    
-    before = train_list[0]    
-    for i in range(len(train_list)-1):
-        
-        after = train_list[i+1].drop(index=train_list[0].index)
-        
-        ptable_heatmap(before['formula'],
-                       after['formula'], 
-                       cbar_title=f'El. count (Step {i+1})')
-
-# def plot_augmentation(outs, train_list, test_key, task):
-#     # extract accuracies from outs dictionary
-#     l=[]
-#     for out in outs:
-#         if 'regression' in task:
-#             l.append(out[task]['mae'])
-#         if 'classification' in task:
-#             l.append(out[task]['acc'])
-            
-#     fig = go.Figure()
-#     N_first = len(train_list[0])
-#     Ns = np.array([len(dataset) for dataset in train_list])
-#     fig.add_trace(go.Scatter(x=Ns-N_first,
-#                              y=l,
-#                              mode='markers+lines',
-#                              marker=dict(size=8),
-#                              line=dict(width=1),
-#                              marker_color='blue',
-#                              name = 'accuracy',
-#                              ))
-    
-    
-#     fig.update_xaxes(title='N additional points')
-#     fig.update_yaxes(title=f'accuracy on test ({test_key})')
-#     fig.update_layout(title=f'accuracy plot for {test_key}')
-#     fig.show() 
  
 class plot_augmentation():    
     def __init__(self, test_key, task, prop):
