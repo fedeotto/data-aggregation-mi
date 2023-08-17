@@ -10,7 +10,7 @@ from sklearn.neighbors import NearestNeighbors
 from sklearn.preprocessing import RobustScaler, MinMaxScaler
 import numpy as np
 # from hdbscan.hdbscan_ import HDBSCAN
-import plots
+import assets.plots as plots
 import torch
 from tqdm import tqdm
 import settings

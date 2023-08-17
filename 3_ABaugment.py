@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import plots
+import assets.plots as plots
 import utils
 import tasks
 import pickle

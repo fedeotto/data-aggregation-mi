@@ -1,7 +1,7 @@
 # Internal imports
 from preprocessing import preprocess_dataset, add_column
 import tasks
-import plots
+import assets.plots as plots
 import utils
 from settings import ascending_setting
 

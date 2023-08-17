@@ -3,7 +3,7 @@ import pandas as pd
 from plotly.subplots import make_subplots
 import plotly.io as pio
 
-from plots import plot_super_histos, plot_distinct_histos, add_prop_to_violins, plot_violins
+from assets.plots import plot_super_histos, plot_distinct_histos, add_prop_to_violins, plot_violins
 from utils import load_dataset, print_info
 from preprocessing import preprocess_dataset, add_column
 from settings import *

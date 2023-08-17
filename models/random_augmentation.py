@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import plots
+import assets.plots as plots
 
 class RandomAugment(object):
     def __init__(self, dfs_dict:dict, 

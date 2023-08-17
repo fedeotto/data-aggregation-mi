@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from collections import Counter
 # internal imports
-import plots
+import assets.plots as plots
 from chem import _element_composition
 # train test split
 from sklearn.model_selection import train_test_split
