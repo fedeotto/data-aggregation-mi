@@ -14,3 +14,4 @@ lightning_logs
 
 results_ratios.pkl
 results_ratios_bandgap.pkl
+datasets/raw_mpds_data.pkl

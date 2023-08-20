@@ -4,8 +4,8 @@ from plotly.subplots import make_subplots
 import plotly.io as pio
 
 from assets.plots import plot_super_histos, plot_distinct_histos, add_prop_to_violins, plot_violins
-from utils import load_dataset, print_info
-from preprocessing import preprocess_dataset, add_column
+from assets.utils import load_dataset, print_info
+from assets.preprocessing import preprocess_dataset, add_column
 from settings import *
 
 props_list = [  'rho',
@@ -19,7 +19,6 @@ props_list = [  'rho',
               ]
 
 # settings imported from settings.py
-
 def plot_all():    
 
     # violin plot

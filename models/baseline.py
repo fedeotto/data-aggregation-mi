@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import utils
+from assets import utils
 from chem import _element_composition
 
 def merging(option, dfs_dict, final_df, ascending=False):
