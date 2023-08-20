@@ -42,10 +42,6 @@ tasks_list = ['random_forest_regression',
 
 initial_size = 0.05 #initial size of self-augmented dataset
 
-# kwarg (needed (?))
-# k_elemconcat = 5
-# n_elemconcat = 10
-
 metric = 'acc'
 columns = pd.MultiIndex.from_product([tasks_list, ['disco','random'],range(1,n_repetitions+1)]) 
 results = {f'{prop}': pd.DataFrame(data=np.nan, columns=columns, index=range(1000)) for prop in props_list}
