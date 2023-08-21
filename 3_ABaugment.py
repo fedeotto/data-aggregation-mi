@@ -1,10 +1,10 @@
 import numpy as np
 import pandas as pd
 import assets.plots as plots
-import utils
-import tasks
+from assets import utils
+from assets import tasks
 import pickle
-from preprocessing import preprocess_dataset, add_column
+from assets.preprocessing import preprocess_dataset, add_column
 from settings import *
 from models.baseline import elem_concat, concat
 from models.discover_augmentation_v2 import DiscoAugment
