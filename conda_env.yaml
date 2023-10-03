@@ -16,7 +16,6 @@ dependencies:
   - pyg
   - pip
   - pip:
-#     - .
       - einops
       - hydra-core
       - numpy
@@ -33,5 +32,3 @@ dependencies:
       - chem_wasserstein
       - seaborn
       - hdbscan
-# cd tsl 
-# pip install -e .
