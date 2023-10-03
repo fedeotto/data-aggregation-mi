@@ -3,7 +3,7 @@ This repository contains the code and data accompanying our paper 'Not as simple
 
 ### Installation
 1. Clone this repository:
-`git clone https://github.com/FedeOtto/DataIntegrationMI`
+"""git clone https://github.com/FedeOtto/DataIntegrationMI"""
 
 2. ...
 
