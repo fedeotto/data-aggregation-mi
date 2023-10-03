@@ -68,9 +68,9 @@ def preprocess_mpds_data():
         results = pickle.load(handle)
     
     for i, mpds_df in enumerate(results):   #discarding common entries
-        non_mpds_data = pd.read_csv('./datasets/' + dataset_keys[i] + '.csv')
+        non_mpds_data   = pd.read_csv('./datasets/' + dataset_keys[i] + '.csv')
         common_formulas = set(mpds_df['formula']).intersection(set(non_mpds_data['formula']))
-        mpds_df = mpds_df[~mpds_df['formula'].isin(common_formulas)]
+        mpds_df         = mpds_df[~mpds_df['formula'].isin(common_formulas)]
 
         if dataset_keys[i] == 'bandgap_zhuo':
             gap_names = 'energy gap', 'energy gap for direct transition','energy gap for indirect transition'
