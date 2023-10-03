@@ -2,10 +2,8 @@ import numpy as np
 import pandas as pd
 
 import assets.plots as plots
-import utils
-import tasks
+from assets import utils, tasks, preprocessing
 import pickle
-from preprocessing import preprocess_dataset, add_column
 from settings import ascending_setting
 from sklearn.preprocessing import MinMaxScaler, RobustScaler
 import matplotlib.pyplot as plt
@@ -16,24 +14,17 @@ from models.discover_augmentation_v2 import DiscoAugment
 import warnings
 warnings.filterwarnings('ignore')
 
-props_list = [ 
-                # 'bulkmodulus',
-                'bandgap',
-                # 'seebeck',
-                # 'rho',
-                # 'sigma',
-                # 'shearmodulus'                
-              ]
+"""PROPERTIES"""
+props_list = [ 'rho' ]      # 'thermalcond',
+                            # 'superconT',
+                            # 'seebeck',
+                            # 'rho'
+                            # 'sigma',
+                            # 'bandgap',
+                            # 'bulkmodulus',
+                            # 'shearmodulus'
 
-pairs={
-        'bulkmodulus'  : ['aflow', 'mpds'],   #'mp'
-        'bandgap'      : ['zhuo', 'mpds'],    #'mp'
-        'seebeck'      : ['te', 'mpds'],
-        'rho'          : ['te', 'mpds'],
-        'sigma'        : ['te', 'mpds'],
-        'shearmodulus' : ['aflow', 'mpds']   #'mp'
-        }
-
+"""TASKS"""
 tasks_list = [
                 # 'linear_regression',
                 'random_forest_regression',    
@@ -42,6 +33,7 @@ tasks_list = [
                 # 'crabnet_classification'
                 ]
 
+"""MODELS"""
 models_list = [ 
                 # 'baseline',
                 'concat',
@@ -50,23 +42,13 @@ models_list = [
                 ]
 
 
-"""global params"""
-n_repetitions = 5
-# preprocessing
-epsilon_T = 15               # controls the window size around ambient temperature
-merging='median'              # 'median'/'best' (drop duplicates and save best value) 
-med_sigma_multiplier = 0.5  # in 'median' merging values with duplicates with std > 0.5*median are discarted
-mult_outliers = 3           # values above mean + 3*sigma are discarted
 ratios = np.arange(0.05, 1.05, 0.05).round(3)
 
-# split
-split = 'random' # 'top' # 'novelty'
-shuffle_after_split = True
+"""SETTINGS""" #override from settings.py
 extraord_size = 0.2                               # best 20% will be extraord.
 train_size, val_size, test_size = [0.7, 0.1, 0.2] # % train /val /test
 k_val, k_test = [0.33, 0.33]                      # % top for val and test. 
-# featurization
-elem_prop = 'magpie'
+
 # kwarg
 k_elemconcat = 5
 n_elemconcat = 10

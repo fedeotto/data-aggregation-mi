@@ -24,8 +24,17 @@ models_list = [
                 'disco'
                 ]
 
+#elemconcat
+k_elemconcat = 5
+n_elemconcat = 10
+
+#crabnet
 crabnet_kwargs = {'epochs':300, 'batch_size':32, 'verbose':False, 'discard_n':10}
+
+#roost
 roost_kwargs   = {'epochs': 300, 'batch_size':32}
+
+#discover
 discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    'batch_size': 5,
                    #------
@@ -40,7 +49,7 @@ discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    'target_weight':1.0,
                    'scores': ['density']
                    }
-
+#random
 rnd_kwargs      = {'exit_mode': 'percentage',    # percentage or iters
                    'batch_size': 5,
                    'n_iters': 10,     # used if 'exit_mode' = 'iters'
