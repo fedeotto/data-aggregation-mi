@@ -15,10 +15,17 @@ train_size, val_size, test_size = [0.7, 0.1, 0.2] # % train /val /test
 k_val, k_test = [0., 2./3.]                      # % top for val and test. 
 # featurization
 elem_prop = 'magpie'
+
 # models
+models_list = [ 
+                'baseline',
+                'concat',
+                'elem_concat',
+                'disco'
+                ]
+
 crabnet_kwargs = {'epochs':300, 'batch_size':32, 'verbose':False, 'discard_n':10}
 roost_kwargs   = {'epochs': 300, 'batch_size':32}
-
 discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    'batch_size': 5,
                    #------
@@ -52,10 +59,10 @@ ascending_setting = {'thermalcond': False,
 
 pairs={'thermalcond'   : ['citrine', 'mpds'], 
        'superconT'     : ['japdata', 'mpds'],
-        'bulkmodulus'  : ['aflow', 'mp'],   #'mp'
-        'bandgap'      : ['zhuo', 'mpds'],    #'mp'
+        'bulkmodulus'  : ['aflow', 'mpds'], # 'mpds' can be changed with 'mp'
+        'bandgap'      : ['zhuo', 'mpds'],  # 'mpds' can be changed with 'mp'
         'seebeck'      : ['te', 'mpds'],
         'rho'          : ['te', 'mpds'],
         'sigma'        : ['te', 'mpds'],
-        'shearmodulus' : ['aflow', 'mp']   #'mp'
+        'shearmodulus' : ['aflow', 'mp']   # 'mpds' can be changed with 'mp'
         }

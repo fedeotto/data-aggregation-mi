@@ -21,6 +21,7 @@ import pickle
 import torch
 from models.discover_augmentation_v2 import DiscoAugment
 from models.random_augmentation import RandomAugment
+from settings import *
 
 warnings.filterwarnings('ignore')
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
@@ -28,6 +29,7 @@ device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cp
 pio.renderers.default="svg"    # 'svg' or 'browser'
 pio.templates.default="simple_white"
 
+"""PROPERTIES"""
 props_list = [ 'bulkmodulus' ]      # 'thermalcond',
                                     # 'superconT',
                                     # 'seebeck',
@@ -37,17 +39,18 @@ props_list = [ 'bulkmodulus' ]      # 'thermalcond',
                                     # 'bulkmodulus',
                                     # 'shearmodulus'
 
+"""TASKS""" #override from settings
 tasks_list = ['random_forest_regression',
               'crabnet_regression']
 
-initial_size = 0.05 #initial size of self-augmented dataset
 
-metric = 'acc'
-columns = pd.MultiIndex.from_product([tasks_list, ['disco','random'],range(1,n_repetitions+1)]) 
-results = {f'{prop}': pd.DataFrame(data=np.nan, columns=columns, index=range(1000)) for prop in props_list}
-
-# all the p
+"""PARAMETERS""" #override from settings
+initial_size                  = 0.05 #initial size of self-augmented dataset
 discover_kwargs['percentage'] = 1
+
+#DataFrame to store results
+columns      = pd.MultiIndex.from_product([tasks_list, ['disco','random'],range(1,n_repetitions+1)]) 
+results      = {f'{prop}': pd.DataFrame(data=np.nan, columns=columns, index=range(1000)) for prop in props_list}
 
 # main loop
 def plot_all():
@@ -92,11 +95,11 @@ def plot_all():
             # running Discover augmentation
             print('performing disco augmentation')
             DAM = DiscoAugment(dfs_dict={key_A: train, key_B: train},
-                            self_augment_frac = initial_size, # initial fraction for self_aumgent
+                            self_augment_frac = initial_size, # initial fraction of A for self_aumgent
                             random_state = random_state)
             
-            my_augmentations = DAM.apply_augmentation(crabnet_kwargs=crabnet_kwargs,
-                                                    **discover_kwargs)
+            disco_augmentations = DAM.apply_augmentation(crabnet_kwargs=crabnet_kwargs,
+                                                            **discover_kwargs)
             
             rnd_kwargs['batch_size'] = int(0.05*len(train))
             #Running rnd_augment
@@ -108,18 +111,18 @@ def plot_all():
             rnd_augmentations = rnd_augment.apply_augmentation(**rnd_kwargs)
             
             # check
-            last_rnd = rnd_augmentations[-1].sort_values(by=['target', 'formula'], axis=0).reset_index(drop=True)
-            last_my  = my_augmentations[-1].sort_values(by=['target', 'formula'], axis=0).reset_index(drop=True)
+            last_rnd    = rnd_augmentations[-1].sort_values(by=['target', 'formula'], axis=0).reset_index(drop=True)
+            last_disco  = disco_augmentations[-1].sort_values(by=['target', 'formula'], axis=0).reset_index(drop=True)
             train_sorted = train.sort_values(by=['target', 'formula'], axis=0).reset_index(drop=True)
-            assert len(my_augmentations)==len(rnd_augmentations)
-            pd.testing.assert_frame_equal(train_sorted, last_my)
-            pd.testing.assert_frame_equal(last_my, last_rnd)
+            assert len(disco_augmentations)==len(rnd_augmentations)
+            pd.testing.assert_frame_equal(train_sorted, last_disco)
+            pd.testing.assert_frame_equal(last_disco, last_rnd)
             
             
             print(f'performing tasks for disco augmentations...')
             # scores = []
             print('it = ', end=' ')
-            for i,augment in enumerate(my_augmentations):
+            for i,augment in enumerate(disco_augmentations):
                 print(f'{i}...', end=' ')
                 train_feat = utils.featurize(augment, elem_prop=elem_prop)
                 
@@ -177,8 +180,8 @@ def plot_all():
     plots.plot_self_augment(props_list[0],
                             discotest=True if split=='novelty' else False)
 
-if __name__ == '__main__':
-    plot_all()
+if __name__ == '__main__': plot_all()
+
     # clean result data
     # results[prop] = results[prop].drop(np.where(results[prop].isna())[0],axis=0)
     # get x axis labels    

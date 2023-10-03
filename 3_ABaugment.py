@@ -8,40 +8,31 @@ from assets.preprocessing import preprocess_dataset, add_column
 from settings import *
 from models.baseline import elem_concat, concat
 from models.discover_augmentation_v2 import DiscoAugment
-
+from settings import *
 import warnings
 warnings.filterwarnings('ignore')
 
-props_list = [  #'thermalcond',
-                # 'superconT',
-                'seebeck',
-                # 'rho',
-                # 'sigma',
-                # 'bandgap',
-                # 'bulkmodulus',
-                # 'shearmodulus'                
-            ]
+"""PROPERTIES"""
+props_list = [ 'rho' ]      # 'thermalcond',
+                            # 'superconT',
+                            # 'seebeck',
+                            # 'rho'
+                            # 'sigma',
+                            # 'bandgap',
+                            # 'bulkmodulus',
+                            # 'shearmodulus'
 
-pairs={
-        'bulkmodulus'  : ['aflow',  'mp'],   #'mp' (calculated)
-        'bandgap'      : ['zhuo',   'mpds'],   #'mp'
-        'seebeck'      : ['te',     'mpds'],
-        'rho'          : ['te',     'mpds'],
-        'superconT'    : ['japdata','mpds'],
-        'sigma'        : ['te',     'mpds'],
-        'shearmodulus' : ['aflow',  'mp'],    # 'mp' (calculated)
-        'thermalcond'  : ['citrine','mpds']
-        }
-
+"""TASKS"""
 tasks_list = [  
                 'roost_regression',
                 'crabnet_regression',
                 'linear_regression',
                 'random_forest_regression',    
                 # 'logistic_classification',  
-                # # # # # 'crabnet_classification'
+                # 'crabnet_classification'
                 ]
 
+"""MODELS"""
 models_list = [ 
                 'baseline',
                 'concat',
@@ -56,10 +47,10 @@ k_elemconcat = 5      # n elements
 n_elemconcat = 10     # n points per element
 
 # metrics
-metric_reg = 'mae'
+metric_reg   = 'mae'
 metric_class = 'acc'
     
-def main_exp():
+def plot_all():
     # To store results
     iterables = [[task for task in tasks_list], [model for model in models_list]]
     columns = pd.MultiIndex.from_product(iterables, names=["task", "model"])
@@ -69,7 +60,6 @@ def main_exp():
 
     # main loop
     for prop in props_list:
-        
         """LOADING"""
         # load datsets
         data_raw = utils.load_dataset(prop)  
@@ -184,10 +174,6 @@ def main_exp():
         with open(f'results/results_3_{prop}_mp_regr.pkl', 'wb') as handle:
             pickle.dump(results, handle)
 
-    # saving results (bulk & shear)
-    # with open('results_bulk_shear.pkl', 'wb') as handle:
-    #     pickle.dump(results, handle)
-
     #average across repetitions
     results_mean = results.groupby('prop').mean()
     results_std = results.groupby('prop').std()
@@ -203,8 +189,7 @@ def main_exp():
     # text_file.close()      
 
 
-if __name__ == '__main__':
-    main_exp()
+if __name__ == '__main__': plot_all()
     
     
     

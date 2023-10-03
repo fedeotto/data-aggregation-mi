@@ -17,6 +17,7 @@ warnings.filterwarnings('ignore')
 # settings are imported from settings.py
 from settings import *
 
+"""PROPERTIES"""
 props_list = [ 'rho' ]      # 'thermalcond',
                             # 'superconT',
                             # 'seebeck',
@@ -25,9 +26,11 @@ props_list = [ 'rho' ]      # 'thermalcond',
                             # 'bandgap',
                             # 'bulkmodulus',
                             # 'shearmodulus'
-task = 'random_forest_regression'   # task to perform and plot: ('random_forest_regression' / 'crabnet_regression')
-metric = 'mae' # metric to plot
 
+"""TASKS"""
+task   = 'random_forest_regression'   # task to perform and plot: ('random_forest_regression' / 'crabnet_regression')
+
+metric = 'mae' # metric to plot
 to_save = {}
 
 def plot_all():
@@ -104,11 +107,8 @@ def plot_all():
     elif task=='crabnet_regression':  met = 'crab'
     with open(f'results/results_1_{met}.pkl', 'wb') as f:
         pickle.dump(to_save, f)
-    
-    
 
-if __name__ == '__main__': 
-    plot_all()
+if __name__ == '__main__':  plot_all()
 
 
 

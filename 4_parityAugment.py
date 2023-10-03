@@ -1,14 +1,14 @@
 import pandas as pd
 import numpy as np
 import plotly.io as pio
-from preprocessing import preprocess_dataset, add_column
+from assets.preprocessing import preprocess_dataset, add_column
 import settings
-import tasks
+from assets import tasks
 import matplotlib.pyplot as plt
 from models.baseline import concat, elem_concat
 from settings import ascending_setting
 from sklearn.preprocessing import MinMaxScaler, RobustScaler
-import utils
+from assets import utils
 import warnings
 import torch
 from models.discover_augmentation_v2 import DiscoAugment
@@ -22,6 +22,7 @@ plt.rcParams['font.size'] = 25
 plt.rcParams['figure.dpi'] = 400
 device = torch.device('cpu')
 
+"""PROPERTIES"""
 props_list = [ 
                 'bulkmodulus',
                 # 'bandgap',
@@ -30,15 +31,6 @@ props_list = [
                 # 'sigma',
                 'shearmodulus'                
               ]
-
-pairs={
-        'bulkmodulus'  : ['aflow', 'mpds'],  #'mp'
-        'bandgap'      : ['zhuo' , 'mpds'],  #'mp'
-        'seebeck'      : ['te'   , 'mpds'],
-        'rho'          : ['te'   , 'mpds'],
-        'sigma'        : ['te'   , 'mpds'],
-        'shearmodulus' : ['aflow', 'mpds']   #'mp'
-        }
 
 reg_method = 'random_forest_regression'
 tasks_list = [reg_method]
