@@ -1,4 +1,4 @@
-name: DataAggregationMI
+name: daggrmi
 channels:
   - pytorch
   - nvidia
@@ -8,8 +8,8 @@ channels:
 dependencies:
   - python=3.9
   - pytorch=1.13
-  - torchvision
-  - torchaudio
+  #- torchvision
+  #- torchaudio
   - pytorch-cuda=11.7
   - pytorch-lightning
   - torchmetrics
@@ -17,7 +17,7 @@ dependencies:
   - pip
   - pip:
       - einops
-      - hydra-core
+  #    - hydra-core
       - numpy
       - matplotlib
       - plotly
@@ -31,4 +31,4 @@ dependencies:
       - tabulate
       - chem_wasserstein
       - seaborn
-      - hdbscan
+  #    - hdbscan
