@@ -2,7 +2,8 @@ import numpy as np
 import pandas as pd
 
 import assets.plots as plots
-from assets import utils, tasks, preprocessing
+from assets import utils, tasks
+from assets.preprocessing import preprocess_dataset, add_column
 import pickle
 from settings import ascending_setting
 from sklearn.preprocessing import MinMaxScaler, RobustScaler
@@ -10,6 +11,7 @@ import matplotlib.pyplot as plt
 
 from models.baseline import elem_concat, concat
 from models.discover_augmentation_v2 import DiscoAugment
+from settings import *
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -42,16 +44,14 @@ models_list = [
                 ]
 
 
-ratios = np.arange(0.05, 1.05, 0.05).round(3)
 
 """SETTINGS""" #override from settings.py
 extraord_size = 0.2                               # best 20% will be extraord.
 train_size, val_size, test_size = [0.7, 0.1, 0.2] # % train /val /test
-k_val, k_test = [0.33, 0.33]                      # % top for val and test. 
-
-# kwarg
-k_elemconcat = 5
-n_elemconcat = 10
+k_val, k_test = [0.33, 0.33]                      # % top for val and test.
+ratios = np.arange(0.05, 1.05, 0.05).round(3)
+k_elemconcat   = 5
+n_elemconcat   = 10
 crabnet_kwargs = {'epochs':300, 'verbose':False, 'discard_n':10}
 discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    'batch_size': 20,
@@ -67,7 +67,6 @@ discover_kwargs = {'exit_mode': 'percentage',  #'thr' / 'percentage'
                    'target_weight':1.0,
                    'scores': ['density']
                    }
-# metrics
 metric_reg = 'mae'
 metric_class = 'acc'
     

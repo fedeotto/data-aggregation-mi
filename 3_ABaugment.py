@@ -40,9 +40,7 @@ models_list = [
                 'disco'
                 ]
 
-# settings imported from settings.py
-
-# kwarg
+"""SETTINGS""" #override from settings.py
 k_elemconcat = 5      # n elements
 n_elemconcat = 10     # n points per element
 

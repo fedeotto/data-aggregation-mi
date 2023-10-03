@@ -44,7 +44,7 @@ tasks_list = ['random_forest_regression',
               'crabnet_regression']
 
 
-"""PARAMETERS""" #override from settings
+"""SETTINGS""" #override from settings
 initial_size                  = 0.05 #initial size of self-augmented dataset
 discover_kwargs['percentage'] = 1
 
