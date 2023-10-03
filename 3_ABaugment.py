@@ -1,3 +1,8 @@
+"""this script reproduce Table 2 of the paper:
+Not as simple as we thought: a rigorous examination of data aggregation in materials informatics
+09 August 2023, Version 1
+Federico Ottomano, Giovanni De Felice, Vladimir Gusev, Taylor Sparks """
+
 import numpy as np
 import pandas as pd
 import assets.plots as plots
