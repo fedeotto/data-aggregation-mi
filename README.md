@@ -22,4 +22,4 @@ All the utilized datasets are stored in the `datasets` folder. MPDS data can be 
 The scripts present in this repository allow to reproduce specific figures and analysis outlined in the main paper. In particular:
 - `1_imbalance.py` reproduces Fig. 2.
 - `3_AB_augment.py` reproduces the results presented in Table 2.
-- `6_self_augment.py` reproduces the curves in Fig. 3.
+- `6_self_augment.py` reproduces the plots in Fig. 3.
