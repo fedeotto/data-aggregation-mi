@@ -1,9 +1,9 @@
 # DataAggregationMI
-This repository contains the code and data to reproduce the results obtained in our paper accompanying our paper 'Not as simple as we thought: a rigorous examination of data aggregation in materials informatics'().
+This repository contains the code and data accompanying our paper 'Not as simple as we thought: a rigorous examination of data aggregation in materials informatics'(https://chemrxiv.org/engage/chemrxiv/article-details/64d212414a3f7d0c0dced297).
 
 ### Installation
 1. Clone this repository:
-https://github.com/FedeOtto/DataIntegrationMI
+`git clone https://github.com/FedeOtto/DataIntegrationMI`
 
 2. ...
 
