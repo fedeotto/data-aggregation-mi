@@ -12,6 +12,7 @@ CrabNet/models
 CrabNet/__pycache__
 lightning_logs/
 results_ratios.pkl
+discover_algorithm.py
 results_ratios_bandgap.pkl
 datasets/raw_mpds_data.pkl
 Presentation_DEF.pptx
