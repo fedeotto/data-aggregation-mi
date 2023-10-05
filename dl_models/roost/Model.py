@@ -3,7 +3,7 @@ import torch
 import torch.nn as nn
 from torch.nn.init import xavier_uniform_, zeros_, calculate_gain
 from torch_geometric.utils import scatter
-from dl_models.roost.Model import GATRoostLayer, Simple_linear, WeightedAttentionPooling, WeightedAttentionPooling_comp, softmax_weights
+from dl_models.roost.Layers import GATRoostLayer, Simple_linear, WeightedAttentionPooling, WeightedAttentionPooling_comp, softmax_weights
 from torch.nn import L1Loss
 import pandas as pd
 import pytorch_lightning as pl

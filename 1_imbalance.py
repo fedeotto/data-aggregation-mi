@@ -7,8 +7,8 @@ import numpy as np
 import pandas as pd
 import pickle
 from assets import plots
-from assets import utils
 from assets import tasks
+from assets import utils
 from assets.preprocessing import preprocess_dataset, add_column
 
 import warnings
@@ -100,8 +100,6 @@ def plot_all():
             print(f'AVERAGE {score} = {round(np.mean(outputs[score]),3)} ', end='')
             print(f'+- {round(np.std(outputs[score]),3)}')
     
-
-
     # save results for eventual later use
     if task=='random_forest_regression':  met = 'rf'
     elif task=='crabnet_regression':  met = 'crab'
