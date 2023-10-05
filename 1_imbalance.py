@@ -18,14 +18,14 @@ warnings.filterwarnings('ignore')
 from settings import *
 
 """PROPERTIES"""
-props_list = [ 'rho' ]      # 'thermalcond',
-                            # 'superconT',
-                            # 'seebeck',
-                            # 'rho'
-                            # 'sigma',
-                            # 'bandgap',
-                            # 'bulkmodulus',
-                            # 'shearmodulus'
+props_list = [ 'bulkmodulus' ]      # 'thermalcond',
+                                    # 'superconT',
+                                    # 'seebeck',
+                                    # 'rho'
+                                    # 'sigma',
+                                    # 'bandgap',
+                                    # 'bulkmodulus',
+                                    # 'shearmodulus'
 
 """TASKS"""
 task   = 'random_forest_regression'   # task to perform and plot: ('random_forest_regression' / 'crabnet_regression')
