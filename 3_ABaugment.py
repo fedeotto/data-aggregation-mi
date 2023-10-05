@@ -11,25 +11,25 @@ from assets import tasks
 import pickle
 from assets.preprocessing import preprocess_dataset, add_column
 from settings import *
-from models.baseline import elem_concat, concat
-from models.discover_augmentation_v2 import DiscoAugment
+from aggr_models.baseline import elem_concat, concat
+from aggr_models.discover_augmentation_v2 import DiscoAugment
 from settings import *
 import warnings
 warnings.filterwarnings('ignore')
 
 """PROPERTIES"""
-props_list = [ 'rho' ]      # 'thermalcond',
-                            # 'superconT',
-                            # 'seebeck',
-                            # 'rho'
-                            # 'sigma',
-                            # 'bandgap',
-                            # 'bulkmodulus',
-                            # 'shearmodulus'
+props_list = [ 'bulkmodulus']      # 'thermalcond',
+                                    # 'superconT',
+                                    # 'seebeck',
+                                    # 'rho'
+                                    # 'sigma',
+                                    # 'bandgap',
+                                    # 'bulkmodulus',
+                                    # 'shearmodulus'
 
 """TASKS"""
 tasks_list = [  
-                'roost_regression',
+                # 'roost_regression',
                 'crabnet_regression',
                 'linear_regression',
                 'random_forest_regression',    

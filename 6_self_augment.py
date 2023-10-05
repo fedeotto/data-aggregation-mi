@@ -13,14 +13,14 @@ from assets.preprocessing import preprocess_dataset, add_column
 import settings
 from settings import *
 import matplotlib.pyplot as plt
-from models.baseline import concat, elem_concat
+from aggr_models.baseline import concat, elem_concat
 from sklearn.preprocessing import MinMaxScaler
 import itertools
 import warnings
 import pickle
 import torch
-from models.discover_augmentation_v2 import DiscoAugment
-from models.random_augmentation import RandomAugment
+from aggr_models.discover_augmentation_v2 import DiscoAugment
+from aggr_models.random_augmentation import RandomAugment
 from settings import *
 
 warnings.filterwarnings('ignore')
@@ -39,7 +39,7 @@ props_list = [ 'bulkmodulus' ]      # 'thermalcond',
                                     # 'bulkmodulus',
                                     # 'shearmodulus'
 
-"""TASKS""" #override from settings
+"""TASKS""" 
 tasks_list = ['random_forest_regression',
               'crabnet_regression']
 
@@ -95,8 +95,8 @@ def plot_all():
             # running Discover augmentation
             print('performing disco augmentation')
             DAM = DiscoAugment(dfs_dict={key_A: train, key_B: train},
-                            self_augment_frac = initial_size, # initial fraction of A for self_aumgent
-                            random_state = random_state)
+                                self_augment_frac = initial_size, # initial fraction of A for self_aumgent
+                                random_state = random_state)
             
             disco_augmentations = DAM.apply_augmentation(crabnet_kwargs=crabnet_kwargs,
                                                             **discover_kwargs)

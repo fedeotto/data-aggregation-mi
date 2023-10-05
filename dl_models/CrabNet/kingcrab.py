@@ -57,7 +57,7 @@ class Embedder(nn.Module):
         self.d_model = d_model
         self.compute_device = compute_device
 
-        elem_dir = './CrabNet/data/element_properties'
+        elem_dir = './element_properties'
         mat2vec = f'{elem_dir}/mat2vec.csv' 
         cbfv = pd.read_csv(mat2vec, index_col=0).values
         
