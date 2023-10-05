@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import torch
 from torch import nn
-from CrabNet.model import Model
+from dl_models.CrabNet.model import Model
 import os
 
 # %%
