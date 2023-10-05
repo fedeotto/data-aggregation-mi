@@ -341,9 +341,6 @@ def plot_elem_class_score_matplotlib(freq_df, task, metric, prop, web=True):
 
     # save the plot as a file in the plots/fig1 folder
     plt.savefig(f'plots/fig1_rf/{prop}_distinct.png', dpi=300)
-
-    
-        
     
 def plot_elem_class_score(freq_df, task, metric, prop, web=True):
     fig = go.Figure()
