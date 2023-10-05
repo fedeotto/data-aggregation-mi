@@ -1,8 +1,8 @@
 from chem_wasserstein.ElM2D_ import ElM2D
 import umap
 from operator import attrgetter
-from CrabNet.kingcrab import CrabNet
-from CrabNet.model import Model
+from dl_models.CrabNet.kingcrab import CrabNet
+from dl_models.CrabNet.model import Model
 import pandas as pd
 from scipy.stats import multivariate_normal
 from sklearn.metrics import mean_squared_error
