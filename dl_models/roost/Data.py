@@ -5,7 +5,7 @@ import os
 import re
 import json
 import itertools
-from chem import _fractional_composition
+from assets.chem import _fractional_composition
 
 from torch_geometric.data import Data
 
