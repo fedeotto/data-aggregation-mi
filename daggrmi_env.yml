@@ -22,7 +22,7 @@ dependencies:
       - matplotlib
       - plotly
       - pymatgen
-      - omegaconf
+      # - omegaconf
       - pandas
       - scikit-learn
       - scipy
