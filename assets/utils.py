@@ -4,7 +4,7 @@ import sklearn
 import os
 from tabulate import tabulate
 from cbfv.composition import generate_features
-from chem import _element_composition
+from assets.chem import _element_composition
 
 from assets.preprocessing import clean_MPDS_dataset, clean_TE_dataset
 import assets.tasks as tasks

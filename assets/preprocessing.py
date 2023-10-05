@@ -1,5 +1,5 @@
 import numpy as np
-from chem import _element_composition_L
+from assets.chem import _element_composition_L
 
 def clean_outliers(df_, mult=5):
     df = df_.copy()

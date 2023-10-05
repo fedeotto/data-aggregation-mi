@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy as np
 from assets import utils
-from chem import _element_composition
+from assets.chem import _element_composition
 
 def merging(option, dfs_dict, final_df, ascending=False):
     if merging =='drop':

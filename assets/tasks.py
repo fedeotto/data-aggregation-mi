@@ -5,16 +5,16 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 # # Discover
 from chem_wasserstein.ElM2D_ import ElM2D
-from models.discover_augmentation_v2 import my_mvn
+from aggr_models.discover_augmentation_v2 import my_mvn
 import umap
 from operator import attrgetter
 from sklearn.preprocessing import RobustScaler, MinMaxScaler
 
 from sklearn.linear_model import Ridge, LogisticRegression
 from sklearn.ensemble import RandomForestRegressor
-from CrabNet.kingcrab import CrabNet
-from CrabNet.model import Model
-from roost.Model import RoostLightning, roost_config, PrintRoostLoss
+from dl_models.CrabNet.kingcrab import CrabNet
+from dl_models.CrabNet.model import Model
+from dl_models.roost.Model import RoostLightning, roost_config, PrintRoostLoss
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import EarlyStopping
 # metrics

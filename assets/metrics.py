@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from chem import _element_composition_L, _element_composition
+from assets.chem import _element_composition_L, _element_composition
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import entropy as Entropy
