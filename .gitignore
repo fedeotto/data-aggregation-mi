@@ -16,3 +16,7 @@ discover_algorithm.py
 results_ratios_bandgap.pkl
 datasets/raw_mpds_data.pkl
 Presentation_DEF.pptx
+self_augment_bulkmodulus_discotest.png
+self_augment_bulkmodulus_standard.png
+3_ABAugment_npoints.py
+4_parityAugment.py
