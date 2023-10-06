@@ -1,34 +1,28 @@
 name: daggrmi
 channels:
   - pytorch
-  - nvidia
   - pyg
+  - nvidia
   - conda-forge
   - defaults
 dependencies:
-  - python=3.9
+  - python=3.10
   - pytorch=1.13.1
   - pytorch-cuda=11.7
-  - pytorch-lightning
-  - torchmetrics
   - pyg
+  - pytorch-scatter
+  - pytorch-cluster
+  - pytorch-sparse
   - pip
   - pip:
       - einops
-      - numpy
-      - matplotlib
-      - plotly
-      - pymatgen
-      - pandas
+      - lightning
+      - numpy>1.20.3
+      - omegaconf
+      - pandas>=1.4
+      - PyYAML
       - scikit-learn
       - scipy
       - tables
+      - torchmetrics>=0.7
       - tqdm
-      - tabulate
-      - chem_wasserstein
-      - seaborn
-      - torch-scatter
-      - torch-sparse
-      - torch-cluster
-      - torch-spline-conv
-      - torch-geometric
