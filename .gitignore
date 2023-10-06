@@ -20,3 +20,4 @@ self_augment_bulkmodulus_discotest.png
 self_augment_bulkmodulus_standard.png
 3_ABaugment_npoints.py
 4_parityAugment.py
+.gitignore
