@@ -19,10 +19,16 @@ dependencies:
       - lightning
       - numpy>1.20.3
       - omegaconf
+      - matplotlib
       - pandas>=1.4
       - PyYAML
       - scikit-learn
+      - plotly
+      - tabulate
+      - seaborn
       - scipy
+      - umap
+      - chem_wasserstein
       - tables
       - torchmetrics>=0.7
       - tqdm
