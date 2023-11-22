@@ -149,7 +149,7 @@ def composition_from_formula(s):
 
 def data_from_composition(df,elem_prop='mat2vec'):
     normalised_compositions=[]
-    elem_features = pd.read_csv(f'element_properties/{elem_prop}.csv',
+    elem_features = pd.read_csv(f'./assets/element_properties/{elem_prop}.csv',
                                 index_col='element')
         
     for i,form in enumerate(df['formula'].values):
