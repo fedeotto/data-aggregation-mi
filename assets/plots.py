@@ -2,6 +2,7 @@
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import plotly.io as pio
+import seaborn as sns
 
 # matplotlib
 import matplotlib.pyplot as plt
@@ -19,7 +20,7 @@ from assets.metrics import equitability_index
 pio.renderers.default="browser"    # 'svg' or 'browser'
 pio.templates.default="simple_white"
 
-plt.rcParams['figure.dpi'] = 300
+plt.rcParams['figure.dpi'] = 500
 plt.rcParams['font.size']  = 16
 
 def plot_self_augment(prop = 'bulkmodulus',
@@ -127,12 +128,22 @@ def plot_self_augment(prop = 'bulkmodulus',
         
 
 
-
-
         
 def add_prop_to_violins(fig, ind, dfs, prop, l):
     colors = {'japdata':'purple','citrine':'pink', 'mpds':'orange', 'te':'green', 
               'mp':'blue', 'aflow':'grey', 'zhuo':'red'}
+        
+    #using seaborn rocket palette
+    rocket_palette = sns.color_palette("rocket")
+    rocket_colors_hex = rocket_palette.as_hex()
+
+    colors = {f'japdata':f'{rocket_colors_hex[0]}',
+                'citrine':f'{rocket_colors_hex[1]}', 
+                'mpds':f'{rocket_colors_hex[2]}', 
+                'te':f'{rocket_colors_hex[3]}', 
+                'mp':f'{rocket_colors_hex[4]}', 
+                'aflow':f'{rocket_colors_hex[5]}', 
+                'zhuo':'#8856a7'}
     sides = ['negative', 'positive']  
     datasets = {'japdata':'MDR','citrine':'Citrine', 'mpds':'MPDS', 'te':'MRL',
                 'mp':'Mat. Proj.', 'aflow':'AFLOW', 'zhuo':'Zhuo et al.'}
@@ -173,12 +184,15 @@ def add_prop_to_violins(fig, ind, dfs, prop, l):
                       row=row, 
                       col=col)
         l.append(key)
-    fig.update_xaxes(title_text=titles[prop]+'<br>'+f'[{units[prop]}]', 
-                     title_standoff=0,
-                     tickvals=[],
-                     ticktext=[],
-                     row=row, 
-                     col=col)
+        fig.update_xaxes(title_text=titles[prop]+'<br>'+f'[{units[prop]}]', 
+                        title_standoff=0,
+                        tickvals=[],
+                        ticktext=[],
+                        row=row, 
+                        col=col)
+
+        fig.update_layout(font=dict(size=18))
+
     return fig
 
 def plot_violins(fig):
@@ -255,7 +269,7 @@ def plot_violins(fig):
                     #   violinmode='overlay',
                     #   showlegend=False
     )
-    fig.show() 
+    fig.show()
     return fig
     
 

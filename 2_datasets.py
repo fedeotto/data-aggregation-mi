@@ -7,12 +7,17 @@ from assets.plots import plot_super_histos, plot_distinct_histos, add_prop_to_vi
 from assets.utils import load_dataset, print_info
 from assets.preprocessing import preprocess_dataset, add_column
 from settings import *
+import kaleido
 
-props_list = [  'rho',
-                'sigma',
-                'thermalcond',
-                'superconT',
-                'seebeck',
+pio.renderers.default="svg"    # 'svg' or 'browser'
+pio.templates.default="simple_white"
+
+props_list = [  
+                # 'rho',
+                # 'sigma',
+                # 'thermalcond',
+                # 'superconT',
+                # 'seebeck',
                 'bandgap',
                 'bulkmodulus',
                 'shearmodulus'                
@@ -24,7 +29,7 @@ def plot_all():
     # violin plot
     violin_fig = make_subplots(rows=2, cols=4, 
                                start_cell="top-left",
-                               horizontal_spacing=0.02,
+                               horizontal_spacing=0.07,
                                vertical_spacing=0.15)
     l=[]
 
@@ -64,5 +69,3 @@ def plot_all():
 
 
 if __name__ == '__main__': plot_all()
-
-

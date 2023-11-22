@@ -18,7 +18,7 @@ warnings.filterwarnings('ignore')
 from settings import *
 
 """PROPERTIES"""
-props_list = [ 'bulkmodulus' ]      # 'thermalcond',
+props_list = [ 'shearmodulus' ]      # 'thermalcond',
                                     # 'superconT',
                                     # 'seebeck',
                                     # 'rho'
