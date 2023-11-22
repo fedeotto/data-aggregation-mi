@@ -44,6 +44,7 @@ def train_transfer_models():
             df_train = df.drop(df_val.index)
 
             roost_config['data_params']['batch_size'] = roost_kwargs['batch_size']
+            roost_config['seed'] = seed
             roost = RoostLightning(**roost_config)
 
             roost.load_data(df_train, which='train')
@@ -51,11 +52,11 @@ def train_transfer_models():
 
             name = f'roost_{prop}_{key_B}'
             trainer = pl.Trainer(accelerator=device.type,
-                                callbacks=[ModelCheckpoint(monitor='val_loss',
-                                                            save_top_k=1,
-                                                            dirpath=f'transfer_models/',
+                                callbacks=[ModelCheckpoint(monitor     ='val_loss',
+                                                            save_top_k =1,
+                                                            dirpath    =f'transfer_models/',
                                                             filename   = name,
-                                                            mode='min'),
+                                                            mode       ='min'),
                                             EarlyStopping(monitor='val_loss', patience=30),
                                             PrintRoostLoss()],
                                 max_epochs=roost_kwargs['epochs'])
@@ -63,18 +64,19 @@ def train_transfer_models():
             trainer.fit(roost, 
                         train_dataloaders=roost.train_loader, 
                         val_dataloaders=roost.val_loader)  
-            
+
             crabnet = Model(CrabNet(compute_device=device).to(device),
                             classification=False,
                             random_state=seed,
                             verbose=crabnet_kwargs['verbose'],
                             discard_n=crabnet_kwargs['discard_n'])
             
+            df_train = df_train[['formula','target']]
+            df_val   = df_val[['formula','target']]
             crabnet.load_data(df_train, train=True, batch_size=crabnet_kwargs['batch_size'])
             crabnet.load_data(df_val, train=False, batch_size=crabnet_kwargs['batch_size'])
 
             crabnet.fit(epochs=crabnet_kwargs['epochs'])
-            
             crabnet.save_network(f'./transfer_models/crabnet_{prop}_{key_B}.pth')
 
 if __name__ == "__main__":
