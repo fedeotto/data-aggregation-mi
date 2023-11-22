@@ -74,5 +74,5 @@ pairs={'thermalcond'   : ['citrine', 'mpds'],
         'seebeck'      : ['te', 'mpds'],
         'rho'          : ['te', 'mpds'],
         'sigma'        : ['te', 'mpds'],
-        'shearmodulus' : ['aflow', 'mp']  #mpds or mp
+        'shearmodulus' : ['aflow', 'mpds']  #mpds or mp
         }

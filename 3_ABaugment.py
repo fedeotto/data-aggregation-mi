@@ -18,7 +18,15 @@ import warnings
 warnings.filterwarnings('ignore')
 
 """PROPERTIES"""
-props_list = [ 'bulkmodulus']      # 'thermalcond',
+props_list = [ 
+            #    'thermalcond',
+            #    'seebeck',
+               'rho',
+               'sigma',
+               'bandgap',
+               'bulkmodulus',
+               'shearmodulus' 
+            ]                       # 'thermalcond',
                                     # 'superconT',
                                     # 'seebeck',
                                     # 'rho'
@@ -26,13 +34,14 @@ props_list = [ 'bulkmodulus']      # 'thermalcond',
                                     # 'bandgap',
                                     # 'bulkmodulus',
                                     # 'shearmodulus'
-
 """TASKS"""
 tasks_list = [  
                 # 'roost_regression',
-                'crabnet_regression',
-                'linear_regression',
-                'random_forest_regression',    
+                # 'crabnet_regression',
+                'transf_crabnet_regression',
+                'transf_roost_regression',
+                # 'linear_regression',
+                # 'random_forest_regression',    
                 # 'logistic_classification',  
                 # 'crabnet_classification'
                 ]
@@ -40,9 +49,9 @@ tasks_list = [
 """MODELS"""
 models_list = [ 
                 'baseline',
-                'concat',
-                'elem_concat',
-                'disco'
+                # 'concat',
+                # 'elem_concat',
+                # 'disco'
                 ]
 
 """SETTINGS""" #override from settings.py
@@ -108,7 +117,7 @@ def plot_all():
                 train_feat = utils.featurize(train, elem_prop=elem_prop)
                 # TASKS
                 output, _ = tasks.apply_all_tasks(train_feat, test_feat, key_A,
-                                                  tasks_list, crabnet_kwargs,roost_kwargs,
+                                                  tasks_list, prop, key_B, crabnet_kwargs,roost_kwargs,
                                                   random_state=seed)
                 num_results = [output[task][metric_reg] if ('regression' in task) 
                                 else output[task][metric_class] for task in tasks_list]
@@ -125,7 +134,7 @@ def plot_all():
                 train_feat = utils.featurize(train_concat, elem_prop=elem_prop)
                 # TASKS
                 output, _ = tasks.apply_all_tasks(train_feat, test_feat, key_A,
-                                                tasks_list, crabnet_kwargs, roost_kwargs,
+                                                tasks_list, prop, key_B, crabnet_kwargs, roost_kwargs,
                                                 random_state=seed)
                 num_results = [output[task][metric_reg] if ('regression' in task) 
                                 else output[task][metric_class] for task in tasks_list]
@@ -174,7 +183,7 @@ def plot_all():
                 results.loc[(prop,n),cols] = num_results
                 
         # saving results
-        with open(f'results/results_3_{prop}_mp_regr.pkl', 'wb') as handle:
+        with open(f'results/results_3_{prop}_transfer_mpds.pkl', 'wb') as handle:
             pickle.dump(results, handle)
 
     #average across repetitions

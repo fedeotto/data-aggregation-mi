@@ -436,6 +436,9 @@ def logistic_classification(train_in, train_out,
 def crabnet(train_in, train_out,
             # val_in, val_out,
             test_in, test_out,
+            transfer,
+            prop,
+            key_B,
             crabnet_kwargs:dict,
             classification=False,
             random_state:int = 1234):
@@ -460,6 +463,9 @@ def crabnet(train_in, train_out,
     # little_val for early stopping
     little_val = train_df.sample(frac=0.10, random_state=random_state)
     train_df = train_df.drop(index=little_val.index)
+
+    if transfer:
+        crabnet_model.load_network(f'./transfer_models/crabnet_{prop}_{key_B}.pth')
     
     crabnet_model.load_data(train_df, batch_size=crabnet_kwargs['batch_size'], train=True)
     crabnet_model.load_data(little_val, batch_size=crabnet_kwargs['batch_size'], train=False)
@@ -487,18 +493,25 @@ def crabnet(train_in, train_out,
     
     
 def roost(train_in, train_out,
-          test_in, test_out,
-          roost_kwargs,
-          random_state: int = 1234):
+        test_in, test_out,
+        transfer,
+        prop,
+        key_B,
+        roost_kwargs,
+        random_state: int = 1234):
     
     train_df = pd.concat([train_in, train_out],axis=1)
     test_df = pd.concat([test_in, test_out],axis=1)
     
     roost_config['data_params']['batch_size'] = roost_kwargs['batch_size']
-    roost = RoostLightning(**roost_config)
+
+    if transfer:
+        roost = RoostLightning.load_from_checkpoint(f'./transfer_models/roost_{prop}_{key_B}.ckpt')
+    else:
+        roost = RoostLightning(**roost_config)
     
-    val_df       = train_df.sample(frac=0.10, random_state=random_state)
-    train_df     = train_df.drop(index=val_df.index)
+    val_df    = train_df.sample(frac=0.10, random_state=random_state)
+    train_df  = train_df.drop(index=val_df.index)
     
     roost.load_data(train_df, which='train')
     roost.load_data(val_df, which='val')
@@ -527,6 +540,8 @@ def apply_all_tasks(train,
                     test,
                     test_key,
                     tasks_list,
+                    prop,
+                    key_B,
                     crabnet_kwargs = {'epochs':100, 'batch_size':128},
                     roost_kwargs   = {'epochs':100, 'batch_size':128},
                     reg_metrics = ['mae','mse','r2','mape','mre'],
@@ -547,82 +562,108 @@ def apply_all_tasks(train,
     
     # loop over tasks
     for task in tasks_list:
-          scores[task]={}
-        ### prepare input ###
-          if ('crabnet' in task) or ('roost' in task):
-              d['train_in']  = train.loc[:,'formula']
-              d['test_in']   = test.loc[:,'formula']
-              # d['val_in']  = val.loc[:,'formula']
-          else:
-              d['train_in']  = train.loc[:,'formula':'target'].iloc[:,:-1]
-              d['test_in']   = test.loc[:,'formula':'target'].iloc[:,:-1]
-              # d['val_in']  = val.loc[:,'formula':'target'].iloc[:,1:-1]
-             
-        ### prepare output ###
-          if 'regression' in task:
-              metrics=reg_metrics
-              true = test.loc[:, ['formula', 'target']]
-              d['train_out'] = train.loc[:,'target']
-              d['test_out']  = test.loc[:,'target']
-              # d['val_out'] = val.loc[:,'target']
-          elif 'classification' in task:
-              metrics=clas_metrics
-              true = test.loc[:,['formula', f'extraord|{test_key}']]
-              d['train_out'] = train.loc[:,f'extraord|{test_key}']
-              d['test_out']  = test.loc[:,f'extraord|{test_key}']
-              # d['val_out'] = val.loc[:,f'extraord|{test_key}']
-             
-         
-          ### apply task ###
-          # regression
-          if task=='linear_regression':
-              pred = linear_regression(d['train_in'],d['train_out'],
-                                      d['test_in'], d['test_out'],
-                                      random_state=random_state)
-             
-          elif task=='random_forest_regression':
-              pred = random_forest(d['train_in'],d['train_out'], 
-                                  d['test_in'], d['test_out'],
-                                  random_state=random_state)
-              
-          elif task=='crabnet_regression':
-              pred = crabnet(d['train_in'],d['train_out'],
+        scores[task]={}
+    ### prepare input ###
+        if ('crabnet' in task) or ('roost' in task):
+            d['train_in']  = train.loc[:,'formula']
+            d['test_in']   = test.loc[:,'formula']
+            # d['val_in']  = val.loc[:,'formula']
+        else:
+            d['train_in']  = train.loc[:,'formula':'target'].iloc[:,:-1]
+            d['test_in']   = test.loc[:,'formula':'target'].iloc[:,:-1]
+            # d['val_in']  = val.loc[:,'formula':'target'].iloc[:,1:-1]
+            
+    ### prepare output ###
+        if 'regression' in task:
+            metrics=reg_metrics
+            true = test.loc[:, ['formula', 'target']]
+            d['train_out'] = train.loc[:,'target']
+            d['test_out']  = test.loc[:,'target']
+            # d['val_out'] = val.loc[:,'target']
+        elif 'classification' in task:
+            metrics=clas_metrics
+            true = test.loc[:,['formula', f'extraord|{test_key}']]
+            d['train_out'] = train.loc[:,f'extraord|{test_key}']
+            d['test_out']  = test.loc[:,f'extraord|{test_key}']
+            # d['val_out'] = val.loc[:,f'extraord|{test_key}']
+            
+        
+        ### apply task ###
+        # regression
+        if task=='linear_regression':
+            pred = linear_regression(d['train_in'],d['train_out'],
+                                    d['test_in'], d['test_out'],
+                                    random_state=random_state)
+            
+        elif task=='random_forest_regression':
+            pred = random_forest(d['train_in'],d['train_out'], 
+                                d['test_in'], d['test_out'],
+                                random_state=random_state)
+            
+        elif task=='crabnet_regression':
+            pred = crabnet(d['train_in'],d['train_out'],
+                        # d['val_in'],d['val_out'],
+                        d['test_in'], d['test_out'],
+                        transfer      = False,
+                        prop          = prop,
+                        key_B         = key_B,
+                        classification=False,
+                        crabnet_kwargs = crabnet_kwargs,
+                        random_state=random_state)
+    
+        elif task == 'roost_regression':
+            pred = roost(d['train_in'], d['train_out'],
+                        d['test_in'], d['test_out'],
+                        transfer     = False,
+                        prop         = prop,
+                        key_B        = key_B,
+                        roost_kwargs = roost_kwargs,
+                        random_state = random_state)
+            
+        elif task == 'transf_roost_regression':
+            pred = roost(d['train_in'], d['train_out'],
+                        d['test_in'], d['test_out'],
+                        transfer     = True,
+                        prop         = prop,
+                        key_B        = key_B,
+                        roost_kwargs = roost_kwargs,
+                        random_state = random_state)
+        
+        elif task  == 'transf_crabnet_regression':
+            pred = crabnet(d['train_in'],d['train_out'],
                             # d['val_in'],d['val_out'],
                             d['test_in'], d['test_out'],
+                            transfer     = True,
+                            prop         = prop,
+                            key_B        = key_B,
                             classification=False,
                             crabnet_kwargs = crabnet_kwargs,
                             random_state=random_state)
+            
+        # extraord classification
+        elif task=='logistic_classification':       
+            pred = logistic_classification(d['train_in'],d['train_out'],
+                                        d['test_in'], d['test_out'],
+                                        random_state=random_state)
+
+        elif task=='crabnet_classification':
+            pred = crabnet(d['train_in'],d['train_out'],
+                        # d['val_in'],d['val_out'],
+                        d['test_in'], d['test_out'],
+                        classification=True,
+                        crabnet_kwargs = crabnet_kwargs,
+                        random_state=random_state)
+            
         
-          elif task == 'roost_regression':
-              pred = roost(d['train_in'], d['train_out'],
-                           d['test_in'], d['test_out'],
-                           roost_kwargs = roost_kwargs,
-                           random_state = random_state)
-
-          # extraord classification
-          elif task=='logistic_classification':       
-              pred = logistic_classification(d['train_in'],d['train_out'],
-                                            d['test_in'], d['test_out'],
-                                            random_state=random_state)
-
-          elif task=='crabnet_classification':
-              pred = crabnet(d['train_in'],d['train_out'],
-                            # d['val_in'],d['val_out'],
-                            d['test_in'], d['test_out'],
-                            classification=True,
-                            crabnet_kwargs = crabnet_kwargs,
-                            random_state=random_state)
-             
-         
-          ### accuracies ###
-          output = {}
-          true.columns = ['formula', 'target']
-          pred = pd.DataFrame({'formula':true['formula'], 'target':pred})
-          # add a column to occ with all accuracies with respect to the task
-          occ = utils.add_accuracies_to_count(occ, true, pred, task, metrics)
-          # global metrics
-          for metric in metrics:
-              scores[task][metric] = score_evaluation(true['target'], pred['target'], metric)
+        ### accuracies ###
+        output = {}
+        true.columns = ['formula', 'target']
+        pred = pd.DataFrame({'formula':true['formula'], 'target':pred})
+        # add a column to occ with all accuracies with respect to the task
+        occ = utils.add_accuracies_to_count(occ, true, pred, task, metrics)
+        # global metrics
+        for metric in metrics:
+            scores[task][metric] = score_evaluation(true['target'], pred['target'], metric)
          
     return scores, occ
              

@@ -12,13 +12,14 @@ from pytorch_lightning.callbacks import ModelCheckpoint, EarlyStopping
 device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
 
 props_list = [ 
-            'thermalcond',
-            'bulkmodulus',
-            'seebeck',
-            'sigma',
-            'bandgap',
-            'bulkmodulus',
-            'shearmodulus'
+            # 'thermalcond',
+            # 'bulkmodulus',
+            # 'seebeck',
+            # 'sigma',
+            # 'bandgap',
+            # 'bulkmodulus',
+            # 'shearmodulus'
+            'rho'
             ]
 
 def train_transfer_models():
@@ -40,7 +41,7 @@ def train_transfer_models():
         keys_B = [key for key in list(data_clean.keys()) if key=='mpds' or key=='mp']
         for key_B in keys_B:
             df = data_clean[key_B].copy()
-            df_val = df.sample(frac=0.10, random_state=seed)
+            df_val   = df.sample(frac=0.10, random_state=seed)
             df_train = df.drop(df_val.index)
 
             roost_config['data_params']['batch_size'] = roost_kwargs['batch_size']
