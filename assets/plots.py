@@ -126,8 +126,6 @@ def plot_self_augment(prop = 'bulkmodulus',
     plt.legend()
     plt.savefig('self_augment_bulkmodulus_standard.png')
         
-
-
         
 def add_prop_to_violins(fig, ind, dfs, prop, l):
     colors = {'japdata':'purple','citrine':'pink', 'mpds':'orange', 'te':'green', 
@@ -202,7 +200,7 @@ def plot_violins(fig):
         y=1.05,
         xanchor="left",
         x=0.02,
-        font=dict(size=18)
+        font=dict(size=16)
     ))
     st = 0.
     tk=dict(size=10)
@@ -679,14 +677,5 @@ class plot_augmentation():
         fig.update_yaxes(title=f'accuracy on test ({self.test_key})')
         fig.update_layout(title=f'accuracy plot for {self.test_key} ({self.prop})')
         fig.show()
-        
-
-
-
-
-
-
-
-
-
-        
+    
+    
