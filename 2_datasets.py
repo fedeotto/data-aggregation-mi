@@ -13,11 +13,11 @@ pio.renderers.default="svg"    # 'svg' or 'browser'
 pio.templates.default="simple_white"
 
 props_list = [  
-                # 'rho',
-                # 'sigma',
-                # 'thermalcond',
+                'rho',
+                'sigma',
+                'thermalcond',
                 # 'superconT',
-                # 'seebeck',
+                'seebeck',
                 'bandgap',
                 'bulkmodulus',
                 'shearmodulus'                
@@ -63,9 +63,15 @@ def plot_all():
         # data_clean = add_column(data_clean, extraord_size, ascending_setting[prop])
         # plot_distinct_histos(data_clean, 60, prop, extraord=True)
         # plots.plot_super_histos(data_clean, 60, prop, op1=0.65, op2=0.8, extraord=True)
+    
+    # Set the target DPI (dots per inch)
+    target_dpi = 600
+
+    # Calculate the scale factor based on the target DPI
+    scale_factor = target_dpi / 96.0  # 96 is the default DPI in Plotly
 
     fig = plot_violins(violin_fig)
-    pio.write_image(fig, 'plots/fig2/violin.png')
+    pio.write_image(fig, 'plots/fig2/violin.png', scale=scale_factor)
 
 
 if __name__ == '__main__': plot_all()

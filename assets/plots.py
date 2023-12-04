@@ -20,7 +20,7 @@ from assets.metrics import equitability_index
 pio.renderers.default="browser"    # 'svg' or 'browser'
 pio.templates.default="simple_white"
 
-plt.rcParams['figure.dpi'] = 500
+plt.rcParams['figure.dpi'] = 600
 plt.rcParams['font.size']  = 16
 
 def plot_self_augment(prop = 'bulkmodulus',
@@ -137,13 +137,13 @@ def add_prop_to_violins(fig, ind, dfs, prop, l):
     rocket_palette = sns.color_palette("rocket")
     rocket_colors_hex = rocket_palette.as_hex()
 
-    colors = {f'japdata':f'{rocket_colors_hex[0]}',
-                'citrine':f'{rocket_colors_hex[1]}', 
-                'mpds':f'{rocket_colors_hex[2]}', 
-                'te':f'{rocket_colors_hex[3]}', 
-                'mp':f'{rocket_colors_hex[4]}', 
-                'aflow':f'{rocket_colors_hex[5]}', 
-                'zhuo':'#8856a7'}
+    colors = {f'japdata': colors['japdata'],
+                'citrine': colors['citrine'], 
+                'mpds':colors['mpds'], 
+                'te':colors['te'], 
+                'mp':colors['mp'], 
+                'aflow':colors['aflow'], 
+                'zhuo':colors['zhuo']}
     sides = ['negative', 'positive']  
     datasets = {'japdata':'MDR','citrine':'Citrine', 'mpds':'MPDS', 'te':'MRL',
                 'mp':'Mat. Proj.', 'aflow':'AFLOW', 'zhuo':'Zhuo et al.'}
@@ -202,7 +202,7 @@ def plot_violins(fig):
         y=1.05,
         xanchor="left",
         x=0.02,
-        font=dict(size=16)
+        font=dict(size=18)
     ))
     st = 0.
     tk=dict(size=10)
@@ -262,6 +262,7 @@ def plot_violins(fig):
     #     )
     # )
     # fig.update_traces(meanline_visible=True)
+
     fig.update_layout(width=1000,  # 1500
                       height=800,  # 500
                       margin=dict(l=10, r=10, t=10, b=10)
@@ -354,7 +355,7 @@ def plot_elem_class_score_matplotlib(freq_df, task, metric, prop, web=True):
     ax.set_ylabel('MAE', labelpad=15)
 
     # save the plot as a file in the plots/fig1 folder
-    plt.savefig(f'plots/fig1_rf/{prop}_distinct.png', dpi=300)
+    plt.savefig(f'plots/fig1_rf/{prop}_distinct.png', dpi=600)
     
 def plot_elem_class_score(freq_df, task, metric, prop, web=True):
     fig = go.Figure()
@@ -411,7 +412,7 @@ def plot_super_histos(dfs, bins, prop, op1=0.65, op2=0.8, extraord=True):
                                    xbins=dict(
                                        start = low,
                                        end   = high,
-                                       size = size), 
+                                       size  = size), 
                                    autobinx=False,
                                    opacity = op1,
                                    name = key,
@@ -419,7 +420,7 @@ def plot_super_histos(dfs, bins, prop, op1=0.65, op2=0.8, extraord=True):
                                    ))
         if extraord:
             bar = df[df[f'extraord|{key}']==1].iloc[-1]['target']
-            fig.add_vline(x=bar, 
+            fig.add_vline(x=bar,
                           line_width=3, 
                           line_dash="dash", 
                           line_color=colors[i],
