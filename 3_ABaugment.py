@@ -21,9 +21,9 @@ warnings.filterwarnings('ignore')
 props_list = [ 
             #    'thermalcond',
             #    'seebeck',
-               'rho',
-               'sigma',
-               'bandgap',
+            #    'rho',
+            #    'sigma',
+            #    'bandgap'
                'bulkmodulus',
                'shearmodulus' 
             ]                       # 'thermalcond',
@@ -36,11 +36,11 @@ props_list = [
                                     # 'shearmodulus'
 """TASKS"""
 tasks_list = [  
-                # 'roost_regression',
-                # 'crabnet_regression',
-                'transf_crabnet_regression',
-                'transf_roost_regression',
+                # # 'roost_regression'
+                # 'crabnet_regression'd,
                 # 'linear_regression',
+                'transf_crabnet_regression',
+                'transf_roost_regression'
                 # 'random_forest_regression',    
                 # 'logistic_classification',  
                 # 'crabnet_classification'
@@ -48,7 +48,8 @@ tasks_list = [
 
 """MODELS"""
 models_list = [ 
-                'baseline',
+                # 'baseline',
+                'transfer'
                 # 'concat',
                 # 'elem_concat',
                 # 'disco'
@@ -65,10 +66,10 @@ metric_class = 'acc'
 def plot_all():
     # To store results
     iterables = [[task for task in tasks_list], [model for model in models_list]]
-    columns = pd.MultiIndex.from_product(iterables, names=["task", "model"])
+    columns   = pd.MultiIndex.from_product(iterables, names=["task", "model"])
     iterables = [props_list, list(range(n_repetitions))]
-    index =  pd.MultiIndex.from_product(iterables, names=["prop", "rep"])
-    results = pd.DataFrame(columns=columns, index=index)
+    index     =  pd.MultiIndex.from_product(iterables, names=["prop", "rep"])
+    results   = pd.DataFrame(columns=columns, index=index)
 
     # main loop
     for prop in props_list:
@@ -123,7 +124,18 @@ def plot_all():
                                 else output[task][metric_class] for task in tasks_list]
                 cols = results.columns.get_level_values('model')=='baseline'
                 results.loc[(prop,n),cols] = num_results
-                
+            """TRANSFER"""  
+            if 'transfer' in models_list:
+                print(f'--- Transfer ---')
+                train_feat = utils.featurize(train, elem_prop=elem_prop)
+                output, _  = tasks.apply_all_tasks(train_feat, test_feat, key_A,
+                                                    tasks_list, prop, key_B, crabnet_kwargs,roost_kwargs,
+                                                    random_state=seed)
+                num_results = [output[task][metric_reg] if ('regression' in task) 
+                                else output[task][metric_class] for task in tasks_list]
+                cols = results.columns.get_level_values('model')=='transfer'
+                results.loc[(prop,n),cols] = num_results
+
             """CONCAT MODEL"""
             if 'concat' in models_list:
                 print(f'--- concat ---')

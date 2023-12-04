@@ -466,7 +466,10 @@ def crabnet(train_in, train_out,
 
     if transfer:
         crabnet_model.load_network(f'./transfer_models/crabnet_{prop}_{key_B}.pth')
-    
+        output_nn = crabnet_model.model.output_nn
+        last_layer= list(output_nn.children())[-1]
+        last_layer.reset_parameters()
+
     crabnet_model.load_data(train_df, batch_size=crabnet_kwargs['batch_size'], train=True)
     crabnet_model.load_data(little_val, batch_size=crabnet_kwargs['batch_size'], train=False)
     crabnet_model.fit(epochs = crabnet_kwargs['epochs'])
@@ -506,7 +509,10 @@ def roost(train_in, train_out,
     roost_config['data_params']['batch_size'] = roost_kwargs['batch_size']
 
     if transfer:
-        roost = RoostLightning.load_from_checkpoint(f'./transfer_models/roost_{prop}_{key_B}.ckpt')
+        roost     = RoostLightning.load_from_checkpoint(f'./transfer_models/roost_{prop}_{key_B}.ckpt')
+        output_nn = list(roost.model.children())[1]
+        last_layer= list(output_nn.children())[-1]
+        last_layer.reset_parameters()
     else:
         roost = RoostLightning(**roost_config)
     
@@ -532,7 +538,6 @@ def roost(train_in, train_out,
     preds = roost.predict(roost.test_loader)
     
     return preds
-
 
 
 def apply_all_tasks(train,

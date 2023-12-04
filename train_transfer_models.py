@@ -17,9 +17,9 @@ props_list = [
             # 'seebeck',
             # 'sigma',
             # 'bandgap',
-            # 'bulkmodulus',
+            'bulkmodulus',
             # 'shearmodulus'
-            'rho'
+            # 'rho'
             ]
 
 def train_transfer_models():
@@ -66,19 +66,19 @@ def train_transfer_models():
                         train_dataloaders=roost.train_loader, 
                         val_dataloaders=roost.val_loader)  
 
-            crabnet = Model(CrabNet(compute_device=device).to(device),
-                            classification=False,
-                            random_state=seed,
-                            verbose=crabnet_kwargs['verbose'],
-                            discard_n=crabnet_kwargs['discard_n'])
+            # crabnet = Model(CrabNet(compute_device=device).to(device),
+            #                 classification=False,
+            #                 random_state=seed,
+            #                 verbose=crabnet_kwargs['verbose'],
+            #                 discard_n=crabnet_kwargs['discard_n'])
             
-            df_train = df_train[['formula','target']]
-            df_val   = df_val[['formula','target']]
-            crabnet.load_data(df_train, train=True, batch_size=crabnet_kwargs['batch_size'])
-            crabnet.load_data(df_val, train=False, batch_size=crabnet_kwargs['batch_size'])
+            # df_train = df_train[['formula','target']]
+            # df_val   = df_val[['formula','target']]
+            # crabnet.load_data(df_train, train=True, batch_size=crabnet_kwargs['batch_size'])
+            # crabnet.load_data(df_val, train=False, batch_size=crabnet_kwargs['batch_size'])
 
-            crabnet.fit(epochs=crabnet_kwargs['epochs'])
-            crabnet.save_network(f'./transfer_models/crabnet_{prop}_{key_B}.pth')
+            # crabnet.fit(epochs=crabnet_kwargs['epochs'])
+            # crabnet.save_network(f'./transfer_models/crabnet_{prop}_{key_B}.pth')
 
 if __name__ == "__main__":
     train_transfer_models()

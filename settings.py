@@ -69,10 +69,10 @@ ascending_setting = {'thermalcond': False,
 #can change `mp` with `mpds` if you have access to mpds data
 pairs={'thermalcond'   : ['citrine', 'mpds'], 
        'superconT'     : ['japdata', 'mpds'],
-        'bulkmodulus'  : ['aflow', 'mpds'], #mpds or mp 
+        'bulkmodulus'  : ['aflow', 'mp'], #mpds or mp 
         'bandgap'      : ['zhuo', 'mpds'], #mpds or mp
         'seebeck'      : ['te', 'mpds'],
         'rho'          : ['te', 'mpds'],
         'sigma'        : ['te', 'mpds'],
-        'shearmodulus' : ['aflow', 'mpds']  #mpds or mp
+        'shearmodulus' : ['aflow', 'mp']  #mpds or mp
         }
