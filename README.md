@@ -1,5 +1,5 @@
 # DataAggregationMI
-This repository contains the code and data accompanying our paper '**Not as simple as we thought: a rigorous examination of data aggregation in materials informatics**' (https://chemrxiv.org/engage/chemrxiv/article-details/64d212414a3f7d0c0dced297).
+This repository contains the code and data accompanying our paper '**Not as simple as we thought: a rigorous examination of data aggregation in materials informatics**' (https://pubs.rsc.org/en/content/articlelanding/2024/dd/d3dd00207a).
 
 ## Installation
 1. Clone this repository:
